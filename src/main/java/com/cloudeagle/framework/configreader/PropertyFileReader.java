@@ -30,7 +30,7 @@ public class PropertyFileReader implements IconfigReader {
 	 */
 
 	public String getUserName() {
-		return prop.getProperty("Username");
+		return prop.getProperty("UserName");
 	}
 
 	public String getPassword() {
@@ -200,6 +200,46 @@ public class PropertyFileReader implements IconfigReader {
 
 		return prop.getProperty("MovrPassword");
 
+	}
+
+	@Override
+	public String getServerInstanceName() {
+		return prop.getProperty("ServerInstanceName");
+	}
+
+	@Override
+	public String getURL() {
+		return prop.getProperty("URL");
+	}
+
+	@Override
+	public String getFileName() {
+		return prop.getProperty("FileName");
+	}
+
+	@Override
+	public String getProcessedBy() {
+		return prop.getProperty("ProcessedBy");
+	}
+
+	@Override
+	public String getStatus() {
+		return prop.getProperty("Status");
+	}
+
+	@Override
+	public String getRecordUploaded() {
+		return prop.getProperty("RecordUploaded");
+	}
+
+	@Override
+	public String getRecordInserted() {
+		return prop.getProperty("RecordInserted");
+	}
+
+	@Override
+	public String getRecordFailed() {
+		return prop.getProperty("RecordFailed");
 	}
 
 }

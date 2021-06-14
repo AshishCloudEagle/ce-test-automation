@@ -1,10 +1,12 @@
 package com.cloudeagle.framework.utility;
 
-
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * @author krana
@@ -16,14 +18,14 @@ public class ResourceHelper {
 		String path = getBaseResourcePath() + resource;
 		return path;
 	}
-	
+
 	public static String getBaseResourcePath() {
-		String path = ResourceHelper.class.getClass().getResource("/").getPath();
+		String path = ResourceHelper.class.getResource("/").getPath();
 		return path;
 	}
-	
+
 	public static InputStream getResourcePathInputStream(String resource) throws FileNotFoundException {
 		return new FileInputStream(ResourceHelper.getResourcePath(resource));
 	}
-	
+
 }
