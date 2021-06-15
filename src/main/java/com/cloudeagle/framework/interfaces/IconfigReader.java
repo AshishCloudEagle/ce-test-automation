@@ -68,5 +68,7 @@ public interface IconfigReader {
 	public String getApplicationName();
 
 	public String getApplicationVendorName();
+	
+	public String getDocumentVendorName();
 
 }

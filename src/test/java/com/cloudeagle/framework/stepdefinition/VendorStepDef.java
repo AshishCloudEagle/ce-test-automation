@@ -19,7 +19,7 @@ public class VendorStepDef {
 		vP.clickOnVendorSideMenu();
 	}
 
-	@Then("^user must be able to view Vendors header$")
+	@Then("^user must be able to view vendors header$")
 	public void verify_vendors_header() throws Throwable {
 		vP.verifyHeader();
 	}

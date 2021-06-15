@@ -257,4 +257,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("ApplicationVendor");
 	}
 
+	@Override
+	public String getDocumentVendorName() {
+		return prop.getProperty("DocumentVendorName");
+	}
+
 }
