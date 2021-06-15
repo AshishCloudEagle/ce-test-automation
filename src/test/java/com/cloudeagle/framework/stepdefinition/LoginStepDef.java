@@ -15,49 +15,19 @@ public class LoginStepDef {
 
 	@Given("^user reached on login screen$")
 	public void user_reached_on_login_screen() throws Throwable {
-
-		ObjectRepo.driver.get(ObjectRepo.reader.getAdminWebsite());
-
+		ObjectRepo.driver.get(ObjectRepo.reader.getURL());
 	}
 
 	@When("^user enters credentials and click on Sign in button$")
 	public void user_enters_credentials_and_click_on_sign_in_button() throws Throwable {
-
-		lp.enterUserName(ObjectRepo.reader.getAdminUserName());
-		lp.enterPass(ObjectRepo.reader.getAdminPassword());
+		lp.enterUserName(ObjectRepo.reader.getUserName());
+		lp.enterPass(ObjectRepo.reader.getPassword());
 		lp.ClickSignIn();
 
 	}
 
 	@Then("^user must reached to landing page validate by title$")
 	public void user_reached_must_reached_to_landing_page() throws Throwable {
-
 		landP.verifylandingPageTitle();
-
 	}
-
-	@Given("^MOVR user reached on login screen$")
-	public void movr_user_reached_on_login_screen() throws Throwable {
-
-		ObjectRepo.driver.get(ObjectRepo.reader.getMOVRWebsite());
-
-	}
-
-	@When("^MOVR user enters credentials and click on Sign in button$")
-	public void movr_user_enters_credentials_and_click_on_sign_in_button() throws Throwable {
-
-		lp.enterUserName(ObjectRepo.reader.getMovrUserName());
-		lp.enterPass(ObjectRepo.reader.getMovrPassword());
-		lp.ClickSignIn();
-
-	}
-
-	@Then("^user must reached to landing page of MOVR application validate by title$")
-	public void user_reached_must_reached_to_landing_page_of_movr_application() throws Throwable {
-
-		landP.verifylandingPageTitleMOVR();
-
-	}
-
-	
 }

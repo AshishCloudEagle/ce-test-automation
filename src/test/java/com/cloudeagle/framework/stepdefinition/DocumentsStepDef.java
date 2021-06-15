@@ -25,9 +25,20 @@ public class DocumentsStepDef {
 		docP.clickOnPublishedDocuments();
 	}
 
-	@Then("^user must be able to view documents table$")
-	public void verify_aplications_table() throws Throwable {
-		docP.verifyDocumentsDataTable(ObjectRepo.reader.getDocumentVendorName());
+	@And("^user click on uploaded documents$")
+	public void click_on_uploaded_documents() throws Throwable {
+		wH.staticWait(10);
+		docP.clickOnUploadedDocuments();
+	}
+
+	@Then("^user must be able to view published documents table$")
+	public void verify_published_documents_table() throws Throwable {
+		docP.verifyPublishedDocumentsDataTable(ObjectRepo.reader.getPublishedDocumentVendorName());
+	}
+
+	@Then("^user must be able to view uploaded documents table$")
+	public void verify_uploaded_documents_table() throws Throwable {
+		docP.verifyUploadeddDocumentsDataTable(ObjectRepo.reader.getUploadedDocumentVendorName());
 	}
 
 }

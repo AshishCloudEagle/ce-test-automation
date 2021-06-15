@@ -21,14 +21,6 @@ public class PropertyFileReader implements IconfigReader {
 		}
 	}
 
-	/*
-	 * public PropertyFileReader(String fileName) {
-	 * 
-	 * prop = new Properties(); try { prop.load(ResourceHelper
-	 * .getResourcePathInputStream("configfile/" + fileName)); } catch (Exception e)
-	 * { e.printStackTrace(); } }
-	 */
-
 	public String getUserName() {
 		return prop.getProperty("UserName");
 	}
@@ -113,96 +105,6 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getHomePageTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getFindAgentTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getHomeSelectionTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getFaqPageTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getAgentProposalTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getBuyProcessTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getLoanApprovalTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getPriceRangeTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getAdminWebsite() {
-
-		return prop.getProperty("AdminWebsite");
-
-	}
-
-	@Override
-	public String getAdminUserName() {
-
-		return prop.getProperty("AdminUsername");
-
-	}
-
-	@Override
-	public String getAdminPassword() {
-
-		return prop.getProperty("AdminPassword");
-
-	}
-
-	@Override
-	public String getMOVRWebsite() {
-
-		return prop.getProperty("MOVRWebsite");
-
-	}
-
-	@Override
-	public String getMovrUserName() {
-
-		return prop.getProperty("MovrUserName");
-
-	}
-
-	@Override
-	public String getMovrPassword() {
-
-		return prop.getProperty("MovrPassword");
-
-	}
-
-	@Override
 	public String getServerInstanceName() {
 		return prop.getProperty("ServerInstanceName");
 	}
@@ -258,8 +160,18 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getDocumentVendorName() {
-		return prop.getProperty("DocumentVendorName");
+	public String getPublishedDocumentVendorName() {
+		return prop.getProperty("PublishedDocumentVendorName");
+	}
+
+	@Override
+	public int getPollingTime() {
+		return Integer.parseInt(prop.getProperty("PollingTime"));
+	}
+
+	@Override
+	public String getUploadedDocumentVendorName() {
+		return prop.getProperty("UploadeddDocumentVendorName");
 	}
 
 }

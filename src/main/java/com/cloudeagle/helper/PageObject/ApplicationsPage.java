@@ -8,22 +8,32 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
+import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class ApplicationsPage extends PageBase {
 
 	private WebDriver driver;
 
 	private final static Logger log = LoggerHelper.getLogger(ApplicationsPage.class);
-	GenericHelper gH;
+	GenericHelper gHelper;
+	WaitHelper wHelper;
+	ButtonHelper bHelper;
+	TextBoxHelper tHelper;
 
 	public ApplicationsPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		gH = new GenericHelper(driver);
-
+		gHelper = new GenericHelper(driver);
+		wHelper = new WaitHelper(driver, ObjectRepo.reader);
+		bHelper = new ButtonHelper(driver);
+		tHelper = new TextBoxHelper(driver);
 	}
 
 	/** Web Elements */
@@ -36,7 +46,7 @@ public class ApplicationsPage extends PageBase {
 	@CacheLookup
 	private WebElement search;
 
-	By header = By.xpath("//div[contains(@class,'menuHeading')]//*[text()='VENDORS']");
+	By header = By.xpath("//div[contains(@class,'menuHeading')]//*[text()='APPLICATIONS']");
 
 	By excelTable = By.xpath("(//table)[1]");
 
@@ -49,24 +59,26 @@ public class ApplicationsPage extends PageBase {
 	}
 
 	public void clickOnApplicationsSideMenu() {
-		menuApplications.click();
+		wHelper.waitForElementToBeClickable(menuApplications);
+		bHelper.click(menuApplications);
 		log.info("User clicks on Applications");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		search.sendKeys(searchText);
+		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
 
 	public void verifyApplicationsDataTable(String searchText, String vendorName) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gH.IsElementPresentQuick(excelTable), "Applications Data Table is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(By.xpath(String.format(excelData, searchText, vendorName))),
+		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Applications Data Table is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText, vendorName))),
 				"Applications Data searched row is not visible");
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gH.IsElementPresentQuick(header), "Vendor Header is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Applications Header is not visible");
 	}
 
 }

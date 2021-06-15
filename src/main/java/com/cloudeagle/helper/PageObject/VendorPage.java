@@ -8,22 +8,31 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
+import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class VendorPage extends PageBase {
 
 	private WebDriver driver;
-
 	private final static Logger log = LoggerHelper.getLogger(VendorPage.class);
-	GenericHelper gH;
+	GenericHelper gHelper;
+	WaitHelper wHelper;
+	ButtonHelper bHelper;
+	TextBoxHelper tHelper;
 
 	public VendorPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		gH = new GenericHelper(driver);
-
+		gHelper = new GenericHelper(driver);
+		wHelper = new WaitHelper(driver, ObjectRepo.reader);
+		bHelper = new ButtonHelper(driver);
+		tHelper = new TextBoxHelper(driver);
 	}
 
 	/** Web Elements */
@@ -49,24 +58,26 @@ public class VendorPage extends PageBase {
 	}
 
 	public void clickOnVendorSideMenu() {
-		menuVendors.click();
+		wHelper.waitForElementToBeClickable(menuVendors);
+		bHelper.click(menuVendors);
 		log.info("User clicks on Vendors");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		search.sendKeys(searchText);
+		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
 
 	public void verifyVendorDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gH.IsElementPresentQuick(excelTable), "Vendor Data Table is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
+		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Vendor Data Table is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
 				"Vendor Data searched row is not visible");
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gH.IsElementPresentQuick(header), "Vendor Header is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Vendor Header is not visible");
 	}
 
 }

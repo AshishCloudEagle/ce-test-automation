@@ -33,10 +33,7 @@ public class WaitHelper extends GenericHelper {
 	By loaderLocator = By.xpath("//div[@id='loading-text']");
 
 	By delPopUpLocator = By.xpath("//div[@id='ifct-uc-medicalnote-deletebox']//div[@class='modal-content']");
-	
-	
-	
-	
+
 	public WaitHelper(WebDriver driver, IconfigReader reader) {
 		super(driver);
 		this.driver = driver;
@@ -68,12 +65,12 @@ public class WaitHelper extends GenericHelper {
 		setImplicitWait(reader.getImplicitWait(), TimeUnit.SECONDS);
 	}
 
-	public void waitForElementVisible2(WebElement welcomeScreenElement, int timeOutInSeconds,
+	public void waitForElementVisible(WebElement welcomeScreenElement, int timeOutInSeconds,
 			int pollingEveryInMiliSec) {
 		oLog.info(welcomeScreenElement);
 		setImplicitWait(1, TimeUnit.SECONDS);
 		WebDriverWait wait = getWait(timeOutInSeconds, pollingEveryInMiliSec);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement((By) welcomeScreenElement)));
+		wait.until(ExpectedConditions.visibilityOf(welcomeScreenElement));
 		setImplicitWait(reader.getImplicitWait(), TimeUnit.SECONDS);
 	}
 
@@ -138,23 +135,17 @@ public class WaitHelper extends GenericHelper {
 			}
 		};
 	}
-	
-	
-	public  void waitForVisbleOfElement(WebElement webElement) {
+
+	public void waitForVisbleOfElement(WebElement webElement) {
 		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
 
 	}
-	
 
-
-	public  void waitForElementToBeClickable(WebElement webElement) {
-		
+	public void waitForElementToBeClickable(WebElement webElement) {
 		System.out.println("waitForElementToBeClickable");
 		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
 		wait.until(ExpectedConditions.elementToBeClickable(webElement));
-
 	}
-	
 
 	public void waitForElementToBeClickable(By One, WebElement Two) {
 
@@ -170,126 +161,100 @@ public class WaitHelper extends GenericHelper {
 		}
 
 	}
-	
-	
+
 	public void waitForElementToBeClickableAndClick(WebElement element) {
 
-
 		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
-		//Wait till "Cancel" button is showing up. At cases, it may take some time.
+		// Wait till "Cancel" button is showing up. At cases, it may take some time.
 		WebElement el = wait.until(ExpectedConditions.elementToBeClickable(element));
-		((JavascriptExecutor)ObjectRepo.driver).executeScript("arguments[0].click()", el); 
-	
-	
-	
-	
+		((JavascriptExecutor) ObjectRepo.driver).executeScript("arguments[0].click()", el);
+
 	}
 
-	
-	
-	
-	
-	
-	
-	public  void waitForElementToBeClickable(By Xpath) {
+	public void waitForElementToBeClickable(By Xpath) {
 
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_EXPLICIT_SEC);
 		wait.until(ExpectedConditions.elementToBeClickable(Xpath));
-		
-	}
-	
-	public  void waitForPresenceOfElement(By Xpath) {
 
+	}
+
+	public void waitForPresenceOfElement(By Xpath) {
 		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
 		wait.until(ExpectedConditions.presenceOfElementLocated(Xpath));
-
 	}
-	
 
-	public  void waitForVisibility(WebElement element) {
+	public void waitForVisibility(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
 		wait.until(ExpectedConditions.visibilityOf(element));
-
 	}
-	
-	public  void waitForVisibilityLoader() throws InterruptedException {
-		 try {
-	WebDriverWait wait = new WebDriverWait(driver, 5000);
-	//System.out.println("beforevisibility loader");
-	
-	WebElement webElement = driver.findElement(loaderLocator);
 
-	wait.until(ExpectedConditions.visibilityOf(webElement)); // wait for loader to appear
-	wait.until(ExpectedConditions.invisibilityOfElementLocated(loaderLocator)); // wait for loader to disappear
-		 } catch (org.openqa.selenium.TimeoutException e) {
-			 //System.out.println("timeout exxception catch");
-		    }
-		 catch(org.openqa.selenium.StaleElementReferenceException e1) {
-				//System.out.println("beforevisibility loader catch");
-			 handleStaleElement(loaderLocator,5,5);
-			 
-			 waitForVisibilityLoader();
-			 
+	public void waitForVisibilityLoader() throws InterruptedException {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 5000);
+			WebElement webElement = driver.findElement(loaderLocator);
 
-		 } catch (org.openqa.selenium.NoSuchElementException e) {
+			wait.until(ExpectedConditions.visibilityOf(webElement)); // wait for loader to appear
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(loaderLocator)); // wait for loader to disappear
+		} catch (org.openqa.selenium.TimeoutException e) {
+			// System.out.println("timeout exxception catch");
+		} catch (org.openqa.selenium.StaleElementReferenceException e1) {
+			// System.out.println("beforevisibility loader catch");
+			handleStaleElement(loaderLocator, 5, 5);
+
+			waitForVisibilityLoader();
+
+		} catch (org.openqa.selenium.NoSuchElementException e) {
 			// System.out.println("no such catch");
-			 waitForVisibilityLoader();
-		    }
-		 
-	}
-	
-	public  void waitForDeletePopup() throws InterruptedException {
-		 try {
-	WebDriverWait wait = new WebDriverWait(driver, 5000);
-System.out.println("beforevisibility pop-up");
-	
-	WebElement webElement = driver.findElement(delPopUpLocator);
+			waitForVisibilityLoader();
+		}
 
-	wait.until(ExpectedConditions.visibilityOf(webElement)); // wait for loader to appear
-	wait.until(ExpectedConditions.invisibilityOfElementLocated(delPopUpLocator)); // wait for loader to disappear
-		 } catch (org.openqa.selenium.TimeoutException e) {
-			 System.out.println("timeout exxception catch");
-		    }
-		 catch(org.openqa.selenium.StaleElementReferenceException e1) {
-				System.out.println("beforevisibility pop-up catch");
+	}
+
+	public void waitForDeletePopup() throws InterruptedException {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 5000);
+			System.out.println("beforevisibility pop-up");
+
+			WebElement webElement = driver.findElement(delPopUpLocator);
+
+			wait.until(ExpectedConditions.visibilityOf(webElement)); // wait for loader to appear
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(delPopUpLocator)); // wait for loader to
+																							// disappear
+		} catch (org.openqa.selenium.TimeoutException e) {
+			System.out.println("timeout exxception catch");
+		} catch (org.openqa.selenium.StaleElementReferenceException e1) {
+			System.out.println("beforevisibility pop-up catch");
 			// handleStaleElement(loaderLocator,5,5);
-			 
+
 			// waitForVisibilityLoader();
-			 
 
-		 } catch (org.openqa.selenium.NoSuchElementException e) {
-			 System.out.println("no such catch");
-		//	 waitForVisibilityLoader();
-		    }
-		 
+		} catch (org.openqa.selenium.NoSuchElementException e) {
+			System.out.println("no such catch");
+			// waitForVisibilityLoader();
+		}
+
 	}
-	
 
-	public  void clickJava(By xpaths) {
-		
-		
+	public void clickJava(By xpaths) {
+
 		/*
 		 * WebDriver driver = new AnyDriverYouWant(); if (driver instanceof
 		 * JavascriptExecutor) {
 		 * ((JavascriptExecutor)driver).executeScript("yourScript();"); } else { throw
 		 * new IllegalStateException("This driver does not support JavaScript!"); }
 		 */
-		
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;  
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		js.executeScript("arguments[0].click();", xpaths);
 
-
 	}
-	
-	
+
 	public void staticWait(int sec) {
 		try {
-			Thread.sleep(sec*1000);
+			Thread.sleep(sec * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -1,12 +1,14 @@
 Feature: External Data Scenarios 
 
-Scenario: External Data 
+#CE-662
+Scenario: Verify external data - on demand sync scenario
 	Given user logged in successfully  
 	When user navigate to on demand sync page
 	Then user must be landing on on-demand sync page
 	And user must be able to view sidebar options
 
-Scenario: External Data Upload
+#CE-672
+Scenario: Verify external data - excel upload scenario
 	Given user logged in successfully  
 	When user navigate to external data upload page
 	Then user must be able to view external data upload table

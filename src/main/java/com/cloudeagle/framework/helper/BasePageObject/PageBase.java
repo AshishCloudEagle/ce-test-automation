@@ -18,8 +18,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
-import com.cloudeagle.helper.PageObject.LandingPage;
-import com.cloudeagle.helper.PageObject.LoginPage;
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.google.common.base.Function;
 
@@ -41,9 +39,7 @@ public abstract class PageBase {
 	@FindBy(xpath = "//button[@id='next']")
 	@CacheLookup
 	private WebElement signInButton;
-	
-	
-	
+
 	private By getFindByAnno(FindBy anno) {
 		log.info(anno);
 		switch (anno.how()) {
@@ -117,21 +113,10 @@ public abstract class PageBase {
 	}
 
 	public void LoginAdminApp() {
-
-		ObjectRepo.driver.get(ObjectRepo.reader.getAdminWebsite());
-		
-		enterUserName(ObjectRepo.reader.getAdminUserName());
-		enterPass(ObjectRepo.reader.getAdminPassword());
+		ObjectRepo.driver.get(ObjectRepo.reader.getURL());
+		enterUserName(ObjectRepo.reader.getUserName());
+		enterPass(ObjectRepo.reader.getPassword());
 		ClickSignIn();
-		
-		System.out.println(ObjectRepo.driver +"LoginAdminApp");
-		
-		/*
-		 * logPage.enterUserName(ObjectRepo.reader.getAdminUserName());
-		 * logPage.enterPass(ObjectRepo.reader.getAdminPassword());
-		 * logPage.ClickSignIn();
-		 */
-
 	}
 
 	public void enterUserName(String username) {
@@ -148,7 +133,5 @@ public abstract class PageBase {
 		signInButton.click();
 		log.info(signInButton);
 	}
-
-	
 
 }

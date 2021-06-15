@@ -5,18 +5,6 @@ import com.cloudeagle.framework.configuration.browser.BrowserType;
 
 public interface IconfigReader {
 
-	public String getAdminWebsite();
-
-	public String getAdminUserName();
-
-	public String getAdminPassword();
-
-	public String getMOVRWebsite();
-
-	public String getMovrUserName();
-
-	public String getMovrPassword();
-
 	public int getPageLoadTimeOut();
 
 	public int getImplicitWait();
@@ -24,22 +12,6 @@ public interface IconfigReader {
 	public int getExplicitWait();
 
 	public BrowserType getBrowser();
-
-	public String getHomePageTitle();
-
-	public String getFindAgentTitle();
-
-	public String getHomeSelectionTitle();
-
-	public String getFaqPageTitle();
-
-	public String getAgentProposalTitle();
-
-	public String getBuyProcessTitle();
-
-	public String getLoanApprovalTitle();
-
-	public String getPriceRangeTitle();
 
 	public String getWaitTime();
 
@@ -68,7 +40,11 @@ public interface IconfigReader {
 	public String getApplicationName();
 
 	public String getApplicationVendorName();
-	
-	public String getDocumentVendorName();
+
+	public String getPublishedDocumentVendorName();
+
+	public int getPollingTime();
+
+	public String getUploadedDocumentVendorName();
 
 }

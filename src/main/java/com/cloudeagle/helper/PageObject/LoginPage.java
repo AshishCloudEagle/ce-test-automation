@@ -1,14 +1,10 @@
 package com.cloudeagle.helper.PageObject;
 
-import static org.junit.Assert.assertTrue;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
@@ -23,7 +19,6 @@ public class LoginPage extends PageBase {
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		
 
 	}
 
@@ -32,15 +27,11 @@ public class LoginPage extends PageBase {
 	@FindBy(xpath = "//input[@name='emailField' and @type='text']")
 	@CacheLookup
 	private WebElement emailAddress;
-	
-	
+
 	@FindBy(xpath = "//input[@name='passField' and @type='password']")
 	@CacheLookup
 	private WebElement password;
-	
-	
 
-	
 	@FindBy(xpath = "//button[contains(text(),'SIGN IN')]")
 	@CacheLookup
 	private WebElement signInButton;
@@ -63,9 +54,7 @@ public class LoginPage extends PageBase {
 
 	private final String pageUrl = "/signin?email=";
 
-
-
-	/** Public Methods  **/
+	/** Public Methods **/
 
 	public WebDriver getDriver() {
 		return this.driver;
@@ -91,7 +80,7 @@ public class LoginPage extends PageBase {
 		log.info(signInButton);
 	}
 
-	//Verify user on Singin page
+	// Verify user on Singin page
 	/*
 	 * public void verifySigninPageTitle() {
 	 * Assert.assertTrue(LoginTitle.isDisplayed()
@@ -99,21 +88,18 @@ public class LoginPage extends PageBase {
 	 * log.info("Sing in page title is verified on page"); }
 	 */
 
-	//Click on Create On Now button
-	public void openAccountBtnClick()
-	{
+	// Click on Create On Now button
+	public void openAccountBtnClick() {
 		try {
 			openAccountBtn.click();
-		}catch(Exception e)
-		{
+		} catch (Exception e) {
 			log.info("Error while clicking Create Now One Button on login Page");
 		}
 	}
 
-	//verify user landed on home page after login
+	// verify user landed on home page after login
 
-	public void verifyHomePage()
-	{
+	public void verifyHomePage() {
 		Assert.assertTrue(welcomeScreenElement.isDisplayed(), "Error after login, User is not able to see home page.");
 		log.info("Welcome text is verified on Home Page");
 	}

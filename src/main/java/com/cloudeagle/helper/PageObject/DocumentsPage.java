@@ -8,21 +8,32 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
+import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class DocumentsPage extends PageBase {
 
 	private WebDriver driver;
 
 	private final static Logger log = LoggerHelper.getLogger(DocumentsPage.class);
-	GenericHelper gH;
+	GenericHelper gHelper;
+	WaitHelper wHelper;
+	ButtonHelper bHelper;
+	TextBoxHelper tHelper;
 
 	public DocumentsPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		gH = new GenericHelper(driver);
+		gHelper = new GenericHelper(driver);
+		wHelper = new WaitHelper(driver, ObjectRepo.reader);
+		bHelper = new ButtonHelper(driver);
+		tHelper = new TextBoxHelper(driver);
 
 	}
 
@@ -35,6 +46,10 @@ public class DocumentsPage extends PageBase {
 	@FindBy(xpath = "//*[text()='Published Documents']")
 	@CacheLookup
 	private WebElement publishedDocuments;
+
+	@FindBy(xpath = "//*[text()='Uploaded Documents']")
+	@CacheLookup
+	private WebElement uploadedDocuments;
 
 	@FindBy(xpath = "//input[@placeholder='Search']")
 	@CacheLookup
@@ -53,28 +68,44 @@ public class DocumentsPage extends PageBase {
 	}
 
 	public void clickOnDocumentsSideMenu() {
-		menuDocuments.click();
+		wHelper.waitForElementToBeClickable(menuDocuments);
+		bHelper.click(menuDocuments);
 		log.info("User clicks on Documents");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		search.sendKeys(searchText);
+		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
 
-	public void verifyDocumentsDataTable(String searchText) {
+	public void verifyPublishedDocumentsDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gH.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
+		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
 				"Documents Data searched row is not visible");
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gH.IsElementPresentQuick(header), "Vendor Header is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Vendor Header is not visible");
 	}
 
 	public void clickOnPublishedDocuments() {
-		publishedDocuments.click();
+		wHelper.waitForElementToBeClickable(publishedDocuments);
+		bHelper.click(publishedDocuments);
+		log.info("User clicks on Published Documents");
+	}
+
+	public void verifyUploadeddDocumentsDataTable(String searchText) {
+		enterSearchCriteria(searchText);
+		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
+				"Documents Data searched row is not visible");
+	}
+
+	public void clickOnUploadedDocuments() {
+		wHelper.waitForElementToBeClickable(uploadedDocuments);
+		bHelper.click(uploadedDocuments);
 		log.info("User clicks on Published Documents");
 	}
 

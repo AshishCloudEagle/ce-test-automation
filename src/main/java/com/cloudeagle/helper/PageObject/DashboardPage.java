@@ -8,21 +8,32 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
+import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class DashboardPage extends PageBase {
 
 	private WebDriver driver;
 
 	private final static Logger log = LoggerHelper.getLogger(DashboardPage.class);
-	GenericHelper gH;
+	GenericHelper gHelper;
+	WaitHelper wHelper;
+	ButtonHelper bHelper;
+	TextBoxHelper tHelper;
 
 	public DashboardPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		gH = new GenericHelper(driver);
+		gHelper = new GenericHelper(driver);
+		wHelper = new WaitHelper(driver, ObjectRepo.reader);
+		bHelper = new ButtonHelper(driver);
+		tHelper = new TextBoxHelper(driver);
 
 	}
 
@@ -79,37 +90,43 @@ public class DashboardPage extends PageBase {
 	}
 
 	public String getUserName() {
-		String text = usename.getText();
+		wHelper.waitForElementVisible(usename, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		String text = tHelper.getText(usename);
 		log.info(text);
 		return text;
 	}
 
 	public String getServerInstanceName() {
-		String text = serverInstance.getText();
+		wHelper.waitForElementVisible(serverInstance, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		String text = tHelper.getText(serverInstance);
 		log.info(text);
 		return text;
 	}
 
 	public String getNumberOfVendors() {
-		String text = noOfVendors.getText();
+		wHelper.waitForElementVisible(noOfVendors, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		String text = tHelper.getText(noOfVendors);
 		log.info(text);
 		return text;
 	}
 
 	public String getNumberOfApplication() {
-		String text = noOfApplication.getText();
+		wHelper.waitForElementVisible(noOfApplication, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		String text = tHelper.getText(noOfApplication);
 		log.info(text);
 		return text;
 	}
 
 	public String getSpendYTD() {
-		String text = spendYTD.getText();
+		wHelper.waitForElementVisible(spendYTD, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		String text = tHelper.getText(spendYTD);
 		log.info(text);
 		return text;
 	}
 
 	public String getSavings() {
-		String text = savings.getText();
+		wHelper.waitForElementVisible(savings, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		String text = tHelper.getText(savings);
 		log.info(text);
 		return text;
 	}
@@ -128,7 +145,8 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void clickOnLogo() {
-		logoImg.click();
+		wHelper.waitForElementToBeClickable(logoImg);
+		bHelper.click(logoImg);
 		log.info("User clicks on logo");
 	}
 
@@ -139,10 +157,6 @@ public class DashboardPage extends PageBase {
 		ytd = ytd.substring(1).replaceAll(",", "").trim();
 		String saving = getSavings();
 		saving = saving.substring(1).replaceAll(",", "").trim();
-		System.err.println("###########" + vendors);
-		System.err.println("###########" + application);
-		System.err.println("###########" + ytd);
-		System.err.println("###########" + saving);
 		if (Integer.parseInt(vendors) <= 0) {
 			log.error("Number of Vendors are <= 0");
 			Assert.assertTrue("Number of Vendors are <= 0", false);
@@ -162,13 +176,13 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void varifySideBarMenusOnDashboardPage() {
-		Assert.assertTrue("Dasboard Menu is not displaying", gH.IsElementPresentQuick(menuDashboard));
-		Assert.assertTrue("Vendors Menu is not displaying", gH.IsElementPresentQuick(menuVendors));
-		Assert.assertTrue("Applications Menu is not displaying", gH.IsElementPresentQuick(menuApplications));
-		Assert.assertTrue("Documents Menu is not displaying", gH.IsElementPresentQuick(menuDocuments));
-		Assert.assertTrue("SaaS Directory Menu is not displaying", gH.IsElementPresentQuick(menuSaaSDirectory));
-		Assert.assertTrue("Vendor Research Menu is not displaying", gH.IsElementPresentQuick(menuVendorResearch));
-		Assert.assertTrue("External Data Menu is not displaying", gH.IsElementPresentQuick(menuExternalData));
-		Assert.assertTrue("Admin Menu is not displaying", gH.IsElementPresentQuick(menuAdmin));
+		Assert.assertTrue("Dasboard Menu is not displaying", gHelper.IsElementPresentQuick(menuDashboard));
+		Assert.assertTrue("Vendors Menu is not displaying", gHelper.IsElementPresentQuick(menuVendors));
+		Assert.assertTrue("Applications Menu is not displaying", gHelper.IsElementPresentQuick(menuApplications));
+		Assert.assertTrue("Documents Menu is not displaying", gHelper.IsElementPresentQuick(menuDocuments));
+		Assert.assertTrue("SaaS Directory Menu is not displaying", gHelper.IsElementPresentQuick(menuSaaSDirectory));
+		Assert.assertTrue("Vendor Research Menu is not displaying", gHelper.IsElementPresentQuick(menuVendorResearch));
+		Assert.assertTrue("External Data Menu is not displaying", gHelper.IsElementPresentQuick(menuExternalData));
+		Assert.assertTrue("Admin Menu is not displaying", gHelper.IsElementPresentQuick(menuAdmin));
 	}
 }

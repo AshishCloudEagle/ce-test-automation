@@ -8,9 +8,14 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
+import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class ExternalDataPage extends PageBase {
 
@@ -18,12 +23,17 @@ public class ExternalDataPage extends PageBase {
 
 	private final static Logger log = LoggerHelper.getLogger(ExternalDataPage.class);
 	GenericHelper gH;
+	WaitHelper wHelper;
+	ButtonHelper bHelper;
+	TextBoxHelper tHelper;
 
 	public ExternalDataPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gH = new GenericHelper(driver);
-
+		bHelper = new ButtonHelper(driver);
+		wHelper = new WaitHelper(driver, ObjectRepo.reader);
+		tHelper = new TextBoxHelper(driver);
 	}
 
 	/** Web Elements */
@@ -51,17 +61,17 @@ public class ExternalDataPage extends PageBase {
 	By excelTable = By.xpath("(//table)[1]");
 
 	By uploadModel = By.xpath("//*[contains(@id,'rcDialog')]");
-	
+
 	By singleSignOn = By.xpath("//li[text()='Single Sign On']");
 
 	By menuOnDemandSync = By.xpath("//li[text()='On-Demand Sync']");
-	
+
 	By menuDataFromFinanceSystems = By.xpath("//li[text()='Data From Finance Systems']");
-	
+
 	By menuDataFromSSOSystems = By.xpath("//li[text()='Data From SSO Systems']");
-	
+
 	By menuExcelDataUpload = By.xpath("//li[text()='Excel Data Upload']");
-	
+
 	String excelData = "(//table)[1]//td[@title='%s']";
 
 	/** Public Methods **/
@@ -71,17 +81,20 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnExternalDataSideMenu() {
-		menuExternalData.click();
+		wHelper.waitForElementToBeClickable(menuExternalData);
+		bHelper.click(menuExternalData);
 		log.info("User clicks on External Data");
 	}
 
 	public void clickOnExcelDataUpload() {
-		excelDataUpload.click();
+		wHelper.waitForElementToBeClickable(excelDataUpload);
+		bHelper.click(excelDataUpload);
 		log.info("User clicks on Excel Data Upload");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		search.sendKeys(searchText);
+		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
 
@@ -93,7 +106,8 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnUploadFileBtn() {
-		btnUploadFile.click();
+		wHelper.waitForElementToBeClickable(btnUploadFile);
+		bHelper.click(btnUploadFile);
 		log.info("User clicks on Upload File Button");
 	}
 
@@ -102,7 +116,8 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnOnDemandSync() {
-		onDemandSync.click();
+		wHelper.waitForElementToBeClickable(onDemandSync);
+		bHelper.click(onDemandSync);
 		log.info("User clicks on On-Demand Sync");
 	}
 
@@ -112,7 +127,8 @@ public class ExternalDataPage extends PageBase {
 
 	public void verifySidebarOptions() {
 		Assert.assertTrue(gH.IsElementPresentQuick(menuOnDemandSync), "On-Demand Sync is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(menuDataFromFinanceSystems), "Data From Finance Systems is not visible");
+		Assert.assertTrue(gH.IsElementPresentQuick(menuDataFromFinanceSystems),
+				"Data From Finance Systems is not visible");
 		Assert.assertTrue(gH.IsElementPresentQuick(menuDataFromSSOSystems), "Data From SSO Systems is not visible");
 		Assert.assertTrue(gH.IsElementPresentQuick(menuExcelDataUpload), "Excel Data Upload is not visible");
 	}

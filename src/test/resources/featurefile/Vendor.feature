@@ -1,6 +1,7 @@
 Feature: Vendor Scenarios 
 
-Scenario: Vendor Page
+#CE-655
+Scenario: Verify vendor page
 	Given user logged in successfully  
 	When user navigate to vendor page
 	Then user must be able to view vendors header
