@@ -19,13 +19,13 @@ public class VendorStepDef {
 		vP.clickOnVendorSideMenu();
 	}
 
-	@Then("^user must be able to view header$")
-	public void verify_external_data_table() throws Throwable {
+	@Then("^user must be able to view Vendors header$")
+	public void verify_vendors_header() throws Throwable {
 		vP.verifyHeader();
 	}
 
 	@And("^user must be able to view vendor table$")
-	public void verify_Vendor_Table() throws Throwable {
+	public void verify_vendor_table() throws Throwable {
 		vP.verifyVendorDataTable(ObjectRepo.reader.getVendorName());
 	}
 

@@ -44,24 +44,29 @@ public interface IconfigReader {
 	public String getWaitTime();
 
 	public String getServerInstanceName();
-	
+
 	public String getURL();
-	
+
 	public String getUserName();
-	
+
 	public String getPassword();
-	
+
 	public String getFileName();
-	
+
 	public String getProcessedBy();
-	
+
 	public String getStatus();
-	
+
 	public String getRecordUploaded();
-	
+
 	public String getRecordInserted();
-	
+
 	public String getRecordFailed();
-	
+
 	public String getVendorName();
+
+	public String getApplicationName();
+
+	public String getApplicationVendorName();
+
 }
