@@ -2,15 +2,15 @@ package com.cloudeagle.framework.stepdefinition;
 
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
-import com.cloudeagle.helper.PageObject.ExternalDataUploadPage;
+import com.cloudeagle.helper.PageObject.ExternalDataPage;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class ExternalDataUploadStepDef {
+public class ExternalDataStepDef {
 
-	ExternalDataUploadPage extP = new ExternalDataUploadPage(ObjectRepo.driver);
+	ExternalDataPage extP = new ExternalDataPage(ObjectRepo.driver);
 	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);
 
 	@When("^user navigate to external data upload page$")

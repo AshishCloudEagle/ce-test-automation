@@ -17,6 +17,7 @@
 			<class name="com.cloudeagle.framework.runner.DashboardRunner" />
 			<class
 				name="com.cloudeagle.framework.runner.ExternalDataUploadRunner" />
+			<class name="com.cloudeagle.framework.runner.VendorRunner" />
 		</classes>
 	</test>
 </suite> 	

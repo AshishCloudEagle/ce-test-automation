@@ -62,4 +62,6 @@ public interface IconfigReader {
 	public String getRecordInserted();
 	
 	public String getRecordFailed();
+	
+	public String getVendorName();
 }

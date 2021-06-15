@@ -4,10 +4,10 @@ package com.cloudeagle.framework.runner;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
-@CucumberOptions(features = { "classpath:featurefile/ExternalDataUpload.feature" }, glue = {
+@CucumberOptions(features = { "classpath:featurefile/ExternalData.feature" }, glue = {
 		"classpath:com.cloudeagle.framework.stepdefinition",
-		"classpath:com.cloudeagle.framework.helper" }, plugin = { "pretty", "json:target/LoginRunner.json" })
+		"classpath:com.cloudeagle.framework.helper" }, plugin = { "pretty", "json:target/ExternalDataRunner.json" })
 
-public class ExternalDataUploadRunner extends AbstractTestNGCucumberTests {
+public class ExternalDataRunner extends AbstractTestNGCucumberTests {
 
 }

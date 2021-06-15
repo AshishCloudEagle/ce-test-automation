@@ -242,4 +242,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("RecordFailed");
 	}
 
+	@Override
+	public String getVendorName() {
+		return prop.getProperty("VendorName");
+	}
+
 }

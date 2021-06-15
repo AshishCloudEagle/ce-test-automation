@@ -12,14 +12,14 @@ import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 
-public class ExternalDataUploadPage extends PageBase {
+public class ExternalDataPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(ExternalDataUploadPage.class);
+	private final static Logger log = LoggerHelper.getLogger(ExternalDataPage.class);
 	GenericHelper gH;
 
-	public ExternalDataUploadPage(WebDriver driver) {
+	public ExternalDataPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gH = new GenericHelper(driver);
