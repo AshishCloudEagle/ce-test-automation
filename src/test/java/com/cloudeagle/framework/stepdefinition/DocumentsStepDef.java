@@ -23,12 +23,14 @@ public class DocumentsStepDef {
 	public void click_on_published_documents() throws Throwable {
 		wH.staticWait(10);
 		docP.clickOnPublishedDocuments();
+		docP.verifyURL(ObjectRepo.reader.getPublishedDocumentURL());
 	}
 
 	@And("^user click on uploaded documents$")
 	public void click_on_uploaded_documents() throws Throwable {
 		wH.staticWait(10);
 		docP.clickOnUploadedDocuments();
+		docP.verifyURL(ObjectRepo.reader.getUploadedDocumentURL());
 	}
 
 	@Then("^user must be able to view published documents table$")

@@ -13,6 +13,7 @@ import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
@@ -26,6 +27,7 @@ public class DashboardPage extends PageBase {
 	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
+	NavigationHelper nHelper;
 
 	public DashboardPage(WebDriver driver) {
 		super(driver);
@@ -34,6 +36,7 @@ public class DashboardPage extends PageBase {
 		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		bHelper = new ButtonHelper(driver);
 		tHelper = new TextBoxHelper(driver);
+		nHelper = new NavigationHelper(driver);
 
 	}
 
@@ -184,5 +187,10 @@ public class DashboardPage extends PageBase {
 		Assert.assertTrue("Vendor Research Menu is not displaying", gHelper.IsElementPresentQuick(menuVendorResearch));
 		Assert.assertTrue("External Data Menu is not displaying", gHelper.IsElementPresentQuick(menuExternalData));
 		Assert.assertTrue("Admin Menu is not displaying", gHelper.IsElementPresentQuick(menuAdmin));
+	}
+
+	public void verifyURL(String url) {
+		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
+			Assert.assertTrue("Url mis match", false);
 	}
 }

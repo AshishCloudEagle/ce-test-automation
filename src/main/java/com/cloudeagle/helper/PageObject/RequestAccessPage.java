@@ -18,18 +18,18 @@ import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 
-public class DocumentsPage extends PageBase {
+public class RequestAccessPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(DocumentsPage.class);
+	private final static Logger log = LoggerHelper.getLogger(RequestAccessPage.class);
 	GenericHelper gHelper;
 	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
 	NavigationHelper nHelper;
 
-	public DocumentsPage(WebDriver driver) {
+	public RequestAccessPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gHelper = new GenericHelper(driver);
@@ -41,23 +41,15 @@ public class DocumentsPage extends PageBase {
 
 	/** Web Elements */
 
-	@FindBy(xpath = "//*[text()='Documents' and contains(@class,'menuName')]")
+	@FindBy(xpath = "//*[text()='Request Access' and contains(@class,'menuName')]")
 	@CacheLookup
-	private WebElement menuDocuments;
-
-	@FindBy(xpath = "//*[text()='Published Documents']")
-	@CacheLookup
-	private WebElement publishedDocuments;
-
-	@FindBy(xpath = "//*[text()='Uploaded Documents']")
-	@CacheLookup
-	private WebElement uploadedDocuments;
+	private WebElement menuRequestAccess;
 
 	@FindBy(xpath = "//input[@placeholder='Search']")
 	@CacheLookup
 	private WebElement search;
 
-	By header = By.xpath("//div[contains(@class,'menuHeading')]//*[text()='VENDORS']");
+	By header = By.xpath("//div[contains(@class,'menuHeading')]//*[text()='APPLICATIONS']");
 
 	By excelTable = By.xpath("(//table)[1]");
 
@@ -69,10 +61,10 @@ public class DocumentsPage extends PageBase {
 		return this.driver;
 	}
 
-	public void clickOnDocumentsSideMenu() {
-		wHelper.waitForElementToBeClickable(menuDocuments);
-		bHelper.click(menuDocuments);
-		log.info("User clicks on Documents");
+	public void clickOnRequestAccessSideMenu() {
+		wHelper.waitForElementToBeClickable(menuRequestAccess);
+		bHelper.click(menuRequestAccess);
+		log.info("User clicks on Request Access");
 	}
 
 	public void enterSearchCriteria(String searchText) {
@@ -81,34 +73,11 @@ public class DocumentsPage extends PageBase {
 		log.info(searchText);
 	}
 
-	public void verifyPublishedDocumentsDataTable(String searchText) {
+	public void verifyRequestAccessDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Request Access Data Table is not visible");
 		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Documents Data searched row is not visible");
-	}
-
-	public void verifyHeader() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Vendor Header is not visible");
-	}
-
-	public void clickOnPublishedDocuments() {
-		wHelper.waitForElementToBeClickable(publishedDocuments);
-		bHelper.click(publishedDocuments);
-		log.info("User clicks on Published Documents");
-	}
-
-	public void verifyUploadeddDocumentsDataTable(String searchText) {
-		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Documents Data searched row is not visible");
-	}
-
-	public void clickOnUploadedDocuments() {
-		wHelper.waitForElementToBeClickable(uploadedDocuments);
-		bHelper.click(uploadedDocuments);
-		log.info("User clicks on Published Documents");
+				"Request Access Data searched row is not visible");
 	}
 
 	public void verifyURL(String url) {

@@ -47,4 +47,21 @@ public interface IconfigReader {
 
 	public String getUploadedDocumentVendorName();
 
+	public String getRequestAccessApplicationName();
+
+	public String getDashboardURL();
+
+	public String getExternalDataUploadURL();
+
+	public String getExternalDataOnDemandSyncURL();
+
+	public String getVendorURL();
+
+	public String getApplicationURL();
+
+	public String getPublishedDocumentURL();
+
+	public String getUploadedDocumentURL();
+
+	public String getRequestAccessURL();
 }

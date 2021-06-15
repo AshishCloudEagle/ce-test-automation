@@ -13,6 +13,7 @@ import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
@@ -22,18 +23,20 @@ public class ExternalDataPage extends PageBase {
 	private WebDriver driver;
 
 	private final static Logger log = LoggerHelper.getLogger(ExternalDataPage.class);
-	GenericHelper gH;
+	GenericHelper gHelper;
 	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
+	NavigationHelper nHelper;
 
 	public ExternalDataPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		gH = new GenericHelper(driver);
+		gHelper = new GenericHelper(driver);
 		bHelper = new ButtonHelper(driver);
 		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		tHelper = new TextBoxHelper(driver);
+		nHelper = new NavigationHelper(driver);
 	}
 
 	/** Web Elements */
@@ -100,8 +103,8 @@ public class ExternalDataPage extends PageBase {
 
 	public void verifyExcelDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gH.IsElementPresentQuick(excelTable), "Excel Data Table is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
+		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Excel Data Table is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
 				"Excel Data searched row is not visible");
 	}
 
@@ -112,7 +115,7 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void verifyUploadModel() {
-		Assert.assertTrue(gH.IsElementPresentQuick(uploadModel), "Upload model is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(uploadModel), "Upload model is not visible");
 	}
 
 	public void clickOnOnDemandSync() {
@@ -122,14 +125,20 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void verifySingleSignOn() {
-		Assert.assertTrue(gH.IsElementPresentQuick(singleSignOn), "Single Sign On is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(singleSignOn), "Single Sign On is not visible");
 	}
 
 	public void verifySidebarOptions() {
-		Assert.assertTrue(gH.IsElementPresentQuick(menuOnDemandSync), "On-Demand Sync is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(menuDataFromFinanceSystems),
+		Assert.assertTrue(gHelper.IsElementPresentQuick(menuOnDemandSync), "On-Demand Sync is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(menuDataFromFinanceSystems),
 				"Data From Finance Systems is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(menuDataFromSSOSystems), "Data From SSO Systems is not visible");
-		Assert.assertTrue(gH.IsElementPresentQuick(menuExcelDataUpload), "Excel Data Upload is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(menuDataFromSSOSystems),
+				"Data From SSO Systems is not visible");
+		Assert.assertTrue(gHelper.IsElementPresentQuick(menuExcelDataUpload), "Excel Data Upload is not visible");
+	}
+
+	public void verifyURL(String url) {
+		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
+			Assert.assertTrue(false, "Url mis match");
 	}
 }

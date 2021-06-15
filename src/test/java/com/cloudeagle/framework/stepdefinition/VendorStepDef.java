@@ -17,6 +17,7 @@ public class VendorStepDef {
 	public void user_navigate_to_vendor_page() throws Throwable {
 		wH.staticWait(10);
 		vP.clickOnVendorSideMenu();
+		vP.verifyURL(ObjectRepo.reader.getVendorURL());
 	}
 
 	@Then("^user must be able to view vendors header$")

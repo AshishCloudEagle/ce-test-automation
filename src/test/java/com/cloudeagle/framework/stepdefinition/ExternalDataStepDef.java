@@ -18,6 +18,7 @@ public class ExternalDataStepDef {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnExcelDataUpload();
+		extP.verifyURL(ObjectRepo.reader.getExternalDataUploadURL());
 	}
 
 	@Then("^user must be able to view external data upload table$")
@@ -40,13 +41,14 @@ public class ExternalDataStepDef {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnOnDemandSync();
+		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
 	}
 
 	@Then("^user must be landing on on-demand sync page$")
 	public void verify_On_Demand_Sync() throws Throwable {
-		extP.verifySingleSignOn();	
+		extP.verifySingleSignOn();
 	}
-	
+
 	@And("^user must be able to view sidebar options$")
 	public void verify_Sidebar_Options() throws Throwable {
 		extP.verifySidebarOptions();

@@ -31,6 +31,7 @@ public class DashboardStepDef {
 	public void user_navigate_to_dashboard_page() throws Throwable {
 		wH.staticWait(10);
 		dasP.clickOnLogo();
+		dasP.verifyURL(ObjectRepo.reader.getDashboardURL());
 	}
 
 	@Then("^user must be able to view user details$")

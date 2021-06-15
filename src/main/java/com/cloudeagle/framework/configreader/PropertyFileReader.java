@@ -171,7 +171,52 @@ public class PropertyFileReader implements IconfigReader {
 
 	@Override
 	public String getUploadedDocumentVendorName() {
-		return prop.getProperty("UploadeddDocumentVendorName");
+		return prop.getProperty("UploadedDocumentVendorName");
+	}
+
+	@Override
+	public String getRequestAccessApplicationName() {
+		return prop.getProperty("RequestAccessApplicationName");
+	}
+
+	@Override
+	public String getDashboardURL() {
+		return prop.getProperty("DashboardURL");
+	}
+
+	@Override
+	public String getExternalDataUploadURL() {
+		return prop.getProperty("ExternalDataUploadURL");
+	}
+
+	@Override
+	public String getExternalDataOnDemandSyncURL() {
+		return prop.getProperty("ExternalDataOnDemandSyncURL");
+	}
+
+	@Override
+	public String getVendorURL() {
+		return prop.getProperty("VendorURL");
+	}
+
+	@Override
+	public String getApplicationURL() {
+		return prop.getProperty("ApplicationURL");
+	}
+
+	@Override
+	public String getPublishedDocumentURL() {
+		return prop.getProperty("PublishedDocumentURL");
+	}
+
+	@Override
+	public String getUploadedDocumentURL() {
+		return prop.getProperty("UploadedDocumentURL");
+	}
+
+	@Override
+	public String getRequestAccessURL() {
+		return prop.getProperty("RequestAccessURl");
 	}
 
 }
