@@ -61,6 +61,10 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement btnUploadFile;
 
+	@FindBy(xpath = "//*[text()='Single Sign On' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement singleSignOnBtn;
+
 	By excelTable = By.xpath("(//table)[1]");
 
 	By uploadModel = By.xpath("//*[contains(@id,'rcDialog')]");
@@ -76,6 +80,8 @@ public class ExternalDataPage extends PageBase {
 	By menuExcelDataUpload = By.xpath("//li[text()='Excel Data Upload']");
 
 	String excelData = "(//table)[1]//td[@title='%s']";
+
+	By activePage = By.xpath("//*[text()='On-Demand Sync' and contains(@class,'Active')]");
 
 	/** Public Methods **/
 
@@ -140,5 +146,15 @@ public class ExternalDataPage extends PageBase {
 	public void verifyURL(String url) {
 		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
 			Assert.assertTrue(false, "Url mis match");
+	}
+
+	public void verifyOnDemandSync() {
+		Assert.assertTrue(gHelper.IsElementPresentQuick(activePage), "On Demand Sync is not visible");
+	}
+
+	public void clickOnSingleSignOn() {
+		wHelper.waitForElementToBeClickable(singleSignOnBtn);
+		bHelper.click(singleSignOnBtn);
+		log.info("User clicks on single sign on");
 	}
 }

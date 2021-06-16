@@ -45,13 +45,18 @@ public class ExternalDataStepDef {
 	}
 
 	@Then("^user must be landing on on-demand sync page$")
-	public void verify_On_Demand_Sync() throws Throwable {
-		extP.verifySingleSignOn();
+	public void verify_on_demand_sync() throws Throwable {
+		extP.verifyOnDemandSync();
 	}
 
 	@And("^user must be able to view sidebar options$")
-	public void verify_Sidebar_Options() throws Throwable {
+	public void verify_sidebar_options() throws Throwable {
 		extP.verifySidebarOptions();
 	}
 
+	@And("^user must be able to view single sign on header$")
+	public void verify_single_sign_on_header() throws Throwable {
+		extP.clickOnSingleSignOn();
+		extP.verifySingleSignOn();
+	}
 }
