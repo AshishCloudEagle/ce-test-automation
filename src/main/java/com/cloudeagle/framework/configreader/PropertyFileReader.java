@@ -229,4 +229,13 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("SaaSDirectoryProductName");
 	}
 
+	@Override
+	public String getVendorResearchURL() {
+		return prop.getProperty("VendorResearchURL");
+	}
+
+	@Override
+	public String getVendorResearchProductName() {
+		return prop.getProperty("VendorResearchProductName");
+	}
 }

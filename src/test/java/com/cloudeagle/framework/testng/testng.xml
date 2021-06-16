@@ -7,18 +7,20 @@
 	</listeners>
 	<test name="Test - 1">
 		<classes>
-			<class name="com.cloudeagle.framework.runner.LoginRunner" />
-			<class name="com.cloudeagle.framework.runner.DashboardRunner" />
+<!-- 			<class name="com.cloudeagle.framework.runner.LoginRunner" /> -->
+<!-- 			<class name="com.cloudeagle.framework.runner.DashboardRunner" /> -->
+<!-- 			<class -->
+<!-- 				name="com.cloudeagle.framework.runner.ExternalDataRunner" /> -->
+<!-- 			<class name="com.cloudeagle.framework.runner.VendorRunner" /> -->
+<!-- 			<class -->
+<!-- 				name="com.cloudeagle.framework.runner.ApplicationsRunner" /> -->
+<!-- 			<class name="com.cloudeagle.framework.runner.DocumentsRunner" /> -->
+<!-- 			<class -->
+<!-- 				name="com.cloudeagle.framework.runner.RequestAccessRunner" /> -->
+<!-- 			<class -->
+<!-- 				name="com.cloudeagle.framework.runner.SaasDirectoryRunner" /> -->
 			<class
-				name="com.cloudeagle.framework.runner.ExternalDataRunner" />
-			<class name="com.cloudeagle.framework.runner.VendorRunner" />
-			<class
-				name="com.cloudeagle.framework.runner.ApplicationsRunner" />
-			<class name="com.cloudeagle.framework.runner.DocumentsRunner" />
-			<class
-				name="com.cloudeagle.framework.runner.RequestAccessRunner" />
-			<class
-				name="com.cloudeagle.framework.runner.SaasDirectoryRunner" />
+				name="com.cloudeagle.framework.runner.VendorResearchRunner" />
 		</classes>
 	</test>
 </suite> 	
