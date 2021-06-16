@@ -64,4 +64,8 @@ public interface IconfigReader {
 	public String getUploadedDocumentURL();
 
 	public String getRequestAccessURL();
+	
+	public String getSaaSDirectoryURL();
+	
+	public String getSaaSDirectoryProductName();
 }

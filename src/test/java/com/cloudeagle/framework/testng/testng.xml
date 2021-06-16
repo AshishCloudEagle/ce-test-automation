@@ -17,6 +17,8 @@
 			<class name="com.cloudeagle.framework.runner.DocumentsRunner" />
 			<class
 				name="com.cloudeagle.framework.runner.RequestAccessRunner" />
+			<class
+				name="com.cloudeagle.framework.runner.SaasDirectoryRunner" />
 		</classes>
 	</test>
 </suite> 	
