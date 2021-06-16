@@ -32,7 +32,7 @@ public class SaaSDirectoryStepDef {
 
 	@And("^verify at least one result box from Product list$")
 	public void verify_result() throws Throwable {
-		saasP.verifyResult(ObjectRepo.reader.getRequestAccessApplicationName());
+		saasP.verifyResult(ObjectRepo.reader.getSaaSDirectoryProductName());
 	}
 
 }

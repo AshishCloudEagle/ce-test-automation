@@ -238,4 +238,9 @@ public class PropertyFileReader implements IconfigReader {
 	public String getVendorResearchProductName() {
 		return prop.getProperty("VendorResearchProductName");
 	}
+
+	@Override
+	public String getExternalDataFinanceSystemsURL() {
+		return prop.getProperty("ExternalDataFinanceSystemsURL");
+	}
 }

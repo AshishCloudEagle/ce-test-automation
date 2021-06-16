@@ -44,9 +44,36 @@ public class ExternalDataStepDef {
 		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
 	}
 
+	@When("^user navigate to on demand sync single sign on page$")
+	public void user_navigate_to_on_demand_sync_single_sign_on_page() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		extP.clickOnOnDemandSync();
+		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
+		extP.clickOnSingleSignOn();
+	}
+
+	@When("^user navigate to on demand sync finance systems page$")
+	public void user_navigate_to_on_demand_sync_finance_systems_page() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		extP.clickOnOnDemandSync();
+		extP.clickOnFinanceSystems();
+	}
+
 	@Then("^user must be landing on on-demand sync page$")
 	public void verify_on_demand_sync() throws Throwable {
 		extP.verifyOnDemandSync();
+	}
+
+	@Then("^user must be landing on on-demand sync single sign on page$")
+	public void verify_on_demand_sync_single_sign_on() throws Throwable {
+		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
+	}
+
+	@Then("^user must be landing on on-demand sync finance systems page$")
+	public void verify_on_demand_sync_finance_system() throws Throwable {
+		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsURL());
 	}
 
 	@And("^user must be able to view sidebar options$")
@@ -56,7 +83,11 @@ public class ExternalDataStepDef {
 
 	@And("^user must be able to view single sign on header$")
 	public void verify_single_sign_on_header() throws Throwable {
-		extP.clickOnSingleSignOn();
 		extP.verifySingleSignOn();
+	}
+	
+	@And("^user must be able to view finance systems header$")
+	public void verify_finance_systems_header() throws Throwable {
+		extP.verifyFinanceSystem();
 	}
 }

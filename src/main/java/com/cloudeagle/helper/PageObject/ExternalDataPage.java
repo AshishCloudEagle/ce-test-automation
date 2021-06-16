@@ -65,11 +65,17 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement singleSignOnBtn;
 
+	@FindBy(xpath = "//*[text()='Finance Systems' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement financeSystemBtn;
+
 	By excelTable = By.xpath("(//table)[1]");
 
 	By uploadModel = By.xpath("//*[contains(@id,'rcDialog')]");
 
 	By singleSignOn = By.xpath("//li[text()='Single Sign On']");
+	
+	By financeSystems = By.xpath("//li[text()='Finance Systems']");
 
 	By menuOnDemandSync = By.xpath("//li[text()='On-Demand Sync']");
 
@@ -156,5 +162,15 @@ public class ExternalDataPage extends PageBase {
 		wHelper.waitForElementToBeClickable(singleSignOnBtn);
 		bHelper.click(singleSignOnBtn);
 		log.info("User clicks on single sign on");
+	}
+
+	public void clickOnFinanceSystems() {
+		wHelper.waitForElementToBeClickable(financeSystemBtn);
+		bHelper.click(financeSystemBtn);
+		log.info("User clicks on finance system");
+	}
+
+	public void verifyFinanceSystem() {
+		Assert.assertTrue(gHelper.IsElementPresentQuick(financeSystems), "Finance System is not visible");
 	}
 }

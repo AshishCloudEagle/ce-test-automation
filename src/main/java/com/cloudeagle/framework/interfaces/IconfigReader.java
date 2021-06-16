@@ -72,4 +72,6 @@ public interface IconfigReader {
 	public String getVendorResearchURL();
 	
 	public String getVendorResearchProductName();
+	
+	public String getExternalDataFinanceSystemsURL();
 }
