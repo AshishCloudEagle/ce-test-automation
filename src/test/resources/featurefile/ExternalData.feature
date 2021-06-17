@@ -28,3 +28,14 @@ Scenario: Verify external data - on demand sync - finance systems scenario
 	When user navigate to on demand sync finance systems page
 	Then user must be landing on on-demand sync finance systems page
 	And user must be able to view finance systems header	
+	
+#CE-666
+Scenario: Verify external data - data from finance systems - new vendors found
+	Given user logged in successfully  
+	When user navigate to data from finance systems new vendors found page
+	Then user must be landing on data from finance systems new vendors found page
+	And user must be able to view new vendors found table
+	When user click on existing vendor
+	Then user must be able to view slider
+	And user must be able to view existing vendor records
+	And user close the slider	

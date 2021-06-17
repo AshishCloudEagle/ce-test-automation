@@ -52,8 +52,6 @@ public class LoginPage extends PageBase {
 	@CacheLookup
 	private static WebElement welcomeScreenElement;
 
-	private final String pageUrl = "/signin?email=";
-
 	/** Public Methods **/
 
 	public WebDriver getDriver() {

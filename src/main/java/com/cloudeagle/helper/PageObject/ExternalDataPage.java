@@ -53,9 +53,17 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement onDemandSync;
 
+	@FindBy(xpath = "//li[text()='Data From Finance Systems']")
+	@CacheLookup
+	private WebElement dataFromFinanceSystems;
+
 	@FindBy(xpath = "//input[@placeholder='Search']")
 	@CacheLookup
 	private WebElement search;
+
+	@FindBy(xpath = "//div[contains(@class,'drawer')]//input[@placeholder='Search']")
+	@CacheLookup
+	private WebElement drawerSearch;
 
 	@FindBy(xpath = "//*[text()='Upload File']")
 	@CacheLookup
@@ -69,12 +77,24 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement financeSystemBtn;
 
+	@FindBy(xpath = "//*[text()='New Vendors Found' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement newVendorsFoundBtn;
+
+	@FindBy(xpath = "//*[text()='Existing Vendors']")
+	@CacheLookup
+	private WebElement existingVendorsBtn;
+
+	@FindBy(xpath = "//button[contains(@class,'drawer-close')]")
+	@CacheLookup
+	private WebElement drawerClose;
+
 	By excelTable = By.xpath("(//table)[1]");
 
 	By uploadModel = By.xpath("//*[contains(@id,'rcDialog')]");
 
 	By singleSignOn = By.xpath("//li[text()='Single Sign On']");
-	
+
 	By financeSystems = By.xpath("//li[text()='Finance Systems']");
 
 	By menuOnDemandSync = By.xpath("//li[text()='On-Demand Sync']");
@@ -87,7 +107,11 @@ public class ExternalDataPage extends PageBase {
 
 	String excelData = "(//table)[1]//td[@title='%s']";
 
+	String drawerExcelData = "(//td//*[text()='%s'])[1]";
+
 	By activePage = By.xpath("//*[text()='On-Demand Sync' and contains(@class,'Active')]");
+
+	By slider = By.xpath("//*[text()='Existing vendors' and contains(@class,'drawer')]");
 
 	/** Public Methods **/
 
@@ -110,6 +134,12 @@ public class ExternalDataPage extends PageBase {
 	public void enterSearchCriteria(String searchText) {
 		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(search, searchText);
+		log.info(searchText);
+	}
+
+	public void enterDrawerSearchCriteria(String searchText) {
+		wHelper.waitForElementVisible(drawerSearch, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
+		tHelper.sendKeys(drawerSearch, searchText);
 		log.info(searchText);
 	}
 
@@ -161,16 +191,50 @@ public class ExternalDataPage extends PageBase {
 	public void clickOnSingleSignOn() {
 		wHelper.waitForElementToBeClickable(singleSignOnBtn);
 		bHelper.click(singleSignOnBtn);
-		log.info("User clicks on single sign on");
+		log.info("User clicks on Single Sign On");
 	}
 
 	public void clickOnFinanceSystems() {
 		wHelper.waitForElementToBeClickable(financeSystemBtn);
 		bHelper.click(financeSystemBtn);
-		log.info("User clicks on finance system");
+		log.info("User clicks on Finance System");
 	}
 
 	public void verifyFinanceSystem() {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(financeSystems), "Finance System is not visible");
+	}
+
+	public void clickOnDataFromFinanceSystems() {
+		wHelper.waitForElementToBeClickable(dataFromFinanceSystems);
+		bHelper.click(dataFromFinanceSystems);
+		log.info("User clicks on Data From Finance Systems");
+	}
+
+	public void clickOnNewVendorsFound() {
+		wHelper.waitForElementToBeClickable(newVendorsFoundBtn);
+		bHelper.click(newVendorsFoundBtn);
+		log.info("User clicks on New Vendors Found");
+	}
+
+	public void clickOnExistingVendor() {
+		wHelper.waitForElementToBeClickable(existingVendorsBtn);
+		bHelper.click(existingVendorsBtn);
+		log.info("User clicks on Existing Vendors");
+	}
+
+	public void verifySlider() {
+		Assert.assertTrue(gHelper.IsElementPresentQuick(slider), "Slider is not visible");
+	}
+
+	public void verifyExistingVendorRecords(String searchText) {
+		enterDrawerSearchCriteria(searchText);
+		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(drawerExcelData, searchText))),
+				"Excel Data searched row is not visible");
+	}
+
+	public void closeSlider() {
+		wHelper.waitForElementToBeClickable(drawerClose);
+		bHelper.click(drawerClose);
+		log.info("User clicks on Close");
 	}
 }

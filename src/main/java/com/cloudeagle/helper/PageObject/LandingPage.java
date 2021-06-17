@@ -1,54 +1,33 @@
 package com.cloudeagle.helper.PageObject;
 
-import static org.junit.Assert.assertTrue;
-import static org.testng.Assert.assertEquals;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
-	
-	public class LandingPage extends PageBase {
-	
-		private WebDriver driver;
-		WaitHelper wHelper = new WaitHelper(ObjectRepo.driver, null);
-	
-		private final static Logger log = LoggerHelper.getLogger(LandingPage.class);
-	
-		// String random2 = RandomStringUtils.randomAlphabetic(3);
-	
-		public LandingPage(WebDriver driver) {
-			super(driver);
-			this.driver = driver;
-	
-		}
-	
-	
+
+public class LandingPage extends PageBase {
+
+	private WebDriver driver;
+	WaitHelper wHelper = new WaitHelper(ObjectRepo.driver, null);
+
+	private final static Logger log = LoggerHelper.getLogger(LandingPage.class);
+
+	// String random2 = RandomStringUtils.randomAlphabetic(3);
+
+	public LandingPage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+
+	}
 
 	/** Web Elements */
 
@@ -88,10 +67,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 	@CacheLookup
 	private static WebElement welcomeScreenElement;
 
-
-	
-	
-	
 	@FindBy(xpath = "//img[@src=\"/images/wrkout_logo.png\"]")
 	@CacheLookup
 	private static WebElement welcomeScreenElementMOVR;
@@ -99,9 +74,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 	@FindBy(xpath = "	//BUTTON[@id='btnManageEvent']")
 	@CacheLookup
 	private static WebElement createEventBttn;
-
-
-
 
 	@FindBy(xpath = "	//I[@class='fas fa-cog']")
 	@CacheLookup
@@ -123,27 +95,17 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 	@CacheLookup
 	private static WebElement endDate;
 
-
-
-	
 	@FindBy(xpath = "//A[@id='Schedule-tab']")
 	@CacheLookup
 	private static WebElement tabImage;
-	
+
 	@FindBy(xpath = "//IMG[@src='/static/media/Cloudeeagle_logo_F.68377d43.svg'] | //img[@alt='logo']")
 	@CacheLookup
 	private static WebElement imgOnLandingPage;
 
-
-	
-	
 	@FindBy(xpath = "//INPUT[@id='txtConsultDate']")
 	@CacheLookup
 	private static WebElement clickConsultDate;
-
-	
-
-	private final String pageUrl = "/signin?email=";
 
 	/** Public Methods **/
 
@@ -174,34 +136,19 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 
 	public void verifylandingPageTitle() throws InterruptedException {
 
-	
-	
-
-
 		wHelper.waitForVisibility(imgOnLandingPage);
-	    Assert.assertEquals(true, imgOnLandingPage.isDisplayed());
+		Assert.assertEquals(true, imgOnLandingPage.isDisplayed());
 		Assert.assertTrue(driver.getTitle().contains("cloudeagle.ai"));
 		log.info("Landing Page is verified");
-		
-		
 
-		   
-		   
-		}
-		
-	
+	}
+
 	public void verifylandingPageTitleMOVR() throws InterruptedException {
-	
 
 		wHelper.waitForElementToBeClickable(welcomeScreenElementMOVR);
 		Assert.assertTrue(driver.getTitle().contains("Landing - WRKOUT"));
 		log.info("Landing Page  title is verified on page");
 	}
-
-
-
-
-
 
 	public boolean saveBTTNClick2(By by) {
 		boolean result = false;
@@ -218,8 +165,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 		return result;
 	}
 
-	
-
 	public boolean backEventBttn2(By by) {
 		boolean result = false;
 		int attempts = 0;
@@ -235,7 +180,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 		return result;
 	}
 
-
 	public void openArrowClick() {
 		try {
 			System.out.println("Inside arrow");
@@ -245,8 +189,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 			log.info("Error while clicking Arrow image in Home Page");
 		}
 	}
-
-
 
 	public boolean openArrowClick2(By by) {
 		boolean result = false;
@@ -262,8 +204,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 		}
 		return result;
 	}
-
-
 
 	/*
 	 * public void endDateClick1() throws InterruptedException {
@@ -309,41 +249,26 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 	 * EventDesc.sendKeys(bj); log.info(EventDesc); }
 	 */
 
-
-	
 	@FindBy(xpath = "//BUTTON[@id='btnCDBookConsult']")
 	@CacheLookup
 	private static WebElement bookConsultantBttn;
-	
-	
-	
-	
+
 	public void playCAL() throws InterruptedException {
 
 		wHelper.waitForElementToBeClickable(welcomeScreenElement);
-		
 
-		
-
-		
-		//wHelper.waitForVisibilityLoader();
+		// wHelper.waitForVisibilityLoader();
 		wHelper.waitForElementToBeClickable(bookConsultantBttn);
 		clickBookCon();
-		
+
 		clickConsultDate();
 		clickDateandTime();
-		
-		
-Thread.sleep(5000);		
-clickSET();
-		
-		
-		
-	
-	
+
+		Thread.sleep(5000);
+		clickSET();
+
 	}
-	
-	
+
 	public void clickBookCon() {
 		try {
 			System.out.println("clickBookCon");
@@ -353,13 +278,6 @@ clickSET();
 			log.info("Error while clicking Arrow image in Home Page");
 		}
 	}
-	
-
-	
-	
-	
-	
-	
 
 	@FindBy(xpath = "//DIV[@role='option'][text()='Today']/following::div[position()=1] ")
 	@CacheLookup
@@ -369,11 +287,6 @@ clickSET();
 	@CacheLookup
 	private WebElement set;
 
-
-	
-	
-
-	
 	public void clickDateandTime() {
 		try {
 			System.out.println("dateAndTime");
@@ -383,7 +296,7 @@ clickSET();
 			log.info("Error while clicking Arrow image in Home Page");
 		}
 	}
-	
+
 	public void clickSET() {
 		try {
 			System.out.println("set");
@@ -394,11 +307,6 @@ clickSET();
 		}
 	}
 
-	
-	
-	
-	
-	
 	public void clickConsultDate() {
 		try {
 			System.out.println("clickConsultDate");
@@ -409,27 +317,17 @@ clickSET();
 		}
 	}
 
-	
-	
+	/*
+	 * public void swip() {
+	 * 
+	 * 
+	 * 
+	 * WebElement element =
+	 * driver.findElement(By.xpath("//div[@id='board']/div[1]/div[1]/div[2]") ); for
+	 * (int i = 0; i < 5; i++) { jse.executeScript("arguments[0].scrollTop += 200;",
+	 * element); }
+	 */
 
-	
-/*	public void swip() {
-
-
-	
-	WebElement element = driver.findElement(By.xpath("//div[@id='board']/div[1]/div[1]/div[2]") );
-	for (int i = 0; i < 5; i++) {
-	    jse.executeScript("arguments[0].scrollTop += 200;", element);
-	}*/
-	
-	
-	//}
-	
-	
-	
-	
-	
-	
-	
+	// }
 
 }

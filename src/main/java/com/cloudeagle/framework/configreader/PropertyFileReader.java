@@ -190,8 +190,8 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getExternalDataOnDemandSyncURL() {
-		return prop.getProperty("ExternalDataOnDemandSyncURL");
+	public String getExternalDataOnDemandSyncSingleSignOnURL() {
+		return prop.getProperty("ExternalDataOnDemandSyncSingleSignOnURL");
 	}
 
 	@Override
@@ -240,7 +240,17 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getExternalDataFinanceSystemsURL() {
-		return prop.getProperty("ExternalDataFinanceSystemsURL");
+	public String getExternalDataOnDemandSyncFinanceSystemsURL() {
+		return prop.getProperty("ExternalDataOnDemandSyncFinanceSystemsURL");
+	}
+
+	@Override
+	public String getExternalDataFinanceSystemsNewVendorFoundURL() {
+		return prop.getProperty("ExternalDataFinanceSystemsNewVendorFoundURL");
+	}
+
+	@Override
+	public String getNewVendorName() {
+		return prop.getProperty("NewVendorName");
 	}
 }

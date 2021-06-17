@@ -41,7 +41,7 @@ public class ExternalDataStepDef {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnOnDemandSync();
-		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
+		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
 	}
 
 	@When("^user navigate to on demand sync single sign on page$")
@@ -49,7 +49,6 @@ public class ExternalDataStepDef {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnOnDemandSync();
-		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
 		extP.clickOnSingleSignOn();
 	}
 
@@ -68,12 +67,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on on-demand sync single sign on page$")
 	public void verify_on_demand_sync_single_sign_on() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncURL());
+		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
 	}
 
 	@Then("^user must be landing on on-demand sync finance systems page$")
 	public void verify_on_demand_sync_finance_system() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsURL());
+		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncFinanceSystemsURL());
 	}
 
 	@And("^user must be able to view sidebar options$")
@@ -85,9 +84,47 @@ public class ExternalDataStepDef {
 	public void verify_single_sign_on_header() throws Throwable {
 		extP.verifySingleSignOn();
 	}
-	
+
 	@And("^user must be able to view finance systems header$")
 	public void verify_finance_systems_header() throws Throwable {
 		extP.verifyFinanceSystem();
+	}
+
+	@When("^user navigate to data from finance systems new vendors found page$")
+	public void user_navigate_to_data_from_finance_systems_new_vendors_found_page() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		extP.clickOnDataFromFinanceSystems();
+		extP.clickOnNewVendorsFound();
+	}
+
+	@Then("^user must be landing on data from finance systems new vendors found page$")
+	public void verify_data_from_finance_systems_new_vendors_found() throws Throwable {
+		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsNewVendorFoundURL());
+	}
+
+	@And("^user must be able to view new vendors found table$")
+	public void verify_new_vendors_found_table() throws Throwable {
+		extP.verifyExcelDataTable(ObjectRepo.reader.getNewVendorName());
+	}
+
+	@When("^user click on existing vendor$")
+	public void user_click_on_existing_vendor() throws Throwable {
+		extP.clickOnExistingVendor();
+	}
+
+	@Then("^user must be able to view slider$")
+	public void verify_sliderr() throws Throwable {
+		extP.verifySlider();
+	}
+
+	@And("^user must be able to view existing vendor records$")
+	public void verify_existing_vendor_recordsr() throws Throwable {
+		extP.verifyExistingVendorRecords(ObjectRepo.reader.getVendorName());
+	}
+
+	@And("^user close the slider$")
+	public void user_close_the_slider() throws Throwable {
+		extP.closeSlider();
 	}
 }

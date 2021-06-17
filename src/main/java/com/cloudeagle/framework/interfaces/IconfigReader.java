@@ -53,7 +53,7 @@ public interface IconfigReader {
 
 	public String getExternalDataUploadURL();
 
-	public String getExternalDataOnDemandSyncURL();
+	public String getExternalDataOnDemandSyncSingleSignOnURL();
 
 	public String getVendorURL();
 
@@ -73,5 +73,9 @@ public interface IconfigReader {
 	
 	public String getVendorResearchProductName();
 	
-	public String getExternalDataFinanceSystemsURL();
+	public String getExternalDataOnDemandSyncFinanceSystemsURL();
+	
+	public String getExternalDataFinanceSystemsNewVendorFoundURL();
+	
+	public String getNewVendorName();
 }
