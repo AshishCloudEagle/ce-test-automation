@@ -82,4 +82,8 @@ public interface IconfigReader {
 	public String getExternalDataFinanceSystemsConfirmedVendorsURL();
 
 	public String getConfirmedVendorName();
+
+	public String getExternalDataFinanceSystemsRejectedVendorsURL();
+	
+	public String getRejectedVendorName();
 }

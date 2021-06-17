@@ -145,4 +145,22 @@ public class ExternalDataStepDef {
 	public void verify_confirmed_vendors_table() throws Throwable {
 		extP.verifyExcelDataTable(ObjectRepo.reader.getConfirmedVendorName());
 	}
+
+	@When("^user navigate to data from finance systems rejected vendors page$")
+	public void user_navigate_to_data_from_finance_systems_rejected_vendors_page() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		extP.clickOnDataFromFinanceSystems();
+		extP.clickOnRejectedVendors();
+	}
+
+	@Then("^user must be landing on data from finance systems rejected vendors page$")
+	public void verify_data_from_finance_systems_rejected_vendors() throws Throwable {
+		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsRejectedVendorsURL());
+	}
+
+	@And("^user must be able to view rejected vendors table$")
+	public void verify_rejected_vendors_table() throws Throwable {
+		extP.verifyExcelDataTable(ObjectRepo.reader.getRejectedVendorName());
+	}
 }

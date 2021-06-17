@@ -46,3 +46,10 @@ Scenario: Verify external data - data from finance systems - confirmed vendors
 	When user navigate to data from finance systems confirmed vendors page
 	Then user must be landing on data from finance systems confirmed vendors page
 	And user must be able to view confirmed vendors table
+	
+#CE-668	
+Scenario: Verify external data - data from finance systems - rejected vendors
+	Given user logged in successfully  
+	When user navigate to data from finance systems rejected vendors page
+	Then user must be landing on data from finance systems rejected vendors page
+	And user must be able to view rejected vendors table

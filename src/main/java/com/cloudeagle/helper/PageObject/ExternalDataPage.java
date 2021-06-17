@@ -93,6 +93,10 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement confirmedVendor;
 
+	@FindBy(xpath = "//*[text()='Rejected Vendors' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement rejectedVendors;
+
 	By excelTable = By.xpath("(//table)[1]");
 
 	By uploadModel = By.xpath("//*[contains(@id,'rcDialog')]");
@@ -246,5 +250,11 @@ public class ExternalDataPage extends PageBase {
 		wHelper.waitForElementToBeClickable(confirmedVendor);
 		bHelper.click(confirmedVendor);
 		log.info("User clicks on Confirmed Vendor");
+	}
+
+	public void clickOnRejectedVendors() {
+		wHelper.waitForElementToBeClickable(rejectedVendors);
+		bHelper.click(rejectedVendors);
+		log.info("User clicks on Rejected Vendor");
 	}
 }
