@@ -245,8 +245,8 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getExternalDataFinanceSystemsNewVendorFoundURL() {
-		return prop.getProperty("ExternalDataFinanceSystemsNewVendorFoundURL");
+	public String getExternalDataDataFinanceSystemsNewVendorFoundURL() {
+		return prop.getProperty("ExternalDataDataFinanceSystemsNewVendorFoundURL");
 	}
 
 	@Override
@@ -255,8 +255,8 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getExternalDataFinanceSystemsConfirmedVendorsURL() {
-		return prop.getProperty("ExternalDataFinanceSystemsConfirmedVendorsURL");
+	public String getExternalDataDataFinanceSystemsConfirmedVendorsURL() {
+		return prop.getProperty("ExternalDataDataFinanceSystemsConfirmedVendorsURL");
 	}
 
 	@Override
@@ -265,12 +265,27 @@ public class PropertyFileReader implements IconfigReader {
 	}
 
 	@Override
-	public String getExternalDataFinanceSystemsRejectedVendorsURL() {
-		return prop.getProperty("ExternalDataFinanceSystemsRejectedVendorsURL");
+	public String getExternalDataDataFinanceSystemsRejectedVendorsURL() {
+		return prop.getProperty("ExternalDataDataFinanceSystemsRejectedVendorsURL");
 	}
 
 	@Override
 	public String getRejectedVendorName() {
 		return prop.getProperty("RejectedVendorName");
+	}
+	
+	@Override
+	public String getExternalDataDataFromSSOSystemsNewAppsFoundURL() {
+		return prop.getProperty("ExternalDataDataFromSSOSystemsNewAppsFoundURL");
+	}
+
+	@Override
+	public String getNewAppName() {
+		return prop.getProperty("NewAppName");
+	}
+
+	@Override
+	public String getExistingAppName() {
+		return prop.getProperty("ExistingAppName");
 	}
 }

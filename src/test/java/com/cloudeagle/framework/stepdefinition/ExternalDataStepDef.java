@@ -17,7 +17,9 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_external_data_upload_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnExcelDataUpload();
+		wH.staticWait(5);
 		extP.verifyURL(ObjectRepo.reader.getExternalDataUploadURL());
 	}
 
@@ -40,7 +42,9 @@ public class ExternalDataStepDef {
 	public void user_navigate_toon_demand_sync_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnOnDemandSync();
+		wH.staticWait(5);
 		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
 	}
 
@@ -48,7 +52,9 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_on_demand_sync_single_sign_on_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnOnDemandSync();
+		wH.staticWait(5);
 		extP.clickOnSingleSignOn();
 	}
 
@@ -56,7 +62,9 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_on_demand_sync_finance_systems_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnOnDemandSync();
+		wH.staticWait(5);
 		extP.clickOnFinanceSystems();
 	}
 
@@ -94,13 +102,15 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_data_from_finance_systems_new_vendors_found_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnDataFromFinanceSystems();
+		wH.staticWait(5);
 		extP.clickOnNewVendorsFound();
 	}
 
 	@Then("^user must be landing on data from finance systems new vendors found page$")
 	public void verify_data_from_finance_systems_new_vendors_found() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsNewVendorFoundURL());
+		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFinanceSystemsNewVendorFoundURL());
 	}
 
 	@And("^user must be able to view new vendors found table$")
@@ -132,13 +142,15 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_data_from_finance_systems_confirmed_vendors_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnDataFromFinanceSystems();
+		wH.staticWait(5);
 		extP.clickOnConfirmedVendors();
 	}
 
 	@Then("^user must be landing on data from finance systems confirmed vendors page$")
 	public void verify_data_from_finance_systems_confirmed_vendors() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsConfirmedVendorsURL());
+		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFinanceSystemsConfirmedVendorsURL());
 	}
 
 	@And("^user must be able to view confirmed vendors table$")
@@ -150,17 +162,54 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_data_from_finance_systems_rejected_vendors_page() throws Throwable {
 		wH.staticWait(10);
 		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
 		extP.clickOnDataFromFinanceSystems();
+		wH.staticWait(5);
 		extP.clickOnRejectedVendors();
 	}
 
 	@Then("^user must be landing on data from finance systems rejected vendors page$")
 	public void verify_data_from_finance_systems_rejected_vendors() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsRejectedVendorsURL());
+		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFinanceSystemsRejectedVendorsURL());
 	}
 
 	@And("^user must be able to view rejected vendors table$")
 	public void verify_rejected_vendors_table() throws Throwable {
 		extP.verifyExcelDataTable(ObjectRepo.reader.getRejectedVendorName());
+	}
+
+	@When("^user navigate to data from sso systems new apps found page$")
+	public void user_navigate_to_data_from_sso_systems_new_app_found_page() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
+		extP.clickOnDataFromSSOSystems();
+		wH.staticWait(5);
+		extP.clickOnNewAppsFound();
+	}
+
+	@Then("^user must be landing on data from sso systems new apps found page$")
+	public void verify_data_from_sso_systems_new_app_found() throws Throwable {
+		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFromSSOSystemsNewAppsFoundURL());
+	}
+
+	@And("^user must be able to view new apps found table$")
+	public void verify_new_apps_found_table() throws Throwable {
+		extP.verifyExcelDataTable(ObjectRepo.reader.getNewAppName());
+	}
+
+	@When("^user click on existing application$")
+	public void user_click_on_existing_application() throws Throwable {
+		extP.clickOnExistingApplication();
+	}
+
+	@Then("^user must be able to view slider of application$")
+	public void verify_application_slider() throws Throwable {
+		extP.verifyApplicationSlider();
+	}
+
+	@And("^user must be able to view existing application records$")
+	public void verify_existing_application_records() throws Throwable {
+		extP.verifyExistingVendorRecords(ObjectRepo.reader.getExistingAppName());
 	}
 }

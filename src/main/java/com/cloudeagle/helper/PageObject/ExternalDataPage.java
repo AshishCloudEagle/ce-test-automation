@@ -61,7 +61,7 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement search;
 
-	@FindBy(xpath = "//div[contains(@class,'drawer')]//input[@placeholder='Search']")
+	@FindBy(xpath = "(//div[contains(@class,'drawer')]//input[@placeholder='Search'])[last()]")
 	@CacheLookup
 	private WebElement drawerSearch;
 
@@ -81,11 +81,15 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement newVendorsFoundBtn;
 
-	@FindBy(xpath = "//*[text()='Existing Vendors']")
+	@FindBy(xpath = "//span[text()='Existing Vendors']")
 	@CacheLookup
 	private WebElement existingVendorsBtn;
 
-	@FindBy(xpath = "//button[contains(@class,'drawer-close')]")
+	@FindBy(xpath = "//span[text()='Existing Applications']")
+	@CacheLookup
+	private WebElement existingApplicationBtn;
+
+	@FindBy(xpath = "(//button[contains(@class,'drawer-close')])[last()]")
 	@CacheLookup
 	private WebElement drawerClose;
 
@@ -96,6 +100,18 @@ public class ExternalDataPage extends PageBase {
 	@FindBy(xpath = "//*[text()='Rejected Vendors' and contains(@class,'tab')]")
 	@CacheLookup
 	private WebElement rejectedVendors;
+
+	@FindBy(xpath = "//li[text()='Data From SSO Systems']")
+	@CacheLookup
+	private WebElement dataFromSSOSystem;
+
+	@FindBy(xpath = "//*[text()='New Apps Found' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement newAppFound;
+
+	@FindBy(xpath = "//*[text()='Existing Applications' and contains(@class,'drawer')]")
+	@CacheLookup
+	private WebElement existingApplication;
 
 	By excelTable = By.xpath("(//table)[1]");
 
@@ -119,7 +135,9 @@ public class ExternalDataPage extends PageBase {
 
 	By activePage = By.xpath("//*[text()='On-Demand Sync' and contains(@class,'Active')]");
 
-	By slider = By.xpath("//*[text()='Existing vendors' and contains(@class,'drawer')]");
+	By slider = By.xpath("//*[(text()='Existing Vendors' or text()='Existing vendors') and contains(@class,'drawer')]");
+
+	By applicationSlider = By.xpath("//*[text()='Existing Applications' and contains(@class,'drawer')]");
 
 	/** Public Methods **/
 
@@ -146,6 +164,7 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void enterDrawerSearchCriteria(String searchText) {
+		wHelper.staticWait(5);
 		wHelper.waitForElementVisible(drawerSearch, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(drawerSearch, searchText);
 		log.info(searchText);
@@ -235,7 +254,7 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void verifyExistingVendorRecords(String searchText) {
-		enterDrawerSearchCriteria(searchText);
+//		enterDrawerSearchCriteria(searchText);
 		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(drawerExcelData, searchText))),
 				"Excel Data searched row is not visible");
 	}
@@ -256,5 +275,27 @@ public class ExternalDataPage extends PageBase {
 		wHelper.waitForElementToBeClickable(rejectedVendors);
 		bHelper.click(rejectedVendors);
 		log.info("User clicks on Rejected Vendor");
+	}
+
+	public void clickOnDataFromSSOSystems() {
+		wHelper.waitForElementToBeClickable(dataFromSSOSystem);
+		bHelper.click(dataFromSSOSystem);
+		log.info("User clicks on Data From SSO System");
+	}
+
+	public void clickOnNewAppsFound() {
+		wHelper.waitForElementToBeClickable(newAppFound);
+		bHelper.click(newAppFound);
+		log.info("User clicks on New App Found");
+	}
+
+	public void clickOnExistingApplication() {
+		wHelper.waitForElementToBeClickable(existingApplicationBtn);
+		bHelper.click(existingApplicationBtn);
+		log.info("User clicks on Existing Application");
+	}
+
+	public void verifyApplicationSlider() {
+		Assert.assertTrue(gHelper.IsElementPresentQuick(applicationSlider), "Slider is not visible");
 	}
 }

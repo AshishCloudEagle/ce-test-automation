@@ -53,3 +53,18 @@ Scenario: Verify external data - data from finance systems - rejected vendors
 	When user navigate to data from finance systems rejected vendors page
 	Then user must be landing on data from finance systems rejected vendors page
 	And user must be able to view rejected vendors table
+	
+#CE-669
+Scenario: Verify external data - data from sso systems - new apps found
+	Given user logged in successfully  
+	When user navigate to data from sso systems new apps found page
+	Then user must be landing on data from sso systems new apps found page
+	And user must be able to view new apps found table
+	When user click on existing vendor
+	Then user must be able to view slider
+	And user must be able to view existing vendor records
+	And user close the slider
+	When user click on existing application
+	Then user must be able to view slider of application
+	And user must be able to view existing application records
+	

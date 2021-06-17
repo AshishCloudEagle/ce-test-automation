@@ -75,15 +75,21 @@ public interface IconfigReader {
 
 	public String getExternalDataOnDemandSyncFinanceSystemsURL();
 
-	public String getExternalDataFinanceSystemsNewVendorFoundURL();
+	public String getExternalDataDataFinanceSystemsNewVendorFoundURL();
 
 	public String getNewVendorName();
 
-	public String getExternalDataFinanceSystemsConfirmedVendorsURL();
+	public String getExternalDataDataFinanceSystemsConfirmedVendorsURL();
 
 	public String getConfirmedVendorName();
 
-	public String getExternalDataFinanceSystemsRejectedVendorsURL();
+	public String getExternalDataDataFinanceSystemsRejectedVendorsURL();
 	
 	public String getRejectedVendorName();
+	
+	public String getExternalDataDataFromSSOSystemsNewAppsFoundURL();
+	
+	public String getNewAppName();
+	
+	public String getExistingAppName();
 }
