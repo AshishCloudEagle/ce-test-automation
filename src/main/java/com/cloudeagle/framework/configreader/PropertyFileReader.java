@@ -253,4 +253,14 @@ public class PropertyFileReader implements IconfigReader {
 	public String getNewVendorName() {
 		return prop.getProperty("NewVendorName");
 	}
+
+	@Override
+	public String getExternalDataFinanceSystemsConfirmedVendorsURL() {
+		return prop.getProperty("ExternalDataFinanceSystemsConfirmedVendorsURL");
+	}
+
+	@Override
+	public String getConfirmedVendorName() {
+		return prop.getProperty("ConfirmedVendorName");
+	}
 }

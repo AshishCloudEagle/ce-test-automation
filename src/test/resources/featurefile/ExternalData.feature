@@ -38,4 +38,11 @@ Scenario: Verify external data - data from finance systems - new vendors found
 	When user click on existing vendor
 	Then user must be able to view slider
 	And user must be able to view existing vendor records
-	And user close the slider	
+	And user close the slider
+	
+#CE-667	
+Scenario: Verify external data - data from finance systems - confirmed vendors
+	Given user logged in successfully  
+	When user navigate to data from finance systems confirmed vendors page
+	Then user must be landing on data from finance systems confirmed vendors page
+	And user must be able to view confirmed vendors table

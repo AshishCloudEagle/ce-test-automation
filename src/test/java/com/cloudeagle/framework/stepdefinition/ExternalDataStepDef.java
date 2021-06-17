@@ -127,4 +127,22 @@ public class ExternalDataStepDef {
 	public void user_close_the_slider() throws Throwable {
 		extP.closeSlider();
 	}
+
+	@When("^user navigate to data from finance systems confirmed vendors page$")
+	public void user_navigate_to_data_from_finance_systems_confirmed_vendors_page() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		extP.clickOnDataFromFinanceSystems();
+		extP.clickOnConfirmedVendors();
+	}
+
+	@Then("^user must be landing on data from finance systems confirmed vendors page$")
+	public void verify_data_from_finance_systems_confirmed_vendors() throws Throwable {
+		extP.verifyURL(ObjectRepo.reader.getExternalDataFinanceSystemsConfirmedVendorsURL());
+	}
+
+	@And("^user must be able to view confirmed vendors table$")
+	public void verify_confirmed_vendors_table() throws Throwable {
+		extP.verifyExcelDataTable(ObjectRepo.reader.getConfirmedVendorName());
+	}
 }

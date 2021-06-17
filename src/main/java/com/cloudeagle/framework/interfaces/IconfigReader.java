@@ -64,18 +64,22 @@ public interface IconfigReader {
 	public String getUploadedDocumentURL();
 
 	public String getRequestAccessURL();
-	
+
 	public String getSaaSDirectoryURL();
-	
+
 	public String getSaaSDirectoryProductName();
-	
+
 	public String getVendorResearchURL();
-	
+
 	public String getVendorResearchProductName();
-	
+
 	public String getExternalDataOnDemandSyncFinanceSystemsURL();
-	
+
 	public String getExternalDataFinanceSystemsNewVendorFoundURL();
-	
+
 	public String getNewVendorName();
+
+	public String getExternalDataFinanceSystemsConfirmedVendorsURL();
+
+	public String getConfirmedVendorName();
 }

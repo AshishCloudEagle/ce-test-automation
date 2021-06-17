@@ -89,6 +89,10 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement drawerClose;
 
+	@FindBy(xpath = "//*[text()='Confirmed Vendors' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement confirmedVendor;
+
 	By excelTable = By.xpath("(//table)[1]");
 
 	By uploadModel = By.xpath("//*[contains(@id,'rcDialog')]");
@@ -236,5 +240,11 @@ public class ExternalDataPage extends PageBase {
 		wHelper.waitForElementToBeClickable(drawerClose);
 		bHelper.click(drawerClose);
 		log.info("User clicks on Close");
+	}
+
+	public void clickOnConfirmedVendors() {
+		wHelper.waitForElementToBeClickable(confirmedVendor);
+		bHelper.click(confirmedVendor);
+		log.info("User clicks on Confirmed Vendor");
 	}
 }
