@@ -309,4 +309,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("RejectedApp");
 	}
 
+	@Override
+	public String getAdminURL() {
+		return prop.getProperty("AdminURL");
+	}
+
 }

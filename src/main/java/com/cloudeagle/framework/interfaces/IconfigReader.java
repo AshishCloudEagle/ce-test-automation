@@ -100,4 +100,6 @@ public interface IconfigReader {
 	public String getExternalDataDataFromSSOSystemsRejectedAppsURL();
 	
 	public String getRejectedApp();
+	
+	public String getAdminURL();
 }

@@ -21,6 +21,8 @@
 				name="com.cloudeagle.framework.runner.SaasDirectoryRunner" />
 			<class
 				name="com.cloudeagle.framework.runner.VendorResearchRunner" />
+			<class
+				name="com.cloudeagle.framework.runner.AdminRunner" />
 		</classes>
 	</test>
 </suite> 	
