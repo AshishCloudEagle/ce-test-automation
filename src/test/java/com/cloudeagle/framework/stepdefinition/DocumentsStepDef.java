@@ -1,5 +1,6 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.DocumentsPage;
@@ -23,7 +24,7 @@ public class DocumentsStepDef {
 	public void click_on_published_documents() throws Throwable {
 		wH.staticWait(10);
 		docP.clickOnPublishedDocuments();
-		docP.verifyURL(ObjectRepo.reader.getPublishedDocumentURL());
+		docP.verifyURL(Constants.URL + ObjectRepo.reader.getPublishedDocumentURL());
 	}
 
 	@And("^user click on uploaded documents$")

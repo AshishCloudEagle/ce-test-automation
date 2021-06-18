@@ -1,5 +1,6 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.VendorResearchPage;
@@ -16,7 +17,7 @@ public class VendorResearchStepDef {
 	public void user_navigate_to_vendor_research_page() throws Throwable {
 		wH.staticWait(10);
 		vP.clickOnVendorResearchSideMenu();
-		vP.verifyURL(ObjectRepo.reader.getVendorResearchURL());
+		vP.verifyURL(Constants.URL + ObjectRepo.reader.getVendorResearchURL());
 	}
 
 	@Then("^user must be able to view vendors research header$")

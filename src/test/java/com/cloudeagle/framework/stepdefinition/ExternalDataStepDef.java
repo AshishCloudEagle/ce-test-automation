@@ -1,5 +1,6 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.ExternalDataPage;
@@ -45,7 +46,7 @@ public class ExternalDataStepDef {
 		wH.staticWait(5);
 		extP.clickOnOnDemandSync();
 		wH.staticWait(5);
-		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
 	}
 
 	@When("^user navigate to on demand sync single sign on page$")
@@ -75,12 +76,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on on-demand sync single sign on page$")
 	public void verify_on_demand_sync_single_sign_on() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
 	}
 
 	@Then("^user must be landing on on-demand sync finance systems page$")
 	public void verify_on_demand_sync_finance_system() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataOnDemandSyncFinanceSystemsURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncFinanceSystemsURL());
 	}
 
 	@And("^user must be able to view sidebar options$")
@@ -110,7 +111,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from finance systems new vendors found page$")
 	public void verify_data_from_finance_systems_new_vendors_found() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFinanceSystemsNewVendorFoundURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsNewVendorFoundURL());
 	}
 
 	@And("^user must be able to view new vendors found table$")
@@ -150,7 +151,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from finance systems confirmed vendors page$")
 	public void verify_data_from_finance_systems_confirmed_vendors() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFinanceSystemsConfirmedVendorsURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsConfirmedVendorsURL());
 	}
 
 	@And("^user must be able to view confirmed vendors table$")
@@ -170,7 +171,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from finance systems rejected vendors page$")
 	public void verify_data_from_finance_systems_rejected_vendors() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFinanceSystemsRejectedVendorsURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsRejectedVendorsURL());
 	}
 
 	@And("^user must be able to view rejected vendors table$")
@@ -190,7 +191,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from sso systems new apps found page$")
 	public void verify_data_from_sso_systems_new_app_found() throws Throwable {
-		extP.verifyURL(ObjectRepo.reader.getExternalDataDataFromSSOSystemsNewAppsFoundURL());
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsNewAppsFoundURL());
 	}
 
 	@And("^user must be able to view new apps found table$")
@@ -211,5 +212,25 @@ public class ExternalDataStepDef {
 	@And("^user must be able to view existing application records$")
 	public void verify_existing_application_records() throws Throwable {
 		extP.verifyExistingVendorRecords(ObjectRepo.reader.getExistingAppName());
+	}
+
+	@When("^user navigate to data from sso systems confirmed apps page$")
+	public void user_click_on_data_from_sso_systems_confirmed_apps() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
+		extP.clickOnDataFromSSOSystems();
+		wH.staticWait(5);
+		extP.clickOnConfirmedApps();
+	}
+
+	@Then("^user must be landing on data from sso systems confirmed apps page$")
+	public void verify_confirmed_apps() throws Throwable {
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsConfirmedAppsURL());
+	}
+
+	@And("^user must be able to view confirmed apps table$")
+	public void verify_confirmed_app_records() throws Throwable {
+		extP.verifyExcelDataTable(ObjectRepo.reader.getConfirmedApp());
 	}
 }

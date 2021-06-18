@@ -273,7 +273,7 @@ public class PropertyFileReader implements IconfigReader {
 	public String getRejectedVendorName() {
 		return prop.getProperty("RejectedVendorName");
 	}
-	
+
 	@Override
 	public String getExternalDataDataFromSSOSystemsNewAppsFoundURL() {
 		return prop.getProperty("ExternalDataDataFromSSOSystemsNewAppsFoundURL");
@@ -288,4 +288,15 @@ public class PropertyFileReader implements IconfigReader {
 	public String getExistingAppName() {
 		return prop.getProperty("ExistingAppName");
 	}
+
+	@Override
+	public String getExternalDataDataFromSSOSystemsConfirmedAppsURL() {
+		return prop.getProperty("ExternalDataDataFromSSOSystemsConfirmedAppsURL");
+	}
+	
+	@Override
+	public String getConfirmedApp() {
+		return prop.getProperty("ConfirmedApp");
+	}
+	
 }

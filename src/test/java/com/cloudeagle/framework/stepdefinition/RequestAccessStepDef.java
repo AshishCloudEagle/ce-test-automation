@@ -1,5 +1,6 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.RequestAccessPage;
@@ -16,7 +17,7 @@ public class RequestAccessStepDef {
 	public void user_navigate_to_request_access_page() throws Throwable {
 		wH.staticWait(10);
 		reqP.clickOnRequestAccessSideMenu();
-		reqP.verifyURL(ObjectRepo.reader.getRequestAccessURL());
+		reqP.verifyURL(Constants.URL + ObjectRepo.reader.getRequestAccessURL());
 	}
 
 	@Then("^user must be able to view request access table$")

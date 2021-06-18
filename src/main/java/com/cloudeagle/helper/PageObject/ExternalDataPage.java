@@ -109,6 +109,10 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement newAppFound;
 
+	@FindBy(xpath = "//*[text()='Confirmed Apps' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement confirmApp;
+
 	@FindBy(xpath = "//*[text()='Existing Applications' and contains(@class,'drawer')]")
 	@CacheLookup
 	private WebElement existingApplication;
@@ -298,4 +302,11 @@ public class ExternalDataPage extends PageBase {
 	public void verifyApplicationSlider() {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(applicationSlider), "Slider is not visible");
 	}
+
+	public void clickOnConfirmedApps() {
+		wHelper.waitForElementToBeClickable(confirmApp);
+		bHelper.click(confirmApp);
+		log.info("User clicks on Confirmed App");
+	}
+
 }

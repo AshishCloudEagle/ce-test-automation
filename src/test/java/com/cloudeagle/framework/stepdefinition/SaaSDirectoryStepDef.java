@@ -1,5 +1,6 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.SaaSDirectoryPage;
@@ -17,7 +18,7 @@ public class SaaSDirectoryStepDef {
 	public void user_navigate_to_saas_directory_page() throws Throwable {
 		wH.staticWait(10);
 		saasP.clickOnSaaSDirectorySideMenu();
-		saasP.verifyURL(ObjectRepo.reader.getSaaSDirectoryURL());
+		saasP.verifyURL(Constants.URL + ObjectRepo.reader.getSaaSDirectoryURL());
 	}
 
 	@Then("^user must be able to view saas directory header$")

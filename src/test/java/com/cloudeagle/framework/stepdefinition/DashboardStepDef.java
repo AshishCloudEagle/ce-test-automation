@@ -1,5 +1,6 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.DashboardPage;
@@ -31,7 +32,7 @@ public class DashboardStepDef {
 	public void user_navigate_to_dashboard_page() throws Throwable {
 		wH.staticWait(10);
 		dasP.clickOnLogo();
-		dasP.verifyURL(ObjectRepo.reader.getDashboardURL());
+		dasP.verifyURL(Constants.URL + ObjectRepo.reader.getDashboardURL());
 	}
 
 	@Then("^user must be able to view user details$")

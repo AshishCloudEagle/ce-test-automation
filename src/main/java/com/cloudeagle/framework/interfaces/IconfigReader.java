@@ -92,4 +92,8 @@ public interface IconfigReader {
 	public String getNewAppName();
 	
 	public String getExistingAppName();
+	
+	public String getExternalDataDataFromSSOSystemsConfirmedAppsURL();
+	
+	public String getConfirmedApp();
 }

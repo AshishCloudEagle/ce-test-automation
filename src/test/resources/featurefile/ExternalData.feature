@@ -68,3 +68,9 @@ Scenario: Verify external data - data from sso systems - new apps found
 	Then user must be able to view slider of application
 	And user must be able to view existing application records
 	
+#CE-670	
+Scenario: Verify external data - data from sso systems - confirmed apps
+	Given user logged in successfully  
+	When user navigate to data from sso systems confirmed apps page
+	Then user must be landing on data from sso systems confirmed apps page
+	And user must be able to view confirmed apps table
