@@ -40,6 +40,14 @@ public class AdminPage extends PageBase {
 	@CacheLookup
 	private WebElement menuAdmin;
 
+	@FindBy(xpath = "//*[text()='Single Sign On' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement singleSignOnBtn;
+
+	@FindBy(xpath = "//li[text()='Integrations']")
+	@CacheLookup
+	private WebElement Integrations;
+
 	By menuIntegrations = By.xpath("//li[text()='Integrations']");
 
 	By menuAlertSettings = By.xpath("//li[text()='Alert Settings']");
@@ -47,6 +55,8 @@ public class AdminPage extends PageBase {
 	By menuRolesUsers = By.xpath("//li[text()='Roles & Users']");
 
 	By menuCompanySettings = By.xpath("//li[text()='Company Settings']");
+
+	By IntegrationList = By.xpath("(//li[contains(@class,'options')])[last()]");
 
 	/** Public Methods **/
 
@@ -71,5 +81,22 @@ public class AdminPage extends PageBase {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(menuRolesUsers), "Roles & Users Menu is not displaying");
 		Assert.assertTrue(gHelper.IsElementPresentQuick(menuCompanySettings),
 				"Company Settings Menu is not displaying");
+	}
+
+	public void verifyIntegrationToolsList() {
+		Assert.assertTrue(gHelper.IsElementPresentQuick(IntegrationList),
+				"Integration List is not displaying");
+	}
+
+	public void clickOnIntegrations() {
+		wHelper.waitForElementToBeClickable(Integrations);
+		bHelper.click(Integrations);
+		log.info("User clicks on Integrations");
+	}
+
+	public void clickOnSingleSignOn() {
+		wHelper.waitForElementToBeClickable(singleSignOnBtn);
+		bHelper.click(singleSignOnBtn);
+		log.info("User clicks on Single Sign On");
 	}
 }

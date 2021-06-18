@@ -30,4 +30,22 @@ public class AdminStepDef {
 		aP.verifySidebar();
 	}
 
+	@When("^user navigate to on admin single sign on page$")
+	public void user_navigate_to_admin_single_sign_on_page() throws Throwable {
+		wH.staticWait(10);
+		aP.clickOnAdminSideMenu();
+		aP.clickOnIntegrations();
+		aP.clickOnSingleSignOn();
+	}
+
+	@Then("^user must be landing on admin single sign on page$")
+	public void verify_admin_single_sign_on_page() throws Throwable {
+		aP.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL());
+	}
+
+	@And("^user must be able to view integration tools list$")
+	public void verify_integration_tools_list() throws Throwable {
+		aP.verifyIntegrationToolsList();
+	}
+
 }
