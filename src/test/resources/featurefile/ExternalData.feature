@@ -74,3 +74,17 @@ Scenario: Verify external data - data from sso systems - confirmed apps
 	When user navigate to data from sso systems confirmed apps page
 	Then user must be landing on data from sso systems confirmed apps page
 	And user must be able to view confirmed apps table
+	
+#CE-671
+Scenario: Verify external data - data from sso systems - rejected apps
+	Given user logged in successfully  
+	When user navigate to data from sso systems rejected apps page
+	Then user must be landing on data from sso systems rejected apps page
+	And user must be able to view rejected apps table
+	When user click on existing vendor
+	Then user must be able to view slider
+	And user must be able to view existing vendor records
+	And user close the slider
+	When user click on existing application
+	Then user must be able to view slider of application
+	And user must be able to view existing application records

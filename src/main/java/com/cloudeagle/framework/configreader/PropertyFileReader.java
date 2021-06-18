@@ -293,10 +293,20 @@ public class PropertyFileReader implements IconfigReader {
 	public String getExternalDataDataFromSSOSystemsConfirmedAppsURL() {
 		return prop.getProperty("ExternalDataDataFromSSOSystemsConfirmedAppsURL");
 	}
-	
+
 	@Override
 	public String getConfirmedApp() {
 		return prop.getProperty("ConfirmedApp");
 	}
-	
+
+	@Override
+	public String getExternalDataDataFromSSOSystemsRejectedAppsURL() {
+		return prop.getProperty("ExternalDataDataFromSSOSystemsRejectedAppsURL");
+	}
+
+	@Override
+	public String getRejectedApp() {
+		return prop.getProperty("RejectedApp");
+	}
+
 }

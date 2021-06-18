@@ -96,4 +96,8 @@ public interface IconfigReader {
 	public String getExternalDataDataFromSSOSystemsConfirmedAppsURL();
 	
 	public String getConfirmedApp();
+	
+	public String getExternalDataDataFromSSOSystemsRejectedAppsURL();
+	
+	public String getRejectedApp();
 }

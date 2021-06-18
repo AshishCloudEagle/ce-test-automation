@@ -233,4 +233,24 @@ public class ExternalDataStepDef {
 	public void verify_confirmed_app_records() throws Throwable {
 		extP.verifyExcelDataTable(ObjectRepo.reader.getConfirmedApp());
 	}
+
+	@When("^user navigate to data from sso systems rejected apps page$")
+	public void user_click_on_data_from_sso_systems_rejected_apps() throws Throwable {
+		wH.staticWait(10);
+		extP.clickOnExternalDataSideMenu();
+		wH.staticWait(5);
+		extP.clickOnDataFromSSOSystems();
+		wH.staticWait(5);
+		extP.clickOnRejectedApps();
+	}
+
+	@Then("^user must be landing on data from sso systems rejected apps page$")
+	public void verify_rejected_apps() throws Throwable {
+		extP.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsRejectedAppsURL());
+	}
+
+	@And("^user must be able to view rejected apps table$")
+	public void verify_rejected_app_records() throws Throwable {
+		extP.verifyExcelDataTable(ObjectRepo.reader.getRejectedApp());
+	}
 }

@@ -113,6 +113,10 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement confirmApp;
 
+	@FindBy(xpath = "//*[text()='Rejected Apps' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement rejectedApp;
+
 	@FindBy(xpath = "//*[text()='Existing Applications' and contains(@class,'drawer')]")
 	@CacheLookup
 	private WebElement existingApplication;
@@ -307,6 +311,12 @@ public class ExternalDataPage extends PageBase {
 		wHelper.waitForElementToBeClickable(confirmApp);
 		bHelper.click(confirmApp);
 		log.info("User clicks on Confirmed App");
+	}
+
+	public void clickOnRejectedApps() {
+		wHelper.waitForElementToBeClickable(rejectedApp);
+		bHelper.click(rejectedApp);
+		log.info("User clicks on Rejected App");
 	}
 
 }
