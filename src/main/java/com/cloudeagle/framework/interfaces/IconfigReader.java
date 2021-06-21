@@ -106,4 +106,6 @@ public interface IconfigReader {
 	public String getAdminFinanceSystemsURL();
 	
 	public String getAdminAlertURL();
+	
+	public String getAdminRolesAndUsersURL();
 }

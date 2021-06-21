@@ -26,3 +26,12 @@ Scenario: Verify admin - alert
 	Given user logged in successfully  
 	When user navigate to on admin alert page
 	Then user must be landing on admin alert page
+	
+#CE-677
+Scenario: Verify admin - roles and users
+	Given user logged in successfully  
+	When user navigate to on admin roles and users page
+	Then user must be landing on roles and users page
+	And user must be able to viiew roles and users table
+	When user click on add new user
+	Then user must be able to view add new user model

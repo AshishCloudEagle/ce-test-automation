@@ -324,4 +324,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("AdminAlertURL");
 	}
 
+	@Override
+	public String getAdminRolesAndUsersURL() {
+		return prop.getProperty("AdminRolesAndUsersURL");
+	}
+
 }
