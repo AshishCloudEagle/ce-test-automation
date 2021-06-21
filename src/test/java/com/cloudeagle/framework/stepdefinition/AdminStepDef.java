@@ -127,4 +127,31 @@ public class AdminStepDef {
 	public void verify_create_role_model() throws Throwable {
 		aP.verifyNewRolePopup();
 	}
+
+	@When("^user navigate to on admin roles and users departments page$")
+	public void user_navigate_to_admin_roles_and_users_departments_page() throws Throwable {
+		aP.clickOnAdminSideMenu();
+		aP.clickOnRolesAndUsers();
+		aP.clickOnDepartments();
+	}
+
+	@Then("^user must be landing on roles and users departments page$")
+	public void verify_admin_roles_and_users_departments() throws Throwable {
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersDepartmentURL());
+	}
+
+	@And("^user must be able to view roles and users department table$")
+	public void verify_admin_roles_and_users_departments_table() throws Throwable {
+		aP.verifyTable(ObjectRepo.reader.getDepartment());
+	}
+
+	@When("^user click on create department$")
+	public void user_click_on_create_department() throws Throwable {
+		aP.clickOnCreateDepartment();
+	}
+
+	@Then("^user must be able to view create department model$")
+	public void verify_create_department_model() throws Throwable {
+		aP.verifyNewDepartmentPopup();
+	}
 }

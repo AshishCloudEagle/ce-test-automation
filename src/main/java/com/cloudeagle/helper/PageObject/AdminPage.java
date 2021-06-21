@@ -56,6 +56,10 @@ public class AdminPage extends PageBase {
 	@CacheLookup
 	private WebElement roles;
 
+	@FindBy(xpath = "//*[text()='DEPARTMENTS' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement departments;
+
 	@FindBy(xpath = "//*[text()='Add Users']")
 	@CacheLookup
 	private WebElement newUser;
@@ -63,6 +67,10 @@ public class AdminPage extends PageBase {
 	@FindBy(xpath = "//*[text()='Create Role']")
 	@CacheLookup
 	private WebElement createRole;
+
+	@FindBy(xpath = "//*[text()='Create Department']")
+	@CacheLookup
+	private WebElement createDepartMent;
 
 	@FindBy(xpath = "//input[@placeholder='Search']")
 	@CacheLookup
@@ -74,9 +82,11 @@ public class AdminPage extends PageBase {
 
 	By excelTable = By.xpath("(//table)[1]");
 
-	By newUserHeader = By.xpath("//*[text()='Add New User']");
+	By newUserHeader = By.xpath("//div[contains(@class,'header')]//*[text()='Add New User']");
 
 	By newRoleHeader = By.xpath("//div[contains(@class,'header')]//*[text()='Create Role']");
+
+	By newDepartmentHeader = By.xpath("//div[contains(@class,'header')]//*[text()='Add Department']");
 
 	String excelData = "(//table)[1]//td[@title='%s']";
 
@@ -180,5 +190,20 @@ public class AdminPage extends PageBase {
 
 	public void verifyNewRolePopup() {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(newRoleHeader), "Add New Role header is not displaying");
+	}
+
+	public void clickOnDepartments() {
+		bHelper.click(departments);
+		log.info("User clicks on departments");
+	}
+
+	public void clickOnCreateDepartment() {
+		bHelper.click(createDepartMent);
+		log.info("User clicks on Create Department");
+	}
+
+	public void verifyNewDepartmentPopup() {
+		Assert.assertTrue(gHelper.IsElementPresentQuick(newDepartmentHeader),
+				"Add New Department header is not displaying");
 	}
 }

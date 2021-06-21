@@ -44,3 +44,12 @@ Scenario: Verify admin - roles and users - roles
 	And user must be able to view roles and users roles table
 	When user click on create role
 	Then user must be able to view create role model
+	
+#CE-679
+Scenario: Verify admin - roles and users - departments
+	Given user logged in successfully  
+	When user navigate to on admin roles and users departments page
+	Then user must be landing on roles and users departments page
+	And user must be able to view roles and users department table
+	When user click on create department
+	Then user must be able to view create department model

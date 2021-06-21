@@ -339,4 +339,14 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("Role");
 	}
 
+	@Override
+	public String getAdminRolesAndUsersDepartmentURL() {
+		return prop.getProperty("AdminRolesAndUsersDepartmentURL");
+	}
+
+	@Override
+	public String getDepartment() {
+		return prop.getProperty("Department");
+	}
+
 }
