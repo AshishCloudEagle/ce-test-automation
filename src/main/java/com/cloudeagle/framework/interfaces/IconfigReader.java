@@ -102,4 +102,6 @@ public interface IconfigReader {
 	public String getRejectedApp();
 	
 	public String getAdminURL();
+	
+	public String getAdminFinanceSystemsURL();
 }

@@ -7,9 +7,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.interfaces.IwebComponent;
-import com.cloudeagle.framework.settings.ObjectRepo;
 
 /**
  * @author krana
@@ -20,12 +18,10 @@ public class NavigationHelper implements IwebComponent {
 
 	private WebDriver driver;
 	private Logger oLog = LoggerHelper.getLogger(NavigationHelper.class);
-	WaitHelper wHelper;
 
 	public NavigationHelper(WebDriver driver) {
 		this.driver = driver;
 		oLog.debug("NavigationHelper : " + this.driver.hashCode());
-		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 	}
 
 	public void navigateTo(String url) {
@@ -45,7 +41,6 @@ public class NavigationHelper implements IwebComponent {
 	}
 
 	public String getCurrentUrl() {
-		wHelper.staticWait(2);
 		String url = driver.getCurrentUrl();
 		oLog.info(url);
 		return driver.getCurrentUrl();

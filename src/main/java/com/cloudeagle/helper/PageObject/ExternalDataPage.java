@@ -8,15 +8,11 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
-import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
-import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class ExternalDataPage extends PageBase {
 
@@ -24,19 +20,15 @@ public class ExternalDataPage extends PageBase {
 
 	private final static Logger log = LoggerHelper.getLogger(ExternalDataPage.class);
 	GenericHelper gHelper;
-	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
-	NavigationHelper nHelper;
 
 	public ExternalDataPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gHelper = new GenericHelper(driver);
 		bHelper = new ButtonHelper(driver);
-		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		tHelper = new TextBoxHelper(driver);
-		nHelper = new NavigationHelper(driver);
 	}
 
 	/** Web Elements */
@@ -154,26 +146,21 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnExternalDataSideMenu() {
-		wHelper.waitForElementToBeClickable(menuExternalData);
 		bHelper.click(menuExternalData);
 		log.info("User clicks on External Data");
 	}
 
 	public void clickOnExcelDataUpload() {
-		wHelper.waitForElementToBeClickable(excelDataUpload);
 		bHelper.click(excelDataUpload);
 		log.info("User clicks on Excel Data Upload");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
 
 	public void enterDrawerSearchCriteria(String searchText) {
-		wHelper.staticWait(5);
-		wHelper.waitForElementVisible(drawerSearch, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(drawerSearch, searchText);
 		log.info(searchText);
 	}
@@ -186,7 +173,6 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnUploadFileBtn() {
-		wHelper.waitForElementToBeClickable(btnUploadFile);
 		bHelper.click(btnUploadFile);
 		log.info("User clicks on Upload File Button");
 	}
@@ -196,7 +182,6 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnOnDemandSync() {
-		wHelper.waitForElementToBeClickable(onDemandSync);
 		bHelper.click(onDemandSync);
 		log.info("User clicks on On-Demand Sync");
 	}
@@ -214,23 +199,16 @@ public class ExternalDataPage extends PageBase {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(menuExcelDataUpload), "Excel Data Upload is not visible");
 	}
 
-	public void verifyURL(String url) {
-		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
-			Assert.assertTrue(false, "Url mis match");
-	}
-
 	public void verifyOnDemandSync() {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(activePage), "On Demand Sync is not visible");
 	}
 
 	public void clickOnSingleSignOn() {
-		wHelper.waitForElementToBeClickable(singleSignOnBtn);
 		bHelper.click(singleSignOnBtn);
 		log.info("User clicks on Single Sign On");
 	}
 
 	public void clickOnFinanceSystems() {
-		wHelper.waitForElementToBeClickable(financeSystemBtn);
 		bHelper.click(financeSystemBtn);
 		log.info("User clicks on Finance System");
 	}
@@ -240,19 +218,16 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnDataFromFinanceSystems() {
-		wHelper.waitForElementToBeClickable(dataFromFinanceSystems);
 		bHelper.click(dataFromFinanceSystems);
 		log.info("User clicks on Data From Finance Systems");
 	}
 
 	public void clickOnNewVendorsFound() {
-		wHelper.waitForElementToBeClickable(newVendorsFoundBtn);
 		bHelper.click(newVendorsFoundBtn);
 		log.info("User clicks on New Vendors Found");
 	}
 
 	public void clickOnExistingVendor() {
-		wHelper.waitForElementToBeClickable(existingVendorsBtn);
 		bHelper.click(existingVendorsBtn);
 		log.info("User clicks on Existing Vendors");
 	}
@@ -268,37 +243,31 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void closeSlider() {
-		wHelper.waitForElementToBeClickable(drawerClose);
 		bHelper.click(drawerClose);
 		log.info("User clicks on Close");
 	}
 
 	public void clickOnConfirmedVendors() {
-		wHelper.waitForElementToBeClickable(confirmedVendor);
 		bHelper.click(confirmedVendor);
 		log.info("User clicks on Confirmed Vendor");
 	}
 
 	public void clickOnRejectedVendors() {
-		wHelper.waitForElementToBeClickable(rejectedVendors);
 		bHelper.click(rejectedVendors);
 		log.info("User clicks on Rejected Vendor");
 	}
 
 	public void clickOnDataFromSSOSystems() {
-		wHelper.waitForElementToBeClickable(dataFromSSOSystem);
 		bHelper.click(dataFromSSOSystem);
 		log.info("User clicks on Data From SSO System");
 	}
 
 	public void clickOnNewAppsFound() {
-		wHelper.waitForElementToBeClickable(newAppFound);
 		bHelper.click(newAppFound);
 		log.info("User clicks on New App Found");
 	}
 
 	public void clickOnExistingApplication() {
-		wHelper.waitForElementToBeClickable(existingApplicationBtn);
 		bHelper.click(existingApplicationBtn);
 		log.info("User clicks on Existing Application");
 	}
@@ -308,13 +277,11 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void clickOnConfirmedApps() {
-		wHelper.waitForElementToBeClickable(confirmApp);
 		bHelper.click(confirmApp);
 		log.info("User clicks on Confirmed App");
 	}
 
 	public void clickOnRejectedApps() {
-		wHelper.waitForElementToBeClickable(rejectedApp);
 		bHelper.click(rejectedApp);
 		log.info("User clicks on Rejected App");
 	}

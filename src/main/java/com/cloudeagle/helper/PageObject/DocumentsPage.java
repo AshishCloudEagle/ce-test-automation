@@ -8,15 +8,11 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
-import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
-import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class DocumentsPage extends PageBase {
 
@@ -24,19 +20,15 @@ public class DocumentsPage extends PageBase {
 
 	private final static Logger log = LoggerHelper.getLogger(DocumentsPage.class);
 	GenericHelper gHelper;
-	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
-	NavigationHelper nHelper;
 
 	public DocumentsPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gHelper = new GenericHelper(driver);
-		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		bHelper = new ButtonHelper(driver);
 		tHelper = new TextBoxHelper(driver);
-		nHelper = new NavigationHelper(driver);
 	}
 
 	/** Web Elements */
@@ -70,13 +62,11 @@ public class DocumentsPage extends PageBase {
 	}
 
 	public void clickOnDocumentsSideMenu() {
-		wHelper.waitForElementToBeClickable(menuDocuments);
 		bHelper.click(menuDocuments);
 		log.info("User clicks on Documents");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
@@ -93,7 +83,6 @@ public class DocumentsPage extends PageBase {
 	}
 
 	public void clickOnPublishedDocuments() {
-		wHelper.waitForElementToBeClickable(publishedDocuments);
 		bHelper.click(publishedDocuments);
 		log.info("User clicks on Published Documents");
 	}
@@ -106,14 +95,8 @@ public class DocumentsPage extends PageBase {
 	}
 
 	public void clickOnUploadedDocuments() {
-		wHelper.waitForElementToBeClickable(uploadedDocuments);
 		bHelper.click(uploadedDocuments);
 		log.info("User clicks on Published Documents");
-	}
-
-	public void verifyURL(String url) {
-		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
-			Assert.assertTrue(false, "Url mis match");
 	}
 
 }

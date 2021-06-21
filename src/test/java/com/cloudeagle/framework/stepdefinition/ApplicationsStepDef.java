@@ -1,6 +1,5 @@
 package com.cloudeagle.framework.stepdefinition;
 
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.ApplicationsPage;
 
@@ -11,11 +10,9 @@ import cucumber.api.java.en.When;
 public class ApplicationsStepDef {
 
 	ApplicationsPage aP = new ApplicationsPage(ObjectRepo.driver);
-	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);
 
 	@When("^user navigate to applications page$")
 	public void user_navigate_to_applications_page() throws Throwable {
-		wH.staticWait(10);
 		aP.clickOnApplicationsSideMenu();
 	}
 

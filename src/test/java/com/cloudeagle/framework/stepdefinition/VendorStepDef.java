@@ -1,7 +1,7 @@
 package com.cloudeagle.framework.stepdefinition;
 
 import com.cloudeagle.constants.Constants;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.VendorPage;
 
@@ -12,13 +12,12 @@ import cucumber.api.java.en.When;
 public class VendorStepDef {
 
 	VendorPage vP = new VendorPage(ObjectRepo.driver);
-	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);
+	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
 
 	@When("^user navigate to vendor page$")
 	public void user_navigate_to_vendor_page() throws Throwable {
-		wH.staticWait(10);
 		vP.clickOnVendorSideMenu();
-		vP.verifyURL(Constants.URL + ObjectRepo.reader.getVendorURL());
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getVendorURL());
 	}
 
 	@Then("^user must be able to view vendors header$")

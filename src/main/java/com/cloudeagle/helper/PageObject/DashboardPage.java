@@ -8,15 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
-import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
-import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class DashboardPage extends PageBase {
 
@@ -24,20 +20,15 @@ public class DashboardPage extends PageBase {
 
 	private final static Logger log = LoggerHelper.getLogger(DashboardPage.class);
 	GenericHelper gHelper;
-	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
-	NavigationHelper nHelper;
 
 	public DashboardPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gHelper = new GenericHelper(driver);
-		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		bHelper = new ButtonHelper(driver);
 		tHelper = new TextBoxHelper(driver);
-		nHelper = new NavigationHelper(driver);
-
 	}
 
 	/** Web Elements */
@@ -93,42 +84,36 @@ public class DashboardPage extends PageBase {
 	}
 
 	public String getUserName() {
-		wHelper.waitForElementVisible(usename, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		String text = tHelper.getText(usename);
 		log.info(text);
 		return text;
 	}
 
 	public String getServerInstanceName() {
-		wHelper.waitForElementVisible(serverInstance, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		String text = tHelper.getText(serverInstance);
 		log.info(text);
 		return text;
 	}
 
 	public String getNumberOfVendors() {
-		wHelper.waitForElementVisible(noOfVendors, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		String text = tHelper.getText(noOfVendors);
 		log.info(text);
 		return text;
 	}
 
 	public String getNumberOfApplication() {
-		wHelper.waitForElementVisible(noOfApplication, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		String text = tHelper.getText(noOfApplication);
 		log.info(text);
 		return text;
 	}
 
 	public String getSpendYTD() {
-		wHelper.waitForElementVisible(spendYTD, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		String text = tHelper.getText(spendYTD);
 		log.info(text);
 		return text;
 	}
 
 	public String getSavings() {
-		wHelper.waitForElementVisible(savings, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		String text = tHelper.getText(savings);
 		log.info(text);
 		return text;
@@ -148,7 +133,6 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void clickOnLogo() {
-		wHelper.waitForElementToBeClickable(logoImg);
 		bHelper.click(logoImg);
 		log.info("User clicks on logo");
 	}
@@ -189,8 +173,4 @@ public class DashboardPage extends PageBase {
 		Assert.assertTrue("Admin Menu is not displaying", gHelper.IsElementPresentQuick(menuAdmin));
 	}
 
-	public void verifyURL(String url) {
-		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
-			Assert.assertTrue("Url mis match", false);
-	}
 }

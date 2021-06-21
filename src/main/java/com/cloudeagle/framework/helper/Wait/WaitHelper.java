@@ -2,11 +2,16 @@
 package com.cloudeagle.framework.helper.Wait;
 
 import static com.cloudeagle.constants.Constants.WAIT_EXPLICIT_SEC;
+import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -15,14 +20,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Javascript.JavaScriptHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.interfaces.IconfigReader;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.google.common.base.Function;
-
-import org.openqa.selenium.JavascriptExecutor;
 
 public class WaitHelper extends GenericHelper {
 
@@ -68,15 +72,21 @@ public class WaitHelper extends GenericHelper {
 	public void waitForElementVisible(WebElement welcomeScreenElement, int timeOutInSeconds,
 			int pollingEveryInMiliSec) {
 		oLog.info(welcomeScreenElement);
+		do {
+		} while (!waitForLoader());
 		setImplicitWait(1, TimeUnit.SECONDS);
 		WebDriverWait wait = getWait(timeOutInSeconds, pollingEveryInMiliSec);
 		wait.until(ExpectedConditions.visibilityOf(welcomeScreenElement));
 		setImplicitWait(reader.getImplicitWait(), TimeUnit.SECONDS);
 	}
 
-	public void hardWait(int timeOutInMiliSec) throws InterruptedException {
+	public void hardWait(int timeOutInMiliSec) {
 		oLog.info(timeOutInMiliSec);
-		Thread.sleep(timeOutInMiliSec);
+		try {
+			Thread.sleep(timeOutInMiliSec);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public WebElement handleStaleElement(By locator, int retryCount, int delayInSeconds) throws InterruptedException {
@@ -137,12 +147,14 @@ public class WaitHelper extends GenericHelper {
 	}
 
 	public void waitForVisbleOfElement(WebElement webElement) {
-		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
+//		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
 
 	}
 
 	public void waitForElementToBeClickable(WebElement webElement) {
 		System.out.println("waitForElementToBeClickable");
+		do {
+		} while (!waitForLoader());
 		WebDriverWait wait = new WebDriverWait(ObjectRepo.driver, WAIT_EXPLICIT_SEC);
 		wait.until(ExpectedConditions.elementToBeClickable(webElement));
 	}
@@ -172,10 +184,8 @@ public class WaitHelper extends GenericHelper {
 	}
 
 	public void waitForElementToBeClickable(By Xpath) {
-
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_EXPLICIT_SEC);
 		wait.until(ExpectedConditions.elementToBeClickable(Xpath));
-
 	}
 
 	public void waitForPresenceOfElement(By Xpath) {
@@ -250,11 +260,38 @@ public class WaitHelper extends GenericHelper {
 
 	}
 
-	public void staticWait(int sec) {
-		try {
-			Thread.sleep(sec * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	public boolean waitForLoader() {
+		int reloadCounter = 0;
+		hardWait(900);
+		if (isLoderDisplayed(By.xpath("//*[contains(@class,'loader_loaderContainer')]"))) {
+			Instant currentTime = getCurrentTime();
+			while (isLoderDisplayed(By.xpath("//*[contains(@class,'loader_loaderContainer')]"))) {
+				Instant loopingTime = getCurrentTime();
+				Duration timeElapsed = Duration.between(currentTime, loopingTime);
+				long sec = timeElapsed.toMillis() / 1000;
+				int durDiff = (int) sec;
+				if (durDiff >= Constants.LOADER_WAIT) {
+//					reloadCurrentPage();
+					reloadCounter++;
+					if (reloadCounter == 2)
+						assertTrue(false, "Continuous Loader Displaying");
+				}
+			}
 		}
+		return true;
+	}
+
+	private boolean isLoderDisplayed(By xpath) {
+		boolean state = false;
+		try {
+			state = driver.findElement(xpath).isDisplayed();
+		} catch (Exception e) {
+			state = false;
+		}
+		return state;
+	}
+
+	private Instant getCurrentTime() {
+		return Instant.now();
 	}
 }

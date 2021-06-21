@@ -314,4 +314,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("AdminURL");
 	}
 
+	@Override
+	public String getAdminFinanceSystemsURL() {
+		return prop.getProperty("AdminFinanceSystemsURL");
+	}
+
 }

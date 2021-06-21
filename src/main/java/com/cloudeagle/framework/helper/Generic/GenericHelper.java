@@ -13,12 +13,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.testng.Assert;
 
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
+import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.interfaces.IwebComponent;
 import com.cloudeagle.framework.utility.DateTimeHelper;
 import com.cloudeagle.framework.utility.ResourceHelper;
-
 
 /**
  * @author krana
@@ -29,17 +30,19 @@ public class GenericHelper implements IwebComponent {
 
 	private WebDriver driver;
 	private Logger oLog = LoggerHelper.getLogger(GenericHelper.class);
+	private NavigationHelper nHelper;
 
 	public GenericHelper(WebDriver driver) {
 		this.driver = driver;
 		oLog.debug("GenericHelper : " + this.driver.hashCode());
+		nHelper = new NavigationHelper(driver);
 	}
 
 	public WebElement getElement(By locator) {
 		oLog.info(locator);
 		if (IsElementPresentQuick(locator))
 			return driver.findElement(locator);
-		
+
 		try {
 			throw new NoSuchElementException("Element Not Found : " + locator);
 		} catch (RuntimeException re) {
@@ -47,14 +50,15 @@ public class GenericHelper implements IwebComponent {
 			throw re;
 		}
 	}
-	
+
 	/**
-	 * Check for element is present based on locator
-	 * If the element is present return the web element otherwise null
+	 * Check for element is present based on locator If the element is present
+	 * return the web element otherwise null
+	 * 
 	 * @param locator
 	 * @return WebElement or null
 	 */
-	
+
 	public WebElement getElementWithNull(By locator) {
 		oLog.info(locator);
 		try {
@@ -78,17 +82,13 @@ public class GenericHelper implements IwebComponent {
 			return "";
 		}
 
-		File destDir = new File(ResourceHelper.getResourcePath("screenshots/")
-				+ DateTimeHelper.getCurrentDate());
+		File destDir = new File(ResourceHelper.getResourcePath("screenshots/") + DateTimeHelper.getCurrentDate());
 		if (!destDir.exists())
 			destDir.mkdir();
 
-		File destPath = new File(destDir.getAbsolutePath()
-				+ System.getProperty("file.separator") + name + ".jpg");
+		File destPath = new File(destDir.getAbsolutePath() + System.getProperty("file.separator") + name + ".jpg");
 		try {
-			FileUtils
-					.copyFile(((TakesScreenshot) driver)
-							.getScreenshotAs(OutputType.FILE), destPath);
+			FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE), destPath);
 		} catch (IOException e) {
 			oLog.error(e);
 			throw e;
@@ -102,4 +102,14 @@ public class GenericHelper implements IwebComponent {
 		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 	}
 
+	public void verifyURL(String url) {
+		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl())) {
+			oLog.error("Url mis match");
+			System.err.println("############");
+			System.err.println(url);
+			System.err.println(nHelper.getCurrentUrl());
+			System.err.println("############");
+			Assert.assertTrue(false, "Url mis match");
+		}
+	}
 }

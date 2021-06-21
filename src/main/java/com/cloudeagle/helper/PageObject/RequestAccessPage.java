@@ -8,15 +8,11 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
-import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
-import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class RequestAccessPage extends PageBase {
 
@@ -24,19 +20,15 @@ public class RequestAccessPage extends PageBase {
 
 	private final static Logger log = LoggerHelper.getLogger(RequestAccessPage.class);
 	GenericHelper gHelper;
-	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
-	NavigationHelper nHelper;
 
 	public RequestAccessPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gHelper = new GenericHelper(driver);
-		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		bHelper = new ButtonHelper(driver);
 		tHelper = new TextBoxHelper(driver);
-		nHelper = new NavigationHelper(driver);
 	}
 
 	/** Web Elements */
@@ -62,13 +54,11 @@ public class RequestAccessPage extends PageBase {
 	}
 
 	public void clickOnRequestAccessSideMenu() {
-		wHelper.waitForElementToBeClickable(menuRequestAccess);
 		bHelper.click(menuRequestAccess);
 		log.info("User clicks on Request Access");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
@@ -78,11 +68,6 @@ public class RequestAccessPage extends PageBase {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Request Access Data Table is not visible");
 		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
 				"Request Access Data searched row is not visible");
-	}
-
-	public void verifyURL(String url) {
-		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
-			Assert.assertTrue(false, "Url mis match");
 	}
 
 }

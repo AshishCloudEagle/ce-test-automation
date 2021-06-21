@@ -1,7 +1,7 @@
 package com.cloudeagle.framework.stepdefinition;
 
 import com.cloudeagle.constants.Constants;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.DashboardPage;
 import com.cloudeagle.helper.PageObject.LandingPage;
@@ -17,7 +17,7 @@ public class DashboardStepDef {
 	LoginPage lp = new LoginPage(ObjectRepo.driver);
 	LandingPage landP = new LandingPage(ObjectRepo.driver);
 	DashboardPage dasP = new DashboardPage(ObjectRepo.driver);
-	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);
+	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
 
 	@Given("^user logged in successfully$")
 	public void user_logged_in_successfully() throws Throwable {
@@ -30,9 +30,8 @@ public class DashboardStepDef {
 
 	@When("^user navigate to dashboard page$")
 	public void user_navigate_to_dashboard_page() throws Throwable {
-		wH.staticWait(10);
 		dasP.clickOnLogo();
-		dasP.verifyURL(Constants.URL + ObjectRepo.reader.getDashboardURL());
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getDashboardURL());
 	}
 
 	@Then("^user must be able to view user details$")

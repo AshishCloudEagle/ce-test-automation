@@ -13,3 +13,10 @@ Scenario: Verify admin - single sign on scenario
 	When user navigate to on admin single sign on page
 	Then user must be landing on admin single sign on page
 	And user must be able to view integration tools list
+	
+#CE-675
+Scenario: Verify admin - integration - finance systems scenario
+	Given user logged in successfully  
+	When user navigate to on admin integration finance systems page
+	Then user must be landing on admin integration finance systems page
+	And user must be able to view finance systems integration tools list

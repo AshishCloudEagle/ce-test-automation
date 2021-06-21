@@ -8,15 +8,11 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
-import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
-import com.cloudeagle.framework.helper.Wait.WaitHelper;
-import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class SaaSDirectoryPage extends PageBase {
 
@@ -24,19 +20,15 @@ public class SaaSDirectoryPage extends PageBase {
 
 	private final static Logger log = LoggerHelper.getLogger(SaaSDirectoryPage.class);
 	GenericHelper gHelper;
-	WaitHelper wHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
-	NavigationHelper nHelper;
 
 	public SaaSDirectoryPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		gHelper = new GenericHelper(driver);
-		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 		bHelper = new ButtonHelper(driver);
 		tHelper = new TextBoxHelper(driver);
-		nHelper = new NavigationHelper(driver);
 	}
 
 	/** Web Elements */
@@ -62,13 +54,11 @@ public class SaaSDirectoryPage extends PageBase {
 	}
 
 	public void clickOnSaaSDirectorySideMenu() {
-		wHelper.waitForElementToBeClickable(menuSaaSDirectory);
 		bHelper.click(menuSaaSDirectory);
 		log.info("User clicks on SaaS Directory");
 	}
 
 	public void enterSearchCriteria(String searchText) {
-		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(search, searchText);
 		log.info(searchText);
 	}
@@ -77,11 +67,6 @@ public class SaaSDirectoryPage extends PageBase {
 		enterSearchCriteria(searchText);
 		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(result, searchText))),
 				"SaaS Directory result  is not visible");
-	}
-
-	public void verifyURL(String url) {
-		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl()))
-			Assert.assertTrue(false, "Url mis match");
 	}
 
 	public void verifyHeader() {
