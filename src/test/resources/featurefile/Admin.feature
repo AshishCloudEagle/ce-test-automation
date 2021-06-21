@@ -20,3 +20,9 @@ Scenario: Verify admin - integration - finance systems scenario
 	When user navigate to on admin integration finance systems page
 	Then user must be landing on admin integration finance systems page
 	And user must be able to view finance systems integration tools list
+	
+#CE-676
+Scenario: Verify admin - alert
+	Given user logged in successfully  
+	When user navigate to on admin alert page
+	Then user must be landing on admin alert page

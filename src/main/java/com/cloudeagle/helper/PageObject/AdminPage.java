@@ -37,6 +37,10 @@ public class AdminPage extends PageBase {
 	@CacheLookup
 	private WebElement singleSignOnBtn;
 
+	@FindBy(xpath = "//li[text()='Alert Settings']")
+	@CacheLookup
+	private WebElement alertSettings;
+
 	@FindBy(xpath = "//li[text()='Integrations']")
 	@CacheLookup
 	private WebElement Integrations;
@@ -91,5 +95,10 @@ public class AdminPage extends PageBase {
 
 	public void verifyFinanceSystemsIntegrationToolsList() {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(IntegrationList), "Integration List is not displaying");
+	}
+
+	public void clickOnAlertSettings() {
+		bHelper.click(alertSettings);
+		log.info("User clicks on Alert Settings");
 	}
 }

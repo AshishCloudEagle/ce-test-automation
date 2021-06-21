@@ -63,4 +63,15 @@ public class AdminStepDef {
 		aP.verifyFinanceSystemsIntegrationToolsList();
 	}
 
+	@When("^user navigate to on admin alert page$")
+	public void user_navigate_to_admin_alert_page() throws Throwable {
+		aP.clickOnAdminSideMenu();
+		aP.clickOnAlertSettings();
+	}
+
+	@Then("^user must be landing on admin alert page$")
+	public void verify_admin_alert() throws Throwable {
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminAlertURL());
+	}
+
 }
