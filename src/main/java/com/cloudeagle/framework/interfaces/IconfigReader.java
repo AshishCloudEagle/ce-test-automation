@@ -84,28 +84,32 @@ public interface IconfigReader {
 	public String getConfirmedVendorName();
 
 	public String getExternalDataDataFinanceSystemsRejectedVendorsURL();
-	
+
 	public String getRejectedVendorName();
-	
+
 	public String getExternalDataDataFromSSOSystemsNewAppsFoundURL();
-	
+
 	public String getNewAppName();
-	
+
 	public String getExistingAppName();
-	
+
 	public String getExternalDataDataFromSSOSystemsConfirmedAppsURL();
-	
+
 	public String getConfirmedApp();
-	
+
 	public String getExternalDataDataFromSSOSystemsRejectedAppsURL();
-	
+
 	public String getRejectedApp();
-	
+
 	public String getAdminURL();
-	
+
 	public String getAdminFinanceSystemsURL();
-	
+
 	public String getAdminAlertURL();
-	
-	public String getAdminRolesAndUsersURL();
+
+	public String getAdminRolesAndUsersUsersURL();
+
+	public String getAdminRolesAndUsersRolesURL();
+
+	public String getRole();
 }

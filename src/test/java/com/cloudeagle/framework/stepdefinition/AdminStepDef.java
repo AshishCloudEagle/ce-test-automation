@@ -83,10 +83,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on roles and users page$")
 	public void verify_admin_roles_and_users() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersURL());
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersUsersURL());
 	}
 
-	@And("^user must be able to viiew roles and users table$")
+	@And("^user must be able to view roles and users table$")
 	public void verify_admin_roles_and_users_table() throws Throwable {
 		aP.verifyTable(ObjectRepo.reader.getUserName());
 	}
@@ -99,5 +99,32 @@ public class AdminStepDef {
 	@Then("^user must be able to view add new user model$")
 	public void verify_new_user_popup() throws Throwable {
 		aP.verifyNewUserPopup();
+	}
+
+	@When("^user navigate to on admin roles and users roles page$")
+	public void user_navigate_to_admin_roles_and_users_roles_page() throws Throwable {
+		aP.clickOnAdminSideMenu();
+		aP.clickOnRolesAndUsers();
+		aP.clickOnRoles();
+	}
+
+	@Then("^user must be landing on roles and users roles page$")
+	public void verify_admin_roles_and_users_roles() throws Throwable {
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersRolesURL());
+	}
+
+	@And("^user must be able to view roles and users roles table$")
+	public void verify_admin_roles_and_users_roles_table() throws Throwable {
+		aP.verifyTable(ObjectRepo.reader.getRole());
+	}
+
+	@When("^user click on create role$")
+	public void user_click_on_create_role() throws Throwable {
+		aP.clickOnCreateRole();
+	}
+
+	@Then("^user must be able to view create role model$")
+	public void verify_create_role_model() throws Throwable {
+		aP.verifyNewRolePopup();
 	}
 }

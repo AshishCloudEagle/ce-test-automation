@@ -32,6 +32,15 @@ Scenario: Verify admin - roles and users
 	Given user logged in successfully  
 	When user navigate to on admin roles and users page
 	Then user must be landing on roles and users page
-	And user must be able to viiew roles and users table
+	And user must be able to view roles and users table
 	When user click on add new user
 	Then user must be able to view add new user model
+	
+#CE-678
+Scenario: Verify admin - roles and users - roles
+	Given user logged in successfully  
+	When user navigate to on admin roles and users roles page
+	Then user must be landing on roles and users roles page
+	And user must be able to view roles and users roles table
+	When user click on create role
+	Then user must be able to view create role model
