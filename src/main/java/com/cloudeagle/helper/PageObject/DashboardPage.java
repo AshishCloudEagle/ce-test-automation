@@ -13,6 +13,8 @@ import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
+import com.cloudeagle.framework.settings.ObjectRepo;
 
 public class DashboardPage extends PageBase {
 
@@ -22,6 +24,7 @@ public class DashboardPage extends PageBase {
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
+	WaitHelper wHelper;
 
 	public DashboardPage(WebDriver driver) {
 		super(driver);
@@ -29,6 +32,7 @@ public class DashboardPage extends PageBase {
 		gHelper = new GenericHelper(driver);
 		bHelper = new ButtonHelper(driver);
 		tHelper = new TextBoxHelper(driver);
+		wHelper = new WaitHelper(driver, ObjectRepo.reader);
 	}
 
 	/** Web Elements */
@@ -133,6 +137,7 @@ public class DashboardPage extends PageBase {
 	}
 
 	public void clickOnLogo() {
+		wHelper.hardWait(5000);
 		bHelper.click(logoImg);
 		log.info("User clicks on logo");
 	}

@@ -2,6 +2,7 @@ package com.cloudeagle.framework.stepdefinition;
 
 import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
+import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 import com.cloudeagle.helper.PageObject.ExternalDataPage;
 
@@ -13,12 +14,13 @@ public class ExternalDataStepDef {
 
 	ExternalDataPage extP = new ExternalDataPage(ObjectRepo.driver);
 	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
+	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);
 
 	@When("^user navigate to external data upload page$")
 	public void user_navigate_to_external_data_upload_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnExcelDataUpload();
-		gH.verifyURL(ObjectRepo.reader.getExternalDataUploadURL());
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataUploadURL());
 	}
 
 	@Then("^user must be able to view external data upload table$")
@@ -116,6 +118,7 @@ public class ExternalDataStepDef {
 
 	@And("^user must be able to view existing vendor records$")
 	public void verify_existing_vendor_recordsr() throws Throwable {
+		wH.hardWait(2000);
 		extP.verifyExistingVendorRecords(ObjectRepo.reader.getVendorName());
 	}
 

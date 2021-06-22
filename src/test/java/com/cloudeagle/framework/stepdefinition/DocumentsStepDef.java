@@ -28,7 +28,7 @@ public class DocumentsStepDef {
 	@And("^user click on uploaded documents$")
 	public void click_on_uploaded_documents() throws Throwable {
 		docP.clickOnUploadedDocuments();
-		gH.verifyURL(ObjectRepo.reader.getUploadedDocumentURL());
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getUploadedDocumentURL());
 	}
 
 	@Then("^user must be able to view published documents table$")

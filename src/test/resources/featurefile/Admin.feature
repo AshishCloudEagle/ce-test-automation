@@ -1,4 +1,4 @@
-Feature: Vendor Scenarios 
+Feature: Admin Scenarios 
 
 #CE-673
 Scenario: Verify admin page
@@ -53,3 +53,9 @@ Scenario: Verify admin - roles and users - departments
 	And user must be able to view roles and users department table
 	When user click on create department
 	Then user must be able to view create department model
+
+#CE-680
+Scenario: Verify admin - settings
+	Given user logged in successfully  
+	When user navigate to on admin settings page
+	Then user must be landing on admin settings page

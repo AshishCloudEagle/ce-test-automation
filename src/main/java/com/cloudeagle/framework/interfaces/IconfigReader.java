@@ -116,4 +116,6 @@ public interface IconfigReader {
 	public String getAdminRolesAndUsersDepartmentURL();
 	
 	public String getDepartment();
+	
+	public String getAdminSettingURL();
 }

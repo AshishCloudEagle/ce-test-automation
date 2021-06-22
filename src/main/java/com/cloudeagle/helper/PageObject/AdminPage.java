@@ -40,6 +40,10 @@ public class AdminPage extends PageBase {
 	@CacheLookup
 	private WebElement singleSignOnBtn;
 
+	@FindBy(xpath = "//*[text()='Finance Systems' and contains(@class,'tab')]")
+	@CacheLookup
+	private WebElement finanaceSystemBtn;
+
 	@FindBy(xpath = "//li[text()='Alert Settings']")
 	@CacheLookup
 	private WebElement alertSettings;
@@ -79,6 +83,10 @@ public class AdminPage extends PageBase {
 	@FindBy(xpath = "//li[text()='Integrations']")
 	@CacheLookup
 	private WebElement Integrations;
+
+	@FindBy(xpath = "//li[text()='Company Settings']")
+	@CacheLookup
+	private WebElement companySettings;
 
 	By excelTable = By.xpath("(//table)[1]");
 
@@ -133,7 +141,7 @@ public class AdminPage extends PageBase {
 		log.info("User clicks on Single Sign On");
 	}
 
-	public void clickOnuserFinanceSystems() {
+	public void clickOnUserFinanceSystems() {
 		bHelper.click(singleSignOnBtn);
 		log.info("User clicks on Single Sign On");
 	}
@@ -205,5 +213,10 @@ public class AdminPage extends PageBase {
 	public void verifyNewDepartmentPopup() {
 		Assert.assertTrue(gHelper.IsElementPresentQuick(newDepartmentHeader),
 				"Add New Department header is not displaying");
+	}
+
+	public void clickOnSettings() {
+		bHelper.click(companySettings);
+		log.info("User clicks on Seetings");
 	}
 }

@@ -349,4 +349,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("Department");
 	}
 
+	@Override
+	public String getAdminSettingURL() {
+		return prop.getProperty("AdminSettingURL");
+	}
+
 }

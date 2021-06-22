@@ -50,7 +50,7 @@ public class AdminStepDef {
 	public void user_navigate_to_admin_finance_systems_page() throws Throwable {
 		aP.clickOnAdminSideMenu();
 		aP.clickOnIntegrations();
-		aP.clickOnuserFinanceSystems();
+		aP.clickOnUserFinanceSystems();
 	}
 
 	@Then("^user must be landing on admin integration finance systems page$")
@@ -153,5 +153,16 @@ public class AdminStepDef {
 	@Then("^user must be able to view create department model$")
 	public void verify_create_department_model() throws Throwable {
 		aP.verifyNewDepartmentPopup();
+	}
+
+	@When("^user navigate to on admin settings page$")
+	public void user_navigate_to_admin_setting_page() throws Throwable {
+		aP.clickOnAdminSideMenu();
+		aP.clickOnSettings();
+	}
+
+	@Then("^user must be landing on admin settings page$")
+	public void verify_admin_setting_page() throws Throwable {
+		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminSettingURL());
 	}
 }
