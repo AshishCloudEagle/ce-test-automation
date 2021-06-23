@@ -104,12 +104,12 @@ public class GenericHelper implements IwebComponent {
 
 	public void verifyURL(String url) {
 		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl())) {
-			oLog.error("Url mis match");
+			oLog.error("URL mis match");
 			System.err.println("############");
 			System.err.println(url);
 			System.err.println(nHelper.getCurrentUrl());
 			System.err.println("############");
-			Assert.assertTrue(false, "Url mis match");
+			Assert.assertTrue(false, "URL mis match");
 		}
 	}
 }

@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.utility.DateTimeHelper;
 import com.cloudeagle.framework.utility.ResourceHelper;
 
@@ -25,8 +26,10 @@ public class ChromeBrowser {
 	public Capabilities getChromeCapabilities() {
 		ChromeOptions option = new ChromeOptions();
 		option.addArguments("start-maximized");
-		option.addArguments(new String[] { "headless" });
-		option.addArguments(new String[] { "window-size=1200x600" });
+		if (Constants.IS_HEADLESS) {
+			option.addArguments(new String[] { "headless" });
+			option.addArguments(new String[] { "window-size=1200x600" });
+		}
 		DesiredCapabilities chrome = DesiredCapabilities.chrome();
 		chrome.setJavascriptEnabled(true);
 		chrome.setCapability(ChromeOptions.CAPABILITY, option);

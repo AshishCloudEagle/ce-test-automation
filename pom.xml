@@ -59,7 +59,7 @@
 				<version>2.19.1</version>
 				<configuration>
 					<systemPropertyVariables>
-						<environment>Dev</environment>
+						<isHeadless>true</isHeadless>
 					</systemPropertyVariables>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>
