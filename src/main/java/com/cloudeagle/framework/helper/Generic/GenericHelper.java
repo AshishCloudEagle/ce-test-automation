@@ -14,7 +14,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.interfaces.IwebComponent;
@@ -34,7 +33,6 @@ public class GenericHelper implements IwebComponent {
 	private WebDriver driver;
 	private Logger oLog = LoggerHelper.getLogger(GenericHelper.class);
 	private NavigationHelper nHelper;
-	PageBase pBase;
 
 	public GenericHelper(WebDriver driver) {
 		this.driver = driver;
