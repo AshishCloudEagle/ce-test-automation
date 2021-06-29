@@ -59,18 +59,31 @@ public class VendorPage extends PageBase {
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		log.info("User enter " + searchText + " in search box");
 	}
 
 	public void verifyVendorDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Vendor Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Vendor Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (!status)
+			log.error("Vendor Data Table is not visible");
+		else
+			log.info("Vendor Data Table is visible");
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (!status)
+			log.error("Vendor Data searched row is not visible");
+		else
+			log.info("Vendor Data searched row is visible");
+		Assert.assertTrue(status);
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Vendor Header is not visible");
+		boolean status = gHelper.IsElementPresentQuick(header);
+		if (!status)
+			log.error("Vendor Header is not visible");
+		else
+			log.info("Vendor Header is visible");
+		Assert.assertTrue(status);
 	}
-
 }
