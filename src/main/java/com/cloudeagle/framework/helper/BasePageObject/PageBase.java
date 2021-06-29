@@ -137,11 +137,13 @@ public abstract class PageBase {
 	}
 
 	@Step
-	public void log(Object object, boolean result) {
-		if (result)
-			log.error(object);
-		else
-			log.info(object);
+	public void successLog(String object) {
+		log.info(object);
+	}
+
+	@Step
+	public void failureLog(String object) {
+		log.error(object);
 	}
 
 }

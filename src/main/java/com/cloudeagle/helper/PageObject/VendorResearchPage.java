@@ -50,29 +50,29 @@ public class VendorResearchPage extends PageBase {
 
 	public void clickOnVendorResearchSideMenu() {
 		bHelper.click(menuVendors);
-		log("User clicks on Vendors", false);
+		successLog("User clicks on Vendors");
 	}
 
 	public void verifyHeader() {
 		boolean status = gHelper.IsElementPresentQuick(header);
 		if (!status)
-			log("Vendor Header is not visible", true);
+			failureLog("Vendor Header is not visible");
 		else
-			log("Vendor Header is visible", false);
+			successLog("Vendor Header is visible");
 		Assert.assertTrue(status);
 	}
 
 	public void searchByVendorName(String vendorName) {
 		tHelper.sendKeys(search, vendorName + Keys.ENTER);
-		log("User enter " + vendorName + " in search box", false);
+		successLog("User enter " + vendorName + " in search box");
 	}
 
 	public void verifyResults(String vendorName) {
 		boolean status = gHelper.IsElementPresentQuick(By.xpath(String.format(result, vendorName)));
 		if (!status)
-			log("Searched result is not visible", true);
+			failureLog("Searched result is not visible");
 		else
-			log("Searched result is visible", false);
+			successLog("Searched result is visible");
 		Assert.assertTrue(status);
 	}
 }

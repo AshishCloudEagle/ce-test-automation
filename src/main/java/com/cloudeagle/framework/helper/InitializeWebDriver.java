@@ -21,6 +21,7 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class InitializeWebDriver {
 
@@ -137,14 +138,12 @@ public class InitializeWebDriver {
 
 	}
 
+	@Attachment
 	public void tearDownDriver(Scenario scenario) throws Exception {
-
 		try {
 			if (ObjectRepo.driver != null) {
-
 				if (scenario.isFailed())
 					scenario.write(new GenericHelper(ObjectRepo.driver).takeScreenShot(scenario.getName()));
-
 				ObjectRepo.driver.quit();
 				ObjectRepo.reader = null;
 				ObjectRepo.driver = null;
