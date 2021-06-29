@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -12,13 +11,11 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class VendorResearchPage extends PageBase {
 
 	private WebDriver driver;
-	private final static Logger log = LoggerHelper.getLogger(VendorResearchPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -53,20 +50,29 @@ public class VendorResearchPage extends PageBase {
 
 	public void clickOnVendorResearchSideMenu() {
 		bHelper.click(menuVendors);
-		log.info("User clicks on Vendors");
+		log("User clicks on Vendors", false);
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Vendor Header is not visible");
+		boolean status = gHelper.IsElementPresentQuick(header);
+		if (!status)
+			log("Vendor Header is not visible", true);
+		else
+			log("Vendor Header is visible", false);
+		Assert.assertTrue(status);
 	}
 
 	public void searchByVendorName(String vendorName) {
 		tHelper.sendKeys(search, vendorName + Keys.ENTER);
-		log.info(vendorName);
+		log("User enter " + vendorName + " in search box", false);
 	}
 
 	public void verifyResults(String vendorName) {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(result, vendorName))),
-				"Searched result is not visible");
+		boolean status = gHelper.IsElementPresentQuick(By.xpath(String.format(result, vendorName)));
+		if (!status)
+			log("Searched result is not visible", true);
+		else
+			log("Searched result is visible", false);
+		Assert.assertTrue(status);
 	}
 }

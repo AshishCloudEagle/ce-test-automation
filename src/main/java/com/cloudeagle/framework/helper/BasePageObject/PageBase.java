@@ -21,6 +21,8 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.google.common.base.Function;
 
+import ru.yandex.qatools.allure.annotations.Step;
+
 @SuppressWarnings("rawtypes")
 public abstract class PageBase {
 
@@ -132,6 +134,14 @@ public abstract class PageBase {
 	public void ClickSignIn() {
 		signInButton.click();
 		log.info(signInButton);
+	}
+
+	@Step
+	public void log(Object object, boolean result) {
+		if (result)
+			log.error(object);
+		else
+			log.info(object);
 	}
 
 }
