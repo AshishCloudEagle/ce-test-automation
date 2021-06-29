@@ -21,7 +21,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on admin page$")
 	public void verify_admin_page() throws Throwable {
-		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL()))
+			aP.successLog("Admin URL Verified");
+		else
+			aP.failureLog("Admin URL mis match");
 	}
 
 	@And("^user must be able to view admin sidebar menus$")
