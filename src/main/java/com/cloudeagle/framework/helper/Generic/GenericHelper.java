@@ -79,16 +79,13 @@ public class GenericHelper implements IwebComponent {
 
 	@Attachment
 	public String takeScreenShot(String name) throws IOException {
-
 		if (driver instanceof HtmlUnitDriver) {
 			oLog.fatal("HtmlUnitDriver Cannot take the ScreenShot");
 			return "";
 		}
-
 		File destDir = new File(ResourceHelper.getResourcePath("screenshots/") + DateTimeHelper.getCurrentDate());
 		if (!destDir.exists())
 			destDir.mkdir();
-
 		File destPath = new File(destDir.getAbsolutePath() + System.getProperty("file.separator") + name + ".jpg");
 		try {
 			FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE), destPath);

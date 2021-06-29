@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,13 +10,11 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class AdminPage extends PageBase {
 
 	private WebDriver driver;
-	private final static Logger log = LoggerHelper.getLogger(AdminPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -116,107 +113,159 @@ public class AdminPage extends PageBase {
 
 	public void clickOnAdminSideMenu() {
 		bHelper.click(menuAdmin);
-		log.info("User clicks on Vendors");
+		successLog("User clicks on Vendors");
 	}
 
 	public void verifySidebar() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuIntegrations), "Integrations Menu is not displaying");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuAlertSettings), "Alert Settins Menu is not displaying");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuRolesUsers), "Roles & Users Menu is not displaying");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuCompanySettings),
-				"Company Settings Menu is not displaying");
+		boolean status = gHelper.IsElementPresentQuick(menuIntegrations);
+		if (status)
+			successLog("Integrations Menu is displaying");
+		else
+			failureLog("Integrations Menu is not displaying");
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuAlertSettings);
+		if (status)
+			successLog("Alert Settins Menu is displaying");
+		else
+			failureLog("Alert Settins Menu is not displaying");
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuRolesUsers);
+		if (status)
+			successLog("Roles & Users Menu is displaying");
+		else
+			failureLog("Roles & Users Menu is not displaying");
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuCompanySettings);
+		if (status)
+			successLog("Company Settings Menu is displaying");
+		else
+			failureLog("Company Settings Menu is not displaying");
+		Assert.assertTrue(status);
 	}
 
 	public void verifyIntegrationToolsList() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(IntegrationList), "Integration List is not displaying");
+		boolean status = gHelper.IsElementPresentQuick(IntegrationList);
+		if (status)
+			successLog("Integration List is displaying");
+		else
+			failureLog("Integration List is not displaying");
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnIntegrations() {
 		bHelper.click(Integrations);
-		log.info("User clicks on Integrations");
+		successLog("User clicks on Integrations");
 	}
 
 	public void clickOnSingleSignOn() {
 		bHelper.click(singleSignOnBtn);
-		log.info("User clicks on Single Sign On");
+		successLog("User clicks on Single Sign On");
 	}
 
 	public void clickOnUserFinanceSystems() {
 		bHelper.click(singleSignOnBtn);
-		log.info("User clicks on Single Sign On");
+		successLog("User clicks on Single Sign On");
 	}
 
 	public void verifyFinanceSystemsIntegrationToolsList() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(IntegrationList), "Integration List is not displaying");
+		boolean status = gHelper.IsElementPresentQuick(IntegrationList);
+		if (status)
+			successLog("Integration List is displaying");
+		else
+			failureLog("Integration List is not displaying");
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnAlertSettings() {
 		bHelper.click(alertSettings);
-		log.info("User clicks on Alert Settings");
+		successLog("User clicks on Alert Settings");
 	}
 
 	public void clickOnRolesAndUsers() {
 		bHelper.click(rolesAndUsers);
-		log.info("User clicks on Roles And Users");
+		successLog("User clicks on Roles And Users");
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		successLog(searchText);
 	}
 
 	public void verifyTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Excel Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Excel Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			successLog("Excel Data Table is visible");
+		else
+			failureLog("Excel Data Table is not visible");
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (status)
+			successLog("Excel Data searched row is visible");
+		else
+			failureLog("Excel Data searched row is not visible");
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnUser() {
 		bHelper.click(users);
-		log.info("User clicks on Users");
+		successLog("User clicks on Users");
 	}
 
 	public void clickOnNewUser() {
 		bHelper.click(newUser);
-		log.info("User clicks on New User");
+		successLog("User clicks on New User");
 	}
 
 	public void verifyNewUserPopup() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(newUserHeader), "Add New User header is not displaying");
+		boolean status = gHelper.IsElementPresentQuick(newUserHeader);
+		if (status)
+			successLog("Add New User header is displaying");
+		else
+			failureLog("Add New User header is not displaying");
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnRoles() {
 		bHelper.click(roles);
-		log.info("User clicks on Roles");
+		successLog("User clicks on Roles");
 	}
 
 	public void clickOnCreateRole() {
 		bHelper.click(createRole);
-		log.info("User clicks on Create Role");
+		successLog("User clicks on Create Role");
 	}
 
 	public void verifyNewRolePopup() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(newRoleHeader), "Add New Role header is not displaying");
+		boolean status = gHelper.IsElementPresentQuick(newRoleHeader);
+		if (status)
+			successLog("Add New Role header is displaying");
+		else
+			failureLog("Add New Role header is not displaying");
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnDepartments() {
 		bHelper.click(departments);
-		log.info("User clicks on departments");
+		successLog("User clicks on departments");
 	}
 
 	public void clickOnCreateDepartment() {
 		bHelper.click(createDepartMent);
-		log.info("User clicks on Create Department");
+		successLog("User clicks on Create Department");
 	}
 
 	public void verifyNewDepartmentPopup() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(newDepartmentHeader),
-				"Add New Department header is not displaying");
+		boolean status = gHelper.IsElementPresentQuick(newDepartmentHeader);
+		if (status)
+			successLog("Add New Department header is displaying");
+		else
+			failureLog("Add New Department header is not displaying");
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnSettings() {
 		bHelper.click(companySettings);
-		log.info("User clicks on Seetings");
+		successLog("User clicks on Seetings");
 	}
 }
