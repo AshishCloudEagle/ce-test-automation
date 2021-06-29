@@ -24,9 +24,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on admin page$")
 	public void verify_admin_page() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL()))
-			aP.successLog("Admin URL Verified");
+			aP.log("Admin URL Verified", false);
 		else {
-			aP.failureLog("Admin URL mis match");
+			aP.log("Admin URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
@@ -46,10 +46,10 @@ public class AdminStepDef {
 	@Then("^user must be landing on admin single sign on page$")
 	public void verify_admin_single_sign_on_page() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL()))
-			aP.successLog("Admin - Single Sign On URL Verified");
+			aP.log("Admin - Single Sign On URL Verified", false);
 		else {
 			{
-				aP.failureLog("Admin - Single Sign On URL mis match");
+				aP.log("Admin - Single Sign On URL mis match", true);
 				Assert.assertTrue(false);
 			}
 			Assert.assertTrue(false);
@@ -71,9 +71,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on admin integration finance systems page$")
 	public void verify_admin_finance_systems() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminFinanceSystemsURL()))
-			aP.successLog("Admin - Integration - Finance Systems URL Verified");
+			aP.log("Admin - Integration - Finance Systems URL Verified", false);
 		else {
-			aP.failureLog("Admin - Integration - Finance Systems URL mis match");
+			aP.log("Admin - Integration - Finance Systems URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
@@ -92,9 +92,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on admin alert page$")
 	public void verify_admin_alert() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminAlertURL()))
-			aP.successLog("Admin - Alert URL Verified");
+			aP.log("Admin - Alert URL Verified", false);
 		else {
-			aP.failureLog("Admin - Alert URL mis match");
+			aP.log("Admin - Alert URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
@@ -109,9 +109,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on roles and users page$")
 	public void verify_admin_roles_and_users() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersUsersURL()))
-			aP.successLog("Admin - Roles & Users URL Verified");
+			aP.log("Admin - Roles & Users URL Verified", false);
 		else {
-			aP.failureLog("Admin - Roles & Users URL mis match");
+			aP.log("Admin - Roles & Users URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
@@ -141,9 +141,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on roles and users roles page$")
 	public void verify_admin_roles_and_users_roles() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersRolesURL()))
-			aP.successLog("Admin - Roles & Users - Roles URL Verified");
+			aP.log("Admin - Roles & Users - Roles URL Verified", false);
 		else {
-			aP.failureLog("Admin - Roles & Users - Roles URL mis match");
+			aP.log("Admin - Roles & Users - Roles URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
@@ -173,9 +173,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on roles and users departments page$")
 	public void verify_admin_roles_and_users_departments() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersDepartmentURL()))
-			aP.successLog("Admin - Roles & Users - Departments URL Verified");
+			aP.log("Admin - Roles & Users - Departments URL Verified", false);
 		else {
-			aP.failureLog("Admin - Roles & Users - Departments URL mis match");
+			aP.log("Admin - Roles & Users - Departments URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
@@ -204,9 +204,9 @@ public class AdminStepDef {
 	@Then("^user must be landing on admin settings page$")
 	public void verify_admin_setting_page() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminSettingURL()))
-			aP.successLog("Admin - Setting URL Verified");
+			aP.log("Admin - Setting URL Verified", false);
 		else {
-			aP.failureLog("Admin - Setting URL mis match");
+			aP.log("Admin - Setting URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}

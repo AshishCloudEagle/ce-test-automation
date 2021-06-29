@@ -20,6 +20,7 @@ import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.interfaces.IwebComponent;
 import com.cloudeagle.framework.utility.DateTimeHelper;
 import com.cloudeagle.framework.utility.ResourceHelper;
+import com.google.common.io.Files;
 
 import ru.yandex.qatools.allure.annotations.Attachment;
 
@@ -78,7 +79,6 @@ public class GenericHelper implements IwebComponent {
 		return flag;
 	}
 
-	@Attachment(type = "image/jpg")
 	public String takeScreenShot(String name) throws IOException {
 		if (driver instanceof HtmlUnitDriver) {
 			oLog.fatal("HtmlUnitDriver Cannot take the ScreenShot");
@@ -95,7 +95,18 @@ public class GenericHelper implements IwebComponent {
 			throw e;
 		}
 		oLog.info(destPath.getAbsolutePath());
+		screenshot(driver);
 		return destPath.getAbsolutePath();
+	}
+
+	@Attachment(type = "image/png")
+	public static byte[] screenshot(WebDriver driver) {
+		try {
+			File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			return Files.toByteArray(screen);
+		} catch (IOException e) {
+			return null;
+		}
 	}
 
 	public String takeScreenShot() {

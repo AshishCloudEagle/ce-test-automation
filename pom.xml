@@ -168,6 +168,11 @@
 			<version>${allure.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-cucumber4-jvm</artifactId>
+			<version>${allure.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.5</version>
