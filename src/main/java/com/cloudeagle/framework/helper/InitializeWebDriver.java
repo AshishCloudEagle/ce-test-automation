@@ -21,7 +21,6 @@ import com.cloudeagle.framework.settings.ObjectRepo;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class InitializeWebDriver {
 

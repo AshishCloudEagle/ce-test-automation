@@ -141,7 +141,7 @@ public abstract class PageBase {
 		log.info(object);
 	}
 
-	@Step("{0}")
+	@Step("{1}")
 	public void failureLog(String object) {
 		log.error(object);
 	}

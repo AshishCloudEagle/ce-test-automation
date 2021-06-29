@@ -21,7 +21,7 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on admin page$")
 	public void verify_admin_page() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL());
 	}
 
 	@And("^user must be able to view admin sidebar menus$")
@@ -38,7 +38,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on admin single sign on page$")
 	public void verify_admin_single_sign_on_page() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL()))
+			aP.successLog("Admin - Single Sign On URL Verified");
+		else
+			aP.failureLog("Admin - Single Sign On URL mis match");
 	}
 
 	@And("^user must be able to view integration tools list$")
@@ -55,7 +58,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on admin integration finance systems page$")
 	public void verify_admin_finance_systems() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminFinanceSystemsURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminFinanceSystemsURL()))
+			aP.successLog("Admin - Integration - Finance Systems URL Verified");
+		else
+			aP.failureLog("Admin - Integration - Finance Systems URL mis match");
 	}
 
 	@And("^user must be able to view finance systems integration tools list$")
@@ -71,7 +77,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on admin alert page$")
 	public void verify_admin_alert() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminAlertURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminAlertURL()))
+			aP.successLog("Admin - Alert URL Verified");
+		else
+			aP.failureLog("Admin - Alert URL mis match");
 	}
 
 	@When("^user navigate to on admin roles and users page$")
@@ -83,7 +92,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on roles and users page$")
 	public void verify_admin_roles_and_users() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersUsersURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersUsersURL()))
+			aP.successLog("Admin - Roles & Users URL Verified");
+		else
+			aP.failureLog("Admin - Roles & Users URL mis match");
 	}
 
 	@And("^user must be able to view roles and users table$")
@@ -110,7 +122,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on roles and users roles page$")
 	public void verify_admin_roles_and_users_roles() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersRolesURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersRolesURL()))
+			aP.successLog("Admin - Roles & Users - Roles URL Verified");
+		else
+			aP.failureLog("Admin - Roles & Users - Roles URL mis match");
 	}
 
 	@And("^user must be able to view roles and users roles table$")
@@ -137,7 +152,10 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on roles and users departments page$")
 	public void verify_admin_roles_and_users_departments() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersDepartmentURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersDepartmentURL()))
+			aP.successLog("Admin - Roles & Users - Departments URL Verified");
+		else
+			aP.failureLog("Admin - Roles & Users - Departments URL mis match");
 	}
 
 	@And("^user must be able to view roles and users department table$")
@@ -163,6 +181,9 @@ public class AdminStepDef {
 
 	@Then("^user must be landing on admin settings page$")
 	public void verify_admin_setting_page() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminSettingURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminSettingURL()))
+			aP.successLog("Admin - Setting URL Verified");
+		else
+			aP.failureLog("Admin - Setting URL mis match");
 	}
 }

@@ -188,7 +188,7 @@ public class AdminPage extends PageBase {
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		successLog(searchText);
+		successLog("User enter "+searchText+" in search box");
 	}
 
 	public void verifyTable(String searchText) {

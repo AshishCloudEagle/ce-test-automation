@@ -13,8 +13,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.testng.Assert;
 
+import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.Navigation.NavigationHelper;
 import com.cloudeagle.framework.interfaces.IwebComponent;
@@ -33,6 +33,7 @@ public class GenericHelper implements IwebComponent {
 	private WebDriver driver;
 	private Logger oLog = LoggerHelper.getLogger(GenericHelper.class);
 	private NavigationHelper nHelper;
+	PageBase pBase;
 
 	public GenericHelper(WebDriver driver) {
 		this.driver = driver;
@@ -77,7 +78,7 @@ public class GenericHelper implements IwebComponent {
 		return flag;
 	}
 
-	@Attachment
+	@Attachment(type = "image/jpg")
 	public String takeScreenShot(String name) throws IOException {
 		if (driver instanceof HtmlUnitDriver) {
 			oLog.fatal("HtmlUnitDriver Cannot take the ScreenShot");
@@ -102,14 +103,16 @@ public class GenericHelper implements IwebComponent {
 		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 	}
 
-	public void verifyURL(String url) {
+	public boolean verifyURL(String url) {
 		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl())) {
 			oLog.error("URL mis match");
 			System.err.println("############");
 			System.err.println(url);
 			System.err.println(nHelper.getCurrentUrl());
 			System.err.println("############");
-			Assert.assertTrue(false, "URL mis match");
+//			Assert.assertTrue(false, "URL mis match");
+			return false;
 		}
+		return true;
 	}
 }
