@@ -136,12 +136,12 @@ public abstract class PageBase {
 		log.info(signInButton);
 	}
 
-	@Step
+	@Step("{0}")
 	public void successLog(String object) {
 		log.info(object);
 	}
 
-	@Step
+	@Step("{0}")
 	public void failureLog(String object) {
 		log.error(object);
 	}

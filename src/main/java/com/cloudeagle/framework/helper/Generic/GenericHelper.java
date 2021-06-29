@@ -21,6 +21,8 @@ import com.cloudeagle.framework.interfaces.IwebComponent;
 import com.cloudeagle.framework.utility.DateTimeHelper;
 import com.cloudeagle.framework.utility.ResourceHelper;
 
+import ru.yandex.qatools.allure.annotations.Attachment;
+
 /**
  * @author krana
  *
@@ -75,6 +77,7 @@ public class GenericHelper implements IwebComponent {
 		return flag;
 	}
 
+	@Attachment
 	public String takeScreenShot(String name) throws IOException {
 
 		if (driver instanceof HtmlUnitDriver) {

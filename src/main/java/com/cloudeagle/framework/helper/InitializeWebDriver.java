@@ -138,7 +138,6 @@ public class InitializeWebDriver {
 
 	}
 
-	@Attachment
 	public void tearDownDriver(Scenario scenario) throws Exception {
 		try {
 			if (ObjectRepo.driver != null) {
