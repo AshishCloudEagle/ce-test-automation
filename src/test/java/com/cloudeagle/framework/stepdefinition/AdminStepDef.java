@@ -1,5 +1,7 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import org.junit.Assert;
+
 import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
@@ -23,8 +25,10 @@ public class AdminStepDef {
 	public void verify_admin_page() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL()))
 			aP.successLog("Admin URL Verified");
-		else
+		else {
 			aP.failureLog("Admin URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view admin sidebar menus$")
@@ -43,8 +47,13 @@ public class AdminStepDef {
 	public void verify_admin_single_sign_on_page() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminURL()))
 			aP.successLog("Admin - Single Sign On URL Verified");
-		else
-			aP.failureLog("Admin - Single Sign On URL mis match");
+		else {
+			{
+				aP.failureLog("Admin - Single Sign On URL mis match");
+				Assert.assertTrue(false);
+			}
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view integration tools list$")
@@ -63,8 +72,10 @@ public class AdminStepDef {
 	public void verify_admin_finance_systems() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminFinanceSystemsURL()))
 			aP.successLog("Admin - Integration - Finance Systems URL Verified");
-		else
+		else {
 			aP.failureLog("Admin - Integration - Finance Systems URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view finance systems integration tools list$")
@@ -82,8 +93,10 @@ public class AdminStepDef {
 	public void verify_admin_alert() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminAlertURL()))
 			aP.successLog("Admin - Alert URL Verified");
-		else
+		else {
 			aP.failureLog("Admin - Alert URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@When("^user navigate to on admin roles and users page$")
@@ -97,8 +110,10 @@ public class AdminStepDef {
 	public void verify_admin_roles_and_users() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersUsersURL()))
 			aP.successLog("Admin - Roles & Users URL Verified");
-		else
+		else {
 			aP.failureLog("Admin - Roles & Users URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view roles and users table$")
@@ -127,8 +142,10 @@ public class AdminStepDef {
 	public void verify_admin_roles_and_users_roles() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersRolesURL()))
 			aP.successLog("Admin - Roles & Users - Roles URL Verified");
-		else
+		else {
 			aP.failureLog("Admin - Roles & Users - Roles URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view roles and users roles table$")
@@ -157,8 +174,10 @@ public class AdminStepDef {
 	public void verify_admin_roles_and_users_departments() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersDepartmentURL()))
 			aP.successLog("Admin - Roles & Users - Departments URL Verified");
-		else
+		else {
 			aP.failureLog("Admin - Roles & Users - Departments URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view roles and users department table$")
@@ -186,7 +205,9 @@ public class AdminStepDef {
 	public void verify_admin_setting_page() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminSettingURL()))
 			aP.successLog("Admin - Setting URL Verified");
-		else
+		else {
 			aP.failureLog("Admin - Setting URL mis match");
+			Assert.assertTrue(false);
+		}
 	}
 }
