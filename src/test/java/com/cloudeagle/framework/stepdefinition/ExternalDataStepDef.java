@@ -1,5 +1,7 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import org.junit.Assert;
+
 import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
@@ -11,7 +13,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ExternalDataStepDef {
-
 	ExternalDataPage extP = new ExternalDataPage(ObjectRepo.driver);
 	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
 	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);
@@ -20,7 +21,12 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_external_data_upload_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnExcelDataUpload();
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataUploadURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataUploadURL()))
+			extP.log("External - Excel Data Upload Documents URL verified", false);
+		else {
+			extP.log("External - Excel Data Upload Documents URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@Then("^user must be able to view external data upload table$")
@@ -42,7 +48,12 @@ public class ExternalDataStepDef {
 	public void user_navigate_toon_demand_sync_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnOnDemandSync();
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL()))
+			extP.log("External Data - On Demand Sync URL verified", false);
+		else {
+			extP.log("External Data - On Demand Sync URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@When("^user navigate to on demand sync single sign on page$")
@@ -66,12 +77,22 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on on-demand sync single sign on page$")
 	public void verify_on_demand_sync_single_sign_on() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL()))
+			extP.log("External Data - On Demand Sync - Single Sign On URL verified", false);
+		else {
+			extP.log("External Data - On Demand Sync - Single Sign On URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@Then("^user must be landing on on-demand sync finance systems page$")
 	public void verify_on_demand_sync_finance_system() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncFinanceSystemsURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncFinanceSystemsURL()))
+			extP.log("External Data - On Demand Sync - Finance Systems URL verified", false);
+		else {
+			extP.log("External Data - On Demand Sync - Finance Systems URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view sidebar options$")
@@ -98,7 +119,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from finance systems new vendors found page$")
 	public void verify_data_from_finance_systems_new_vendors_found() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsNewVendorFoundURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsNewVendorFoundURL()))
+			extP.log("External Data - Data From Finance Systems URL verified", false);
+		else {
+			extP.log("External Data - Data From Finance Systems URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view new vendors found table$")
@@ -119,7 +145,7 @@ public class ExternalDataStepDef {
 	@And("^user must be able to view existing vendor records$")
 	public void verify_existing_vendor_recordsr() throws Throwable {
 		wH.hardWait(2000);
-		extP.verifyExistingVendorRecords(ObjectRepo.reader.getVendorName());
+		extP.verifyExistingVendorRecords(ObjectRepo.reader.getExistingVendorName());
 	}
 
 	@And("^user close the slider$")
@@ -136,7 +162,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from finance systems confirmed vendors page$")
 	public void verify_data_from_finance_systems_confirmed_vendors() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsConfirmedVendorsURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsConfirmedVendorsURL()))
+			extP.log("External Data - Data From Finance Systems - Confirmed Vendors URL verified", false);
+		else {
+			extP.log("External Data - Data From Finance Systems - Confirmed Vendors URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view confirmed vendors table$")
@@ -153,7 +184,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from finance systems rejected vendors page$")
 	public void verify_data_from_finance_systems_rejected_vendors() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsRejectedVendorsURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFinanceSystemsRejectedVendorsURL()))
+			extP.log("External Data - Data From Finance Systems - Rejected Vendors URL verified", false);
+		else {
+			extP.log("External Data - Data From Finance Systems - Rejected Vendors URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view rejected vendors table$")
@@ -170,7 +206,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from sso systems new apps found page$")
 	public void verify_data_from_sso_systems_new_app_found() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsNewAppsFoundURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsNewAppsFoundURL()))
+			extP.log("External Data - Data From SSO - New App URL verified", false);
+		else {
+			extP.log("External Data - Data From SSO - New App URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view new apps found table$")
@@ -202,7 +243,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from sso systems confirmed apps page$")
 	public void verify_confirmed_apps() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsConfirmedAppsURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsConfirmedAppsURL()))
+			extP.log("External Data - Data From SSO - Confirmed App URL verified", false);
+		else {
+			extP.log("External Data - Data From SSO - Confirmed App URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view confirmed apps table$")
@@ -219,7 +265,12 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be landing on data from sso systems rejected apps page$")
 	public void verify_rejected_apps() throws Throwable {
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsRejectedAppsURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataDataFromSSOSystemsRejectedAppsURL()))
+			extP.log("External Data - Data From SSO - Rejected App URL verified", false);
+		else {
+			extP.log("External Data - Data From SSO - Rejected App URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@And("^user must be able to view rejected apps table$")

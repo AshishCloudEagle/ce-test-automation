@@ -1,8 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -10,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
 
@@ -18,10 +14,6 @@ public class LandingPage extends PageBase {
 
 	private WebDriver driver;
 	WaitHelper wHelper = new WaitHelper(ObjectRepo.driver, null);
-
-	private final static Logger log = LoggerHelper.getLogger(LandingPage.class);
-
-	// String random2 = RandomStringUtils.randomAlphabetic(3);
 
 	public LandingPage(WebDriver driver) {
 		super(driver);
@@ -113,221 +105,24 @@ public class LandingPage extends PageBase {
 		return this.driver;
 	}
 
-	// Click on Create On Now button
-	public void openAccountBtnClick() {
-		try {
-			openAccountBtn.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Create Now One Button on login Page");
-		}
-	}
-
-	// verify user landed on home page after login
-
 	public void verifyHomePage() throws InterruptedException {
-
 		wHelper.waitForElementToBeClickable(welcomeScreenElement);
-
 		Assert.assertTrue(welcomeScreenElement.isDisplayed(), "Error after login, User is not able to see home page.");
-		log.info("Welcome text is verified on Home Page");
+		log("Welcome text is verified on Home Page", false);
 	}
 
 	// Verify user on Signin page
 
 	public void verifylandingPageTitle() throws InterruptedException {
-
 		wHelper.waitForVisibility(imgOnLandingPage);
 		Assert.assertEquals(true, imgOnLandingPage.isDisplayed());
 		Assert.assertTrue(driver.getTitle().contains("cloudeagle.ai"));
-		log.info("Landing Page is verified");
-
+		log("Landing Page is verified", false);
 	}
 
 	public void verifylandingPageTitleMOVR() throws InterruptedException {
-
 		wHelper.waitForElementToBeClickable(welcomeScreenElementMOVR);
 		Assert.assertTrue(driver.getTitle().contains("Landing - WRKOUT"));
-		log.info("Landing Page  title is verified on page");
+		log("Landing Page  title is verified on page", false);
 	}
-
-	public boolean saveBTTNClick2(By by) {
-		boolean result = false;
-		int attempts = 0;
-		while (attempts < 2) {
-			try {
-				driver.findElement(by).click();
-				result = true;
-				break;
-			} catch (StaleElementReferenceException e) {
-			}
-			attempts++;
-		}
-		return result;
-	}
-
-	public boolean backEventBttn2(By by) {
-		boolean result = false;
-		int attempts = 0;
-		while (attempts < 2) {
-			try {
-				driver.findElement(by).click();
-				result = true;
-				break;
-			} catch (StaleElementReferenceException e) {
-			}
-			attempts++;
-		}
-		return result;
-	}
-
-	public void openArrowClick() {
-		try {
-			System.out.println("Inside arrow");
-			wHelper.waitForElementToBeClickable(welcomeScreenArrow);
-			welcomeScreenArrow.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Arrow image in Home Page");
-		}
-	}
-
-	public boolean openArrowClick2(By by) {
-		boolean result = false;
-		int attempts = 0;
-		while (attempts < 2) {
-			try {
-				driver.findElement(by).click();
-				result = true;
-				break;
-			} catch (StaleElementReferenceException e) {
-			}
-			attempts++;
-		}
-		return result;
-	}
-
-	/*
-	 * public void endDateClick1() throws InterruptedException {
-	 * 
-	 * System.out.println("endDate ");
-	 * 
-	 * endDate.click();
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public void endDateClick1() throws InterruptedException {
-	 * 
-	 * By endDate = By.xpath("//INPUT[@id='EndDate']");
-	 * wHelper.waitForElementToBeClickable(endDate);
-	 * 
-	 * createEventBttnClick2(endDate);
-	 * 
-	 * }
-	 */
-
-	public boolean endDateClick2(By by) throws InterruptedException {
-
-		boolean result = false;
-		int attempts = 0;
-		while (attempts < 2) {
-			try {
-				driver.findElement(by).click();
-				result = true;
-				break;
-			} catch (StaleElementReferenceException e) {
-			}
-			attempts++;
-		}
-		return result;
-
-	}
-
-	/*
-	 * public void selectTimeFromCalander(String bj) {
-	 * 
-	 * EventDesc.sendKeys(bj); log.info(EventDesc); }
-	 */
-
-	@FindBy(xpath = "//BUTTON[@id='btnCDBookConsult']")
-	@CacheLookup
-	private static WebElement bookConsultantBttn;
-
-	public void playCAL() throws InterruptedException {
-
-		wHelper.waitForElementToBeClickable(welcomeScreenElement);
-
-		// wHelper.waitForVisibilityLoader();
-		wHelper.waitForElementToBeClickable(bookConsultantBttn);
-		clickBookCon();
-
-		clickConsultDate();
-		clickDateandTime();
-
-		Thread.sleep(5000);
-		clickSET();
-
-	}
-
-	public void clickBookCon() {
-		try {
-			System.out.println("clickBookCon");
-			wHelper.waitForElementToBeClickable(bookConsultantBttn);
-			bookConsultantBttn.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Arrow image in Home Page");
-		}
-	}
-
-	@FindBy(xpath = "//DIV[@role='option'][text()='Today']/following::div[position()=1] ")
-	@CacheLookup
-	private WebElement dateAndTime;
-
-	@FindBy(xpath = "//DIV[@tabindex='0'][text()='Set']")
-	@CacheLookup
-	private WebElement set;
-
-	public void clickDateandTime() {
-		try {
-			System.out.println("dateAndTime");
-			wHelper.waitForElementToBeClickable(dateAndTime);
-			dateAndTime.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Arrow image in Home Page");
-		}
-	}
-
-	public void clickSET() {
-		try {
-			System.out.println("set");
-			wHelper.waitForElementToBeClickable(set);
-			set.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Arrow image in Home Page");
-		}
-	}
-
-	public void clickConsultDate() {
-		try {
-			System.out.println("clickConsultDate");
-			wHelper.waitForElementToBeClickable(clickConsultDate);
-			clickConsultDate.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Arrow image in Home Page");
-		}
-	}
-
-	/*
-	 * public void swip() {
-	 * 
-	 * 
-	 * 
-	 * WebElement element =
-	 * driver.findElement(By.xpath("//div[@id='board']/div[1]/div[1]/div[2]") ); for
-	 * (int i = 0; i < 5; i++) { jse.executeScript("arguments[0].scrollTop += 200;",
-	 * element); }
-	 */
-
-	// }
-
 }

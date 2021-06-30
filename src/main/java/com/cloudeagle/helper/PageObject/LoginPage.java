@@ -1,20 +1,15 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 
 public class LoginPage extends PageBase {
 
 	private WebDriver driver;
-
-	private final static Logger log = LoggerHelper.getLogger(LoginPage.class);
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -60,12 +55,12 @@ public class LoginPage extends PageBase {
 
 	public void enterUserName(String username) {
 		emailAddress.sendKeys(username);
-		log.info(username);
+		log("Enter " + username + " in uasername text box", false);
 	}
 
 	public void enterPass(String userpwd) {
 		password.sendKeys(userpwd);
-		log.info(password);
+		log("Enter " + userpwd + " in password text box", false);
 	}
 
 	/**
@@ -75,31 +70,6 @@ public class LoginPage extends PageBase {
 	 */
 	public void ClickSignIn() {
 		signInButton.click();
-		log.info(signInButton);
+		log("Click on sign in button", false);
 	}
-
-	// Verify user on Singin page
-	/*
-	 * public void verifySigninPageTitle() {
-	 * Assert.assertTrue(LoginTitle.isDisplayed()
-	 * ,"Login page title is not displayed");
-	 * log.info("Sing in page title is verified on page"); }
-	 */
-
-	// Click on Create On Now button
-	public void openAccountBtnClick() {
-		try {
-			openAccountBtn.click();
-		} catch (Exception e) {
-			log.info("Error while clicking Create Now One Button on login Page");
-		}
-	}
-
-	// verify user landed on home page after login
-
-	public void verifyHomePage() {
-		Assert.assertTrue(welcomeScreenElement.isDisplayed(), "Error after login, User is not able to see home page.");
-		log.info("Welcome text is verified on Home Page");
-	}
-
 }

@@ -1,5 +1,7 @@
 package com.cloudeagle.framework.stepdefinition;
 
+import org.junit.Assert;
+
 import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
@@ -20,7 +22,12 @@ public class VendorStepDef {
 	public void user_navigate_to_vendor_page() throws Throwable {
 		vP.clickOnVendorSideMenu();
 		wHelper.hardWait(3000);
-		gH.verifyURL(Constants.URL + ObjectRepo.reader.getVendorURL());
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getVendorURL()))
+			vP.log("Vendor URL verified", false);
+		else {
+			vP.log("Vendor URL mis match", true);
+			Assert.assertTrue(false);
+		}
 	}
 
 	@Then("^user must be able to view vendors header$")

@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,13 +10,11 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class VendorPage extends PageBase {
 
 	private WebDriver driver;
-	private final static Logger log = LoggerHelper.getLogger(VendorPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -54,36 +51,36 @@ public class VendorPage extends PageBase {
 
 	public void clickOnVendorSideMenu() {
 		bHelper.click(menuVendors);
-		log.info("User clicks on Vendors");
+		log("User clicks on Vendors", false);
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info("User enter " + searchText + " in search box");
+		log("User enter " + searchText + " in search box", false);
 	}
 
 	public void verifyVendorDataTable(String searchText) {
 		enterSearchCriteria(searchText);
 		boolean status = gHelper.IsElementPresentQuick(excelTable);
 		if (!status)
-			log.error("Vendor Data Table is not visible");
+			log("Vendor Data Table is not visible", true);
 		else
-			log.info("Vendor Data Table is visible");
+			log("Vendor Data Table is visible", false);
 		Assert.assertTrue(status);
 		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
 		if (!status)
-			log.error("Vendor Data searched row is not visible");
+			log("Vendor Data searched row is not visible", true);
 		else
-			log.info("Vendor Data searched row is visible");
+			log("Vendor Data searched row is visible", false);
 		Assert.assertTrue(status);
 	}
 
 	public void verifyHeader() {
 		boolean status = gHelper.IsElementPresentQuick(header);
 		if (!status)
-			log.error("Vendor Header is not visible");
+			log("Vendor Header is not visible", true);
 		else
-			log.info("Vendor Header is visible");
+			log("Vendor Header is visible", false);
 		Assert.assertTrue(status);
 	}
 }

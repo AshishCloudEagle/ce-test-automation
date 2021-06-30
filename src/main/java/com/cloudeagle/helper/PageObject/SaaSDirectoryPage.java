@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +10,12 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class SaaSDirectoryPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(SaaSDirectoryPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -55,26 +52,39 @@ public class SaaSDirectoryPage extends PageBase {
 
 	public void clickOnSaaSDirectorySideMenu() {
 		bHelper.click(menuSaaSDirectory);
-		log.info("User clicks on SaaS Directory");
+		log("User clicks on SaaS Directory", false);
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		log("Enter " + searchText + " in search box", false);
 	}
 
 	public void verifyResult(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(result, searchText))),
-				"SaaS Directory result  is not visible");
+		boolean status = gHelper.IsElementPresentQuick(By.xpath(String.format(result, searchText)));
+		if (status)
+			log("SaaS Directory result  is visible", false);
+		else
+			log("SaaS Directory result  is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "SaaS Directory header is not visible");
+		boolean status = gHelper.IsElementPresentQuick(header);
+		if (status)
+			log("SaaS Directory header is visible", false);
+		else
+			log("SaaS Directory header is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifyCRMFilter() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(crm), "CRM filter is not selected");
+		boolean status = gHelper.IsElementPresentQuick(crm);
+		if (status)
+			log("CRM filter is selected", false);
+		else
+			log("CRM filter is not selected", true);
+		Assert.assertTrue(status);
 	}
-
 }

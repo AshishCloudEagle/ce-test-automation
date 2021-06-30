@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
@@ -20,7 +18,6 @@ public class DashboardPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(DashboardPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -89,37 +86,37 @@ public class DashboardPage extends PageBase {
 
 	public String getUserName() {
 		String text = tHelper.getText(usename);
-		log.info(text);
+		log("Username is " + text, false);
 		return text;
 	}
 
 	public String getServerInstanceName() {
 		String text = tHelper.getText(serverInstance);
-		log.info(text);
+		log("Server instance name is " + text, false);
 		return text;
 	}
 
 	public String getNumberOfVendors() {
 		String text = tHelper.getText(noOfVendors);
-		log.info(text);
+		log("Number of vendors are " + text, false);
 		return text;
 	}
 
 	public String getNumberOfApplication() {
 		String text = tHelper.getText(noOfApplication);
-		log.info(text);
+		log("Number of applications are " + text, false);
 		return text;
 	}
 
 	public String getSpendYTD() {
 		String text = tHelper.getText(spendYTD);
-		log.info(text);
+		log("Spend YTD are " + text, false);
 		return text;
 	}
 
 	public String getSavings() {
 		String text = tHelper.getText(savings);
-		log.info(text);
+		log("Savings are" + text, false);
 		return text;
 	}
 
@@ -127,19 +124,19 @@ public class DashboardPage extends PageBase {
 		String usename = getUserName();
 		String serverInstance = getServerInstanceName();
 		if (!usename.equalsIgnoreCase(adminUserName)) {
-			log.error("User name is not displaying on dashboard page");
-			Assert.assertTrue("User name is not displaying on dashboard page", false);
+			log("User name is not displaying on dashboard page", true);
+			Assert.assertTrue(false);
 		}
 		if (!serverInstance.equalsIgnoreCase(serverName)) {
-			log.error("Server instance name is not displaying on dashboard page");
-			Assert.assertTrue("Server instance name is not displaying on dashboard page", false);
+			log("Server instance name is not displaying on dashboard page", true);
+			Assert.assertTrue(false);
 		}
 	}
 
 	public void clickOnLogo() {
 		wHelper.hardWait(5000);
 		bHelper.click(logoImg);
-		log.info("User clicks on logo");
+		log("User clicks on logo", false);
 	}
 
 	public void varifyPageHeadersOnDashboardPage() {
@@ -150,32 +147,71 @@ public class DashboardPage extends PageBase {
 		String saving = getSavings();
 		saving = saving.substring(1).replaceAll(",", "").trim();
 		if (Integer.parseInt(vendors) <= 0) {
-			log.error("Number of Vendors are <= 0");
+			log("Number of Vendors are <= 0", true);
 			Assert.assertTrue("Number of Vendors are <= 0", false);
 		}
 		if (Integer.parseInt(application) <= 0) {
-			log.error("Number of Applications are <= 0");
+			log("Number of Applications are <= 0", true);
 			Assert.assertTrue("Number of Applications are <= 0", false);
 		}
 		if (Integer.parseInt(ytd) <= 0) {
-			log.error("Number of Vendors are <= 0");
+			log("Number of Vendors are <= 0", true);
 			Assert.assertTrue("Number of Vendors are <= 0", false);
 		}
 		if (Integer.parseInt(saving) <= 0) {
-			log.error("Number of Vendors are <= 0");
+			log("Number of Vendors are <= 0", true);
 			Assert.assertTrue("Number of Vendors are <= 0", false);
 		}
 	}
 
 	public void varifySideBarMenusOnDashboardPage() {
-		Assert.assertTrue("Dasboard Menu is not displaying", gHelper.IsElementPresentQuick(menuDashboard));
-		Assert.assertTrue("Vendors Menu is not displaying", gHelper.IsElementPresentQuick(menuVendors));
-		Assert.assertTrue("Applications Menu is not displaying", gHelper.IsElementPresentQuick(menuApplications));
-		Assert.assertTrue("Documents Menu is not displaying", gHelper.IsElementPresentQuick(menuDocuments));
-		Assert.assertTrue("SaaS Directory Menu is not displaying", gHelper.IsElementPresentQuick(menuSaaSDirectory));
-		Assert.assertTrue("Vendor Research Menu is not displaying", gHelper.IsElementPresentQuick(menuVendorResearch));
-		Assert.assertTrue("External Data Menu is not displaying", gHelper.IsElementPresentQuick(menuExternalData));
-		Assert.assertTrue("Admin Menu is not displaying", gHelper.IsElementPresentQuick(menuAdmin));
+		boolean status = gHelper.IsElementPresentQuick(menuDashboard);
+		if (status)
+			log("Dasboard Menu is displaying", false);
+		else
+			log("Dasboard Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuVendors);
+		if (status)
+			log("Vendors Menu is displaying", false);
+		else
+			log("Vendors Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuApplications);
+		if (status)
+			log("Applications Menu is displaying", false);
+		else
+			log("Applications Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuDocuments);
+		if (status)
+			log("Documents Menu is displaying", false);
+		else
+			log("Documents Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuSaaSDirectory);
+		if (status)
+			log("SaaS Directory Menu is displaying", false);
+		else
+			log("SaaS Directory Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuVendorResearch);
+		if (status)
+			log("Vendor Research Menu is displaying", false);
+		else
+			log("Vendor Research Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuExternalData);
+		if (status)
+			log("External Data Menu is displaying", false);
+		else
+			log("External Data Menu is not displaying", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuAdmin);
+		if (status)
+			log("Admin Menu is displaying", false);
+		else
+			log("Admin Menu is not displaying", true);
+		Assert.assertTrue(status);
 	}
-
 }

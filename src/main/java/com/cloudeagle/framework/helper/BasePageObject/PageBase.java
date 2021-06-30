@@ -123,24 +123,24 @@ public abstract class PageBase {
 
 	public void enterUserName(String username) {
 		emailAddress.sendKeys(username);
-		log.info(username);
+		log("Enter " + username + " in uasername text box", false);
 	}
 
 	public void enterPass(String userpwd) {
 		password.sendKeys(userpwd);
-		log.info(password);
+		log("Enter " + userpwd + " in password text box", false);
 	}
 
 	public void ClickSignIn() {
 		signInButton.click();
-		log.info(signInButton);
+		log("Click on sign in button", false);
 	}
 
 	@Step("{0}")
 	public void log(String object, boolean status) {
 		if (status)
-			log.info(object);
-		else
 			log.error(object);
+		else
+			log.info(object);
 	}
 }

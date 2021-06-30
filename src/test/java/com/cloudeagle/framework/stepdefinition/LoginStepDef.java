@@ -9,7 +9,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class LoginStepDef {
-
 	LoginPage lp = new LoginPage(ObjectRepo.driver);
 	LandingPage landP = new LandingPage(ObjectRepo.driver);
 
@@ -23,7 +22,6 @@ public class LoginStepDef {
 		lp.enterUserName(ObjectRepo.reader.getUserName());
 		lp.enterPass(ObjectRepo.reader.getPassword());
 		lp.ClickSignIn();
-
 	}
 
 	@Then("^user must reached to landing page validate by title$")

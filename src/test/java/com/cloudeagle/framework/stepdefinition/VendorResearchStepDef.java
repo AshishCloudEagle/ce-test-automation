@@ -10,7 +10,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class VendorResearchStepDef {
-
 	VendorResearchPage vP = new VendorResearchPage(ObjectRepo.driver);
 	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
 	WaitHelper wH = new WaitHelper(ObjectRepo.driver, ObjectRepo.reader);

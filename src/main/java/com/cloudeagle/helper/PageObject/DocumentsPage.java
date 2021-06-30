@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +10,12 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class DocumentsPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(DocumentsPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -63,40 +60,62 @@ public class DocumentsPage extends PageBase {
 
 	public void clickOnDocumentsSideMenu() {
 		bHelper.click(menuDocuments);
-		log.info("User clicks on Documents");
+		log("User clicks on Documents", false);
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		log("Enter " + searchText + " in search box", false);
 	}
 
 	public void verifyPublishedDocumentsDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Documents Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			log("Documents Data Table is visible", false);
+		else
+			log("Documents Data Table is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (status)
+			log("Documents Data searched row is visible", false);
+		else
+			log("Documents Data searched row is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Vendor Header is not visible");
+		boolean status = gHelper.IsElementPresentQuick(header);
+		if (status)
+			log("Vendor Header is visible", false);
+		else
+			log("Vendor Header is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnPublishedDocuments() {
 		bHelper.click(publishedDocuments);
-		log.info("User clicks on Published Documents");
+		log("User clicks on Published Documents", false);
 	}
 
 	public void verifyUploadeddDocumentsDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Documents Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Documents Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			log("Documents Data Table is visible", false);
+		else
+			log("Documents Data Table is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (status)
+			log("Documents Data searched row is visible", false);
+		else
+			log("Documents Data searched row is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnUploadedDocuments() {
 		bHelper.click(uploadedDocuments);
-		log.info("User clicks on Published Documents");
+		log("User clicks on Published Documents", false);
 	}
-
 }

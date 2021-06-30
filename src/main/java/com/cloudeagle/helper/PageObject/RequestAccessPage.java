@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +10,11 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class RequestAccessPage extends PageBase {
 
 	private WebDriver driver;
-
-	private final static Logger log = LoggerHelper.getLogger(RequestAccessPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -55,19 +51,28 @@ public class RequestAccessPage extends PageBase {
 
 	public void clickOnRequestAccessSideMenu() {
 		bHelper.click(menuRequestAccess);
-		log.info("User clicks on Request Access");
+		log("User clicks on Request Access", false);
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		log("Enter " + searchText + " in search box", false);
 	}
 
 	public void verifyRequestAccessDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Request Access Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Request Access Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			log("Request Access Data Table is visible", false);
+		else
+			log("Request Access Data Table is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (status)
+			log("Request Access Data searched row is visible", false);
+		else
+			log("Request Access Data searched row is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 }

@@ -10,7 +10,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class SaaSDirectoryStepDef {
-
 	SaaSDirectoryPage saasP = new SaaSDirectoryPage(ObjectRepo.driver);
 	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
 

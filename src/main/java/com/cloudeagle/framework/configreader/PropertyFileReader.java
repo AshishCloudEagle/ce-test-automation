@@ -354,4 +354,9 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("AdminSettingURL");
 	}
 
+	@Override
+	public String getExistingVendorName() {
+		return prop.getProperty("ExistingVendorName");
+	}
+
 }

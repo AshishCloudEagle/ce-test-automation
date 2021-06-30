@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +10,12 @@ import org.testng.Assert;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 
 public class ExternalDataPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(ExternalDataPage.class);
 	GenericHelper gHelper;
 	ButtonHelper bHelper;
 	TextBoxHelper tHelper;
@@ -147,143 +144,203 @@ public class ExternalDataPage extends PageBase {
 
 	public void clickOnExternalDataSideMenu() {
 		bHelper.click(menuExternalData);
-		log.info("User clicks on External Data");
+		log("User clicks on External Data", false);
 	}
 
 	public void clickOnExcelDataUpload() {
 		bHelper.click(excelDataUpload);
-		log.info("User clicks on Excel Data Upload");
+		log("User clicks on Excel Data Upload", false);
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		log("Enter " + searchText + " in search box", false);
 	}
 
 	public void enterDrawerSearchCriteria(String searchText) {
 		tHelper.sendKeys(drawerSearch, searchText);
-		log.info(searchText);
+		log("Enter " + searchText + " in search box", false);
 	}
 
 	public void verifyExcelDataTable(String searchText) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Excel Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText))),
-				"Excel Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			log("Excel Data Table is visible", false);
+		else
+			log("Excel Data Table is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (status)
+			log("Excel Data searched row is visible", false);
+		else
+			log("Excel Data searched row is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnUploadFileBtn() {
 		bHelper.click(btnUploadFile);
-		log.info("User clicks on Upload File Button");
+		log("User clicks on Upload File Button", false);
 	}
 
 	public void verifyUploadModel() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(uploadModel), "Upload model is not visible");
+		boolean status = gHelper.IsElementPresentQuick(uploadModel);
+		if (status)
+			log("Upload model is visible", false);
+		else
+			log("Upload model is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnOnDemandSync() {
 		bHelper.click(onDemandSync);
-		log.info("User clicks on On-Demand Sync");
+		log("User clicks on On-Demand Sync", false);
 	}
 
 	public void verifySingleSignOn() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(singleSignOn), "Single Sign On is not visible");
+		boolean status = gHelper.IsElementPresentQuick(singleSignOn);
+		if (status)
+			log("Single Sign On is visible", false);
+		else
+			log("Single Sign On is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifySidebarOptions() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuOnDemandSync), "On-Demand Sync is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuDataFromFinanceSystems),
-				"Data From Finance Systems is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuDataFromSSOSystems),
-				"Data From SSO Systems is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(menuExcelDataUpload), "Excel Data Upload is not visible");
+		boolean status = gHelper.IsElementPresentQuick(menuOnDemandSync);
+		if (status)
+			log("On-Demand Sync is visible", false);
+		else
+			log("On-Demand Sync is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuDataFromFinanceSystems);
+		if (status)
+			log("Data From Finance Systems is visible", false);
+		else
+			log("Data From Finance Systems is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuDataFromSSOSystems);
+		if (status)
+			log("Data From SSO Systems is visible", false);
+		else
+			log("Data From SSO Systems is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(menuExcelDataUpload);
+		if (status)
+			log("Excel Data Upload is visible", false);
+		else
+			log("Excel Data Upload is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifyOnDemandSync() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(activePage), "On Demand Sync is not visible");
+		boolean status = gHelper.IsElementPresentQuick(activePage);
+		if (status)
+			log("On Demand Sync is visible", false);
+		else
+			log("On Demand Sync is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnSingleSignOn() {
 		bHelper.click(singleSignOnBtn);
-		log.info("User clicks on Single Sign On");
+		log("User clicks on Single Sign On", false);
 	}
 
 	public void clickOnFinanceSystems() {
 		bHelper.click(financeSystemBtn);
-		log.info("User clicks on Finance System");
+		log("User clicks on Finance System", false);
 	}
 
 	public void verifyFinanceSystem() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(financeSystems), "Finance System is not visible");
+		boolean status = gHelper.IsElementPresentQuick(financeSystems);
+		if (status)
+			log("Finance System is visible", false);
+		else
+			log("Finance System is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnDataFromFinanceSystems() {
 		bHelper.click(dataFromFinanceSystems);
-		log.info("User clicks on Data From Finance Systems");
+		log("User clicks on Data From Finance Systems", false);
 	}
 
 	public void clickOnNewVendorsFound() {
 		bHelper.click(newVendorsFoundBtn);
-		log.info("User clicks on New Vendors Found");
+		log("User clicks on New Vendors Found", false);
 	}
 
 	public void clickOnExistingVendor() {
 		bHelper.click(existingVendorsBtn);
-		log.info("User clicks on Existing Vendors");
+		log("User clicks on Existing Vendors", false);
 	}
 
 	public void verifySlider() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(slider), "Slider is not visible");
+		boolean status = gHelper.IsElementPresentQuick(slider);
+		if (status)
+			log("Slider is visible", false);
+		else
+			log("Slider is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifyExistingVendorRecords(String searchText) {
 //		enterDrawerSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(drawerExcelData, searchText))),
-				"Excel Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(By.xpath(String.format(drawerExcelData, searchText)));
+		if (status)
+			log("Excel Data searched row is visible", false);
+		else
+			log("Excel Data searched row is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void closeSlider() {
 		bHelper.click(drawerClose);
-		log.info("User clicks on Close");
+		log("User clicks on Close", false);
 	}
 
 	public void clickOnConfirmedVendors() {
 		bHelper.click(confirmedVendor);
-		log.info("User clicks on Confirmed Vendor");
+		log("User clicks on Confirmed Vendor", false);
 	}
 
 	public void clickOnRejectedVendors() {
 		bHelper.click(rejectedVendors);
-		log.info("User clicks on Rejected Vendor");
+		log("User clicks on Rejected Vendor", false);
 	}
 
 	public void clickOnDataFromSSOSystems() {
 		bHelper.click(dataFromSSOSystem);
-		log.info("User clicks on Data From SSO System");
+		log("User clicks on Data From SSO System", false);
 	}
 
 	public void clickOnNewAppsFound() {
 		bHelper.click(newAppFound);
-		log.info("User clicks on New App Found");
+		log("User clicks on New App Found", false);
 	}
 
 	public void clickOnExistingApplication() {
 		bHelper.click(existingApplicationBtn);
-		log.info("User clicks on Existing Application");
+		log("User clicks on Existing Application", false);
 	}
 
 	public void verifyApplicationSlider() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(applicationSlider), "Slider is not visible");
+		boolean status = gHelper.IsElementPresentQuick(applicationSlider);
+		if (status)
+			log("Slider is visible", false);
+		else
+			log("Slider is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void clickOnConfirmedApps() {
 		bHelper.click(confirmApp);
-		log.info("User clicks on Confirmed App");
+		log("User clicks on Confirmed App", false);
 	}
 
 	public void clickOnRejectedApps() {
 		bHelper.click(rejectedApp);
-		log.info("User clicks on Rejected App");
+		log("User clicks on Rejected App", false);
 	}
-
 }

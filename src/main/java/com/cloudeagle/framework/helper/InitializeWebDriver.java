@@ -33,32 +33,23 @@ public class InitializeWebDriver {
 	public WebDriver standAloneStepUp(BrowserType bType) throws Exception {
 		try {
 			oLog.info(bType);
-			System.err.println("###################");
-			System.out.println("Environment : " + System.getProperty("environment"));
-			System.err.println("###################");
 			switch (bType) {
-
 			case Chrome:
 				ChromeBrowser chrome = ChromeBrowser.class.newInstance();
 				return chrome.getChromeDriver(chrome.getChromeCapabilities());
-
 			case Firefox:
 				FirefoxBrowser firefox = FirefoxBrowser.class.newInstance();
 				return firefox.getFirefoxDriver(firefox.getFirefoxCapabilities());
-
 			case HtmlUnitDriver:
 				HtmlUnitBrowser htmlUnit = HtmlUnitBrowser.class.newInstance();
 				return htmlUnit.getHtmlUnitDriver(htmlUnit.getHtmlUnitDriverCapabilities());
-
 			case Iexplorer:
 				IExploreBrowser iExplore = IExploreBrowser.class.newInstance();
 				return iExplore.getIExplorerDriver(iExplore.getIExplorerCapabilities());
-
 			case PhantomJs:
 				PhantomJsBrowser jsBrowser = PhantomJsBrowser.class.newInstance();
 				return jsBrowser.getPhantomJsDriver(jsBrowser.getPhantomJsService(),
 						jsBrowser.getPhantomJsCapability());
-
 			default:
 				throw new NoSuitableDriverFoundException(" Driver Not Found : " + ObjectRepo.reader.getBrowser());
 			}

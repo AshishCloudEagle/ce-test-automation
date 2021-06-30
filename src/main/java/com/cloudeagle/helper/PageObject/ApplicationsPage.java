@@ -1,6 +1,5 @@
 package com.cloudeagle.helper.PageObject;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,6 @@ import com.cloudeagle.constants.Constants;
 import com.cloudeagle.framework.helper.BasePageObject.PageBase;
 import com.cloudeagle.framework.helper.Button.ButtonHelper;
 import com.cloudeagle.framework.helper.Generic.GenericHelper;
-import com.cloudeagle.framework.helper.Logger.LoggerHelper;
 import com.cloudeagle.framework.helper.TextBox.TextBoxHelper;
 import com.cloudeagle.framework.helper.Wait.WaitHelper;
 import com.cloudeagle.framework.settings.ObjectRepo;
@@ -21,7 +19,6 @@ public class ApplicationsPage extends PageBase {
 
 	private WebDriver driver;
 
-	private final static Logger log = LoggerHelper.getLogger(ApplicationsPage.class);
 	GenericHelper gHelper;
 	WaitHelper wHelper;
 	ButtonHelper bHelper;
@@ -61,24 +58,37 @@ public class ApplicationsPage extends PageBase {
 	public void clickOnApplicationsSideMenu() {
 		wHelper.waitForElementToBeClickable(menuApplications);
 		bHelper.click(menuApplications);
-		log.info("User clicks on Applications");
+		log("User clicks on Applications", false);
 	}
 
 	public void enterSearchCriteria(String searchText) {
 		wHelper.waitForElementVisible(search, Constants.WAIT_EXPLICIT_SEC, Constants.WAIT_POLLING_MS);
 		tHelper.sendKeys(search, searchText);
-		log.info(searchText);
+		log("Enter " + searchText + "in search box", false);
 	}
 
 	public void verifyApplicationsDataTable(String searchText, String vendorName) {
 		enterSearchCriteria(searchText);
-		Assert.assertTrue(gHelper.IsElementPresentQuick(excelTable), "Applications Data Table is not visible");
-		Assert.assertTrue(gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText, vendorName))),
-				"Applications Data searched row is not visible");
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			log("Applications Data Table is visible", false);
+		else
+			log("Applications Data Table is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText, vendorName)));
+		if (status)
+			log("Applications Data searched row is visible", false);
+		else
+			log("Applications Data searched row is not visible", true);
+		Assert.assertTrue(status);
 	}
 
 	public void verifyHeader() {
-		Assert.assertTrue(gHelper.IsElementPresentQuick(header), "Applications Header is not visible");
+		boolean status = gHelper.IsElementPresentQuick(header);
+		if (status)
+			log("Applications Header is visible", false);
+		else
+			log("Applications Header is not visible", true);
+		Assert.assertTrue(status);
 	}
-
 }

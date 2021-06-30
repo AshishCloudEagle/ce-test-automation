@@ -9,7 +9,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class RequestAccessStepDef {
-
 	RequestAccessPage reqP = new RequestAccessPage(ObjectRepo.driver);
 	GenericHelper gH = new GenericHelper(ObjectRepo.driver);
 
