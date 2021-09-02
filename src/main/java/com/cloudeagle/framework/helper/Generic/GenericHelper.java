@@ -120,7 +120,8 @@ public class GenericHelper implements IwebComponent {
 		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 	}
 
-	public boolean verifyURL(String url) {
+	public boolean verifyURL(String url) throws InterruptedException {
+		Thread.sleep(5000);
 		System.out.println(nHelper.getCurrentUrl());
 		if (!url.equalsIgnoreCase(nHelper.getCurrentUrl())) {
 			oLog.error("URL mis match");

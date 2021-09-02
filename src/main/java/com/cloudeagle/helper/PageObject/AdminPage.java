@@ -111,7 +111,7 @@ public class AdminPage extends PageBase {
 		return this.driver;
 	}
 
-	public void clickOnAdminSideMenu() {
+	public void clickOnAdminSideMenu(){
 		bHelper.click(menuAdmin);
 		log("User clicks on Admin", false);
 	}
