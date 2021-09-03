@@ -43,11 +43,11 @@ public class ExternalDataPage extends PageBase {
 	@FindBy(xpath = "//li[div[text()='Vendor Metadata']]")
 	@CacheLookup
 	private WebElement vendorMetadata;
-	
+
 	@FindBy(xpath = "//li[div[text()='Application Metadata']]")
 	@CacheLookup
 	private WebElement applicationMetadata;
-	
+
 	@FindBy(xpath = "//li[text()='On-Demand Sync']")
 	@CacheLookup
 	private WebElement onDemandSync;
@@ -138,10 +138,17 @@ public class ExternalDataPage extends PageBase {
 
 	String excelData = "(//table)[1]//tbody/tr[1]";
 
-	String existingVendorsRecord = "(//table)[4]//tbody//tr[1]";
+	String existingVendorsRecord = "(//table)[4]//tbody//td[1]";
 
-	String existingApplicationRecord = "(//table)[5]//tbody/tr[1]";
+	String existingVendorsRecordRejectedAppPage = "(//table)[3]//tbody//tr[1]";
 	
+	String existingVendorName = "((//table)[4]//tbody//tr//td//div//span)[1]";
+
+	String existingApplicationRecord1 = "(//table)[5]//tbody/tr[1]";
+	String existingApplicationRecord2 = "(//table)[4]//tbody/tr[1]";
+	
+	String existingAppRecordRejectedAppPage = "(//div[@class='ant-table ant-table-default ant-table-scroll-position-left ant-table-layout-fixed'])//table";
+
 	By activePage = By.xpath("//*[text()='On-Demand Sync' and contains(@class,'Active')]");
 
 	By slider = By.xpath("//*[(text()='Existing Vendors' or text()='Existing vendors') and contains(@class,'drawer')]");
@@ -163,12 +170,12 @@ public class ExternalDataPage extends PageBase {
 		bHelper.click(excelDataUpload);
 		log("User clicks on Excel Data Upload", false);
 	}
-	
+
 	public void clickOnVendorMetadataTab() {
 		bHelper.click(vendorMetadata);
 		log("User clicks on vendor Metadata tab", false);
 	}
-	
+
 	public void clickOnApplicationMetadataTab() {
 		bHelper.click(applicationMetadata);
 		log("User clicks on application Metadata tab", false);
@@ -308,9 +315,15 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void verifyExistingVendorRecords(String searchText) throws InterruptedException {
+		Thread.sleep(10000);
 //		enterDrawerSearchCriteria(searchText);
-		Thread.sleep(30000);
-		boolean status = gHelper.IsElementPresentQuick1(existingVendorsRecord);
+		boolean status;
+		if(driver.getCurrentUrl().contains("superAdmin/ssoReconcilation/archived")) 
+		   status = gHelper.IsElementPresentQuick1(existingVendorsRecordRejectedAppPage);
+		
+		else 
+  		   status = gHelper.IsElementPresentQuick1(existingVendorsRecord);
+		
 		if (status)
 			log("Existing vendor searched row is visible", false);
 		else
@@ -319,7 +332,7 @@ public class ExternalDataPage extends PageBase {
 	}
 
 	public void closeSlider() {
-		bHelper.click(drawerClose);	
+		bHelper.click(drawerClose);
 		log("User clicks on Close", false);
 	}
 
@@ -357,16 +370,36 @@ public class ExternalDataPage extends PageBase {
 		Assert.assertTrue(status);
 	}
 
-	public void verifyExistingApplicationRecords(String searchText) {
+	public void verifyExistingApplicationRecords(String searchText) throws InterruptedException {
 //		enterDrawerSearchCriteria(searchText);
-		boolean status = gHelper.IsElementPresentQuick1(existingApplicationRecord);
+		boolean status;
+		System.out.println(driver.getCurrentUrl());
+		if(driver.getCurrentUrl().contains("superAdmin/ssoReconcilation/pending"))
+	     	status = gHelper.IsElementPresentQuick1(existingApplicationRecord1);
+		
+		else
+			status = gHelper.IsElementPresentQuick1(existingApplicationRecord2);	
+		
 		if (status)
 			log("Existing application searched row is visible", false);
 		else
 			log("Existing application searched row is not visible", true);
 		Assert.assertTrue(status);
 	}
+
 	
+	public void verifyExistingApplicationRecordsRejectedAppTab(String searchText) throws InterruptedException {
+//		enterDrawerSearchCriteria(searchText); 
+		System.out.println(driver.getCurrentUrl());
+		boolean status = gHelper.IsElementPresentQuick1(existingAppRecordRejectedAppPage);	
+		
+		if (status)
+			log("Existing application searched row is visible", false);
+		else
+			log("Existing application searched row is not visible", true);
+		Assert.assertTrue(status);
+	}
+
 	public void clickOnConfirmedApps() {
 		bHelper.click(confirmApp);
 		log("User clicks on Confirmed App", false);

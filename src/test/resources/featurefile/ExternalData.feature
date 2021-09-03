@@ -78,9 +78,9 @@ Scenario: Verify external data - data from sso systems - new apps found
 	Then user must be able to view slider
 	And user must be able to view existing vendor records
 	And user close the slider
-	When user click on existing application
-	Then user must be able to view slider of application
-	And user must be able to view existing application records
+	When user click on existing application for new app found page
+	Then user must be able to view slider of application for new app found page
+	And user must be able to view existing application records for new app found page
 	
 #CE-670	
 Scenario: Verify external data - data from sso systems - confirmed apps
@@ -99,6 +99,6 @@ Scenario: Verify external data - data from sso systems - rejected apps
 	Then user must be able to view slider
 	And user must be able to view existing vendor records
 	And user close the slider
-	When user click on existing application
-	Then user must be able to view slider of application
-	And user must be able to view existing application records
+	When user click on existing application for rejected app page
+	Then user must be able to view slider of application for rejected app page 
+	And user must be able to view existing application records for rejected apps

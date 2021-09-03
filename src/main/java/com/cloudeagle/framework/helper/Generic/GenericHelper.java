@@ -3,6 +3,7 @@ package com.cloudeagle.framework.helper.Generic;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -81,9 +82,15 @@ public class GenericHelper implements IwebComponent {
 		
 	 WebElement element= driver.findElement(By.xpath(text));
 	 boolean flag= element.isDisplayed();
+	 if(flag==false)
+	 {
+		 List<?> elements= driver.findElements(By.xpath(text));
+		 System.out.println(elements);
+	 }
 	 oLog.info(flag);
 		return flag;
 	}
+	
 	
 	public String takeScreenShot(String name) throws IOException {
 		if (driver instanceof HtmlUnitDriver) {

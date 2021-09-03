@@ -186,7 +186,7 @@ public class PropertyFileReader implements IconfigReader {
 
 	@Override
 	public String getExternalDataUploadTransactionsURL() {
-		return prop.getProperty("ExternalDataUploadURL");
+		return prop.getProperty("ExternalDataUploadTransactionsURL");
 	}
 	
 	@Override
