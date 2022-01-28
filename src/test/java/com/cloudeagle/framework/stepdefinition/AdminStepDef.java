@@ -82,10 +82,10 @@ public class AdminStepDef {
 		aP.verifyFinanceSystemsIntegrationToolsList();
 	}
 
-	@When("^user navigate to on admin alert page$")
+	@When("^user navigate to on admin Dashboard Settings page$")
 	public void user_navigate_to_admin_alert_page() throws Throwable {
 		aP.clickOnAdminSideMenu();
-		aP.clickOnAlertSettings();
+		aP.clickOnDashboardSettings();
 	}
 
 	@Then("^user must be landing on admin alert page$")
@@ -98,46 +98,63 @@ public class AdminStepDef {
 		}
 	}
 
+	@When("^user navigate to on admin Action Needed Settings page$")
+	public void user_navigate_to_on_admin_Action_Needed_Settings_page() throws Throwable {
+		aP.clickOnAdminSideMenu();
+		aP.clickOnDashboardSettings();
+		aP.clickOnDashActionNeededSettings();
+	}
+
+	@Then("^user must be landing on admin Action Needed Settings page$")
+	public void user_must_be_landing_on_admin_Action_Needed_Settings_page() throws Throwable {
+		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminAlertURL()))
+			aP.log("Admin - Action Needed Setting URL verified", false);
+		else {
+			aP.log("Admin - Action Needed Setting URL mis match", true);
+			Assert.assertTrue(false);
+		}	}
+
+	//User table
 	@When("^user navigate to on admin roles and users page$")
 	public void user_navigate_to_admin_roles_and_users_page() throws Throwable {
 		aP.clickOnAdminSideMenu();
 		aP.clickOnRolesAndUsers();
-		aP.clickOnUser();
+//		aP.clickOnUser();
 	}
 
-	@Then("^user must be landing on roles and users page$")
-	public void verify_admin_roles_and_users() throws Throwable {
+	@Then("^user must be landing on users page$")
+	public void verify_admin_users() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersUsersURL()))
-			aP.log("Admin - Roles & Users URL verified", false);
+			aP.log("Admin - Roles & Users - users URL verified", false);
 		else {
-			aP.log("Admin - Roles & Users URL mis match", true);
+			aP.log("Admin - Roles & Users - users URL mis match", true);
 			Assert.assertTrue(false);
 		}
 	}
 
-	@And("^user must be able to view roles and users table$")
-	public void verify_admin_roles_and_users_table() throws Throwable {
-		aP.verifyTable(ObjectRepo.reader.getUserName());
+	@And("^user must be able to view users table$")
+	public void verify_admin_users_table() throws Throwable {
+		aP.verifyTable(ObjectRepo.reader.getUserEmail(), "User");
 	}
 
-	@When("^user click on add new user$")
+	@When("^user click on create user$")
 	public void user_click_on_add_new_user() throws Throwable {
 		aP.clickOnNewUser();
 	}
 
-	@Then("^user must be able to view add new user model$")
+	@Then("^user must be able to view create user modal$")
 	public void verify_new_user_popup() throws Throwable {
 		aP.verifyNewUserPopup();
 	}
 
-	@When("^user navigate to on admin roles and users roles page$")
-	public void user_navigate_to_admin_roles_and_users_roles_page() throws Throwable {
+	@When("^user navigate to admin roles page$")
+	public void user_navigate_to_admin_roles_page() throws Throwable {
 		aP.clickOnAdminSideMenu();
 		aP.clickOnRolesAndUsers();
 		aP.clickOnRoles();
 	}
 
-	@Then("^user must be landing on roles and users roles page$")
+	@Then("^user must be landing on roles page$")
 	public void verify_admin_roles_and_users_roles() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersRolesURL()))
 			aP.log("Admin - Roles & Users - Roles URL verified", false);
@@ -147,9 +164,9 @@ public class AdminStepDef {
 		}
 	}
 
-	@And("^user must be able to view roles and users roles table$")
-	public void verify_admin_roles_and_users_roles_table() throws Throwable {
-		aP.verifyTable(ObjectRepo.reader.getRole());
+	@And("^user must be able to view roles table$")
+	public void verify_admin_roles_table() throws Throwable {
+		aP.verifyTable(ObjectRepo.reader.getRole(), "Role");
 	}
 
 	@When("^user click on create role$")
@@ -163,14 +180,14 @@ public class AdminStepDef {
 	}
 
 	@When("^user navigate to on admin roles and users departments page$")
-	public void user_navigate_to_admin_roles_and_users_departments_page() throws Throwable {
+	public void user_navigate_to_admin_department_page() throws Throwable {
 		aP.clickOnAdminSideMenu();
 		aP.clickOnRolesAndUsers();
 		aP.clickOnDepartments();
 	}
 
 	@Then("^user must be landing on roles and users departments page$")
-	public void verify_admin_roles_and_users_departments() throws Throwable {
+	public void verify_admin_departments() throws Throwable {
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getAdminRolesAndUsersDepartmentURL()))
 			aP.log("Admin - Roles & Users - Departments URL verified", false);
 		else {
@@ -181,7 +198,7 @@ public class AdminStepDef {
 
 	@And("^user must be able to view roles and users department table$")
 	public void verify_admin_roles_and_users_departments_table() throws Throwable {
-		aP.verifyTable(ObjectRepo.reader.getDepartment());
+		aP.verifyTable(ObjectRepo.reader.getDepartment(), "Dept");
 	}
 
 	@When("^user click on create department$")

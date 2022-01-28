@@ -369,4 +369,21 @@ public class PropertyFileReader implements IconfigReader {
 		return prop.getProperty("ExistingVendorName");
 	}
 
+	@Override
+	public String getUserEmail() {
+		return prop.getProperty("UserEmail");
+	}
+
+	@Override
+	public String getVendorMetadataFileName() {
+		// TODO Auto-generated method stub
+		return prop.getProperty("VendorMetadataFile");
+	}
+
+	@Override
+	public String getApplicationMetadataFileName() {
+		// TODO Auto-generated method stub
+		return prop.getProperty("ApplicationMetadataFile");
+	}
+
 }

@@ -45,9 +45,11 @@ public class ApplicationsPage extends PageBase {
 
 	By header = By.xpath("//div[contains(@class,'menuHeading')]//*[text()='APPLICATIONS']");
 
-	By excelTable = By.xpath("(//table)[1]");
+	By appTable = By.xpath("(//table//tbody)[1]");
 
-	String excelData = "(//table)[1]//td//*[text()='%s']//parent::td//following-sibling::td//*[text()='%s']";
+//	String excelData = "(//table)[1]//td//*[text()='%s']//parent::td//following-sibling::td//*[text()='%s']";
+	String AppTableAppName = "(//table//td//span[text()='%s'])[1]";
+	String AppTableVendorName = "(//table//td//span[text()='%s'])[1]";
 
 	/** Public Methods **/
 
@@ -68,18 +70,26 @@ public class ApplicationsPage extends PageBase {
 	}
 
 	public void verifyApplicationsDataTable(String searchText, String vendorName) {
-		enterSearchCriteria(searchText);
-		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		boolean status = gHelper.IsElementPresentQuick(appTable);
 		if (status)
 			log("Applications Data Table is visible", false);
 		else
 			log("Applications Data Table is not visible", true);
 		Assert.assertTrue(status);
-		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText, vendorName)));
+
+		enterSearchCriteria(searchText);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(AppTableAppName, searchText)));
 		if (status)
 			log("Applications Data searched row is visible", false);
 		else
 			log("Applications Data searched row is not visible", true);
+		Assert.assertTrue(status);
+
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(AppTableVendorName, vendorName)));
+		if (status)
+			log("Applications Vendor is visible in row", false);
+		else
+			log("Applications Vendor is not visible in row", true);
 		Assert.assertTrue(status);
 	}
 

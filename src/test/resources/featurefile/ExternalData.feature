@@ -1,13 +1,11 @@
 Feature: External Data Scenarios 
 
-#CE-662
 Scenario: Verify external data - on demand sync scenario
 	Given user logged in successfully  
 	When user navigate to on demand sync page
 	Then user must be landing on on-demand sync page
 	And user must be able to view side bar options
 
-#CE-672
 Scenario: Verify external data - transactions excel upload scenario
 	Given user logged in successfully  
 	When user navigate to transactions excel data upload page
@@ -49,6 +47,8 @@ Scenario: Verify external data - data from finance systems - new vendors found
 	When user navigate to data from finance systems new vendors found page
 	Then user must be landing on data from finance systems new vendors found page
 	And user must be able to view new vendors found table
+	When user click on match not found tab
+	Then user must be able to view match not found vendor table
 	When user click on existing vendor
 	Then user must be able to view slider
 	And user must be able to view existing vendor records
@@ -67,6 +67,11 @@ Scenario: Verify external data - data from finance systems - rejected vendors
 	When user navigate to data from finance systems rejected vendors page
 	Then user must be landing on data from finance systems rejected vendors page
 	And user must be able to view rejected vendors table
+	When user click on existing vendor
+	Then user must be able to view slider
+	And user must be able to view existing vendor records
+	And user close the slider
+
 	
 #CE-669
 Scenario: Verify external data - data from sso systems - new apps found

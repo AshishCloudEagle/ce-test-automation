@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.GetCurrentUrl;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
@@ -74,10 +75,32 @@ public class DashboardPage extends PageBase {
 
 	private By menuVendorResearch = By.xpath("//*[text()='Vendor Research' and contains(@class,'menuName')]");
 
+	private By menuProcurementRequest = By.xpath("//*[text()='Procurement Request' and contains(@class,'menuName')]");
+	
 	private By menuExternalData = By.xpath("//*[text()='External Data' and contains(@class,'menuName')]");
 
 	private By menuAdmin = By.xpath("//*[text()='Admin' and contains(@class,'menuName')]");
+	
+	//DashboardTables
+	private By contractsComingUpForRenewal = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'Contracts coming up for renewal in the next')]]");
+	private By applicationsBelowUsage = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'Applications below')]]");
+	private By licensesLeftToProvision = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'licenses left to provision')]]");
+	private By billingChangesGreaterThan = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'Billing changes greater than')]]");	
+	private By differentApplicationsUnderSameCategory = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'Different Applications')]]");
+	private By newVendorsConfirmedInTheLast = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'New vendors confirmed in the last')]]");
+	private By freeAppsUsersAreLoggingInto = By.xpath("//div[contains(@class,'dashboard_rowData')][div//h5[contains(text(),'Free apps users are logging into')]]");
+	
+//	InProgress Tab
+	private By inProgressTab = By.xpath("//*[text()='in progress']");
+	private By TableRecord = By.xpath("(//table//tr)[2]");
+	
+//	Resolved Tab
+	private By resolvedTab = By.xpath("//*[text()='resolved']");
 
+//	Resolved Tab
+	private By snoozedTab = By.xpath("//*[text()='Snoozed']");
+
+	
 	/** Public Methods **/
 
 	public WebDriver getDriver() {
@@ -195,11 +218,20 @@ public class DashboardPage extends PageBase {
 		else
 			log("SaaS Directory Menu is not displaying", true);
 		Assert.assertTrue(status);
+		//For somecorp only
+		if(driver.getCurrentUrl().contains("somecorp.cloudeagle.us")) {
 		status = gHelper.IsElementPresentQuick(menuVendorResearch);
 		if (status)
 			log("Vendor Research Menu is displaying", false);
 		else
 			log("Vendor Research Menu is not displaying", true);
+		Assert.assertTrue(status);
+		}
+		status = gHelper.IsElementPresentQuick(menuProcurementRequest);
+		if (status)
+			log("Procurement Request Menu is displaying", false);
+		else
+			log("Procurement Request Menu is not displaying", true);
 		Assert.assertTrue(status);
 		status = gHelper.IsElementPresentQuick(menuExternalData);
 		if (status)
@@ -212,6 +244,103 @@ public class DashboardPage extends PageBase {
 			log("Admin Menu is displaying", false);
 		else
 			log("Admin Menu is not displaying", true);
+		Assert.assertTrue(status);
+	}
+	public void verifyDashboardTables()
+	{
+		boolean status = gHelper.IsElementPresentQuick(contractsComingUpForRenewal);
+		if (status)
+			log("Contracts coming up for renewal table is displaying", false);
+		else
+			log("Contracts coming up for renewal table is not displaying", true);
+		Assert.assertTrue(status);
+		
+		status = gHelper.IsElementPresentQuick(applicationsBelowUsage);
+		if (status)
+			log("Applications below X% Usage table is displaying", false);
+		else
+			log("Applications below X% Usage table is not displaying", true);
+		Assert.assertTrue(status);
+		
+		status = gHelper.IsElementPresentQuick(licensesLeftToProvision);
+		if (status)
+			log("licenses left to provision table is displaying", false);
+		else
+			log("licenses left to provision table is not displaying", true);
+		Assert.assertTrue(status);
+		
+		status = gHelper.IsElementPresentQuick(billingChangesGreaterThan);
+		if (status)
+			log("Billing changes greater than X% table is displaying", false);
+		else
+			log("Billing changes greater than X% table is not displaying", true);
+		Assert.assertTrue(status);
+		
+		status = gHelper.IsElementPresentQuick(differentApplicationsUnderSameCategory);
+		if (status)
+			log("Different Applications Under Same Category table is displaying", false);
+		else
+			log("Different Applications Under Same Category table is not displaying", true);
+		Assert.assertTrue(status);
+		
+		status = gHelper.IsElementPresentQuick(newVendorsConfirmedInTheLast);
+		if (status)
+			log("New vendors confirmed in the last X days table is displaying", false);
+		else
+			log("New vendors confirmed in the last X days table is not displaying", true);
+		Assert.assertTrue(status);
+		
+		status = gHelper.IsElementPresentQuick(freeAppsUsersAreLoggingInto);
+		if (status)
+			log("Free apps users are logging into table is displaying", false);
+		else
+			log("Free apps users are logging into table is not displaying", true);
+		Assert.assertTrue(status);
+	}
+
+	public void clickOnInProgressTab() {
+		bHelper.click(inProgressTab);
+		log("User clicks on inProgress Tab", false);
+	}
+	
+	public void verifyInProgressTabTable()
+	{		
+		boolean status = gHelper.IsElementPresentQuick(TableRecord);
+		if (status)
+			log("Table records are visible", false);
+		else
+			log("Table records are not visible", true);
+		Assert.assertTrue(status);
+
+	}
+	
+	public void clickOnResolvedTab() {
+		bHelper.click(resolvedTab);
+		log("User clicks on Resolved Tab", false);
+	}
+	
+	public void verifyResolvedTabTable()
+	{		
+		boolean status = gHelper.IsElementPresentQuick(TableRecord);
+		if (status)
+			log("Table records are visible", false);
+		else
+			log("Table records are not visible", true);
+		Assert.assertTrue(status);
+
+	}
+	
+	public void clickOnSnoozedTab() {
+		bHelper.click(snoozedTab);
+		log("User clicks on Snoozed Tab", false);
+	}
+	
+	public void verifySnoozedTabTable() {
+		boolean status = gHelper.IsElementPresentQuick(TableRecord);
+		if (status)
+			log("Table records are visible", false);
+		else
+			log("Table records are not visible", true);
 		Assert.assertTrue(status);
 	}
 }

@@ -41,9 +41,13 @@ public class AdminPage extends PageBase {
 	@CacheLookup
 	private WebElement finanaceSystemBtn;
 
-	@FindBy(xpath = "//li[text()='Alert Settings']")
+	@FindBy(xpath = "//li[text()='Dashboard Settings']")
 	@CacheLookup
-	private WebElement alertSettings;
+	private WebElement dashboardSettings;
+
+	@FindBy(xpath = "//li//div[text()='Action NEEDED Settings']")
+	@CacheLookup
+	private WebElement actionNeededSettings;
 
 	@FindBy(xpath = "//li[text()='Roles & Users']")
 	@CacheLookup
@@ -85,7 +89,7 @@ public class AdminPage extends PageBase {
 	@CacheLookup
 	private WebElement companySettings;
 
-	By excelTable = By.xpath("(//table)[1]");
+	By tableRecords = By.xpath("(//table//tbody)[1]");
 
 	By newUserHeader = By.xpath("//div[contains(@class,'header')]//*[text()='Add New User']");
 
@@ -93,11 +97,13 @@ public class AdminPage extends PageBase {
 
 	By newDepartmentHeader = By.xpath("//div[contains(@class,'header')]//*[text()='Add Department']");
 
-	String excelData = "(//table)[1]//td[@title='%s']";
+	String tableRowUser = "((//table)[1]//td[@title='%s'])[1]";
+
+	String tableRowRole = "(//table//td//span[text()='%s'])[1]";
 
 	By menuIntegrations = By.xpath("//li[text()='Integrations']");
 
-	By menuAlertSettings = By.xpath("//li[text()='Alert Settings']");
+	By menuDashboardSettings = By.xpath("//li[text()='Dashboard Settings']");
 
 	By menuRolesUsers = By.xpath("//li[text()='Roles & Users']");
 
@@ -111,7 +117,7 @@ public class AdminPage extends PageBase {
 		return this.driver;
 	}
 
-	public void clickOnAdminSideMenu(){
+	public void clickOnAdminSideMenu() {
 		bHelper.click(menuAdmin);
 		log("User clicks on Admin", false);
 	}
@@ -123,11 +129,11 @@ public class AdminPage extends PageBase {
 		else
 			log("Integrations Menu is not displaying", true);
 		Assert.assertTrue(status);
-		status = gHelper.IsElementPresentQuick(menuAlertSettings);
+		status = gHelper.IsElementPresentQuick(menuDashboardSettings);
 		if (status)
-			log("Alert Settins Menu is displaying", false);
+			log("Dashboard Settins Menu is displaying", false);
 		else
-			log("Alert Settins Menu is not displaying", true);
+			log("Dashboard Settins Menu is not displaying", true);
 		Assert.assertTrue(status);
 		status = gHelper.IsElementPresentQuick(menuRolesUsers);
 		if (status)
@@ -176,9 +182,14 @@ public class AdminPage extends PageBase {
 		Assert.assertTrue(status);
 	}
 
-	public void clickOnAlertSettings() {
-		bHelper.click(alertSettings);
-		log("User clicks on Alert Settings", false);
+	public void clickOnDashboardSettings() {
+		bHelper.click(dashboardSettings);
+		log("User clicks on Dashboard Settings", false);
+	}
+
+	public void clickOnDashActionNeededSettings() {
+		bHelper.click(actionNeededSettings);
+		log("User clicks on action Needed Settings", false);
 	}
 
 	public void clickOnRolesAndUsers() {
@@ -191,19 +202,29 @@ public class AdminPage extends PageBase {
 		log("User enter " + searchText + " in search box", false);
 	}
 
-	public void verifyTable(String searchText) {
+	public void verifyTable(String searchText, String tableName) {
 		enterSearchCriteria(searchText);
-		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		boolean status = gHelper.IsElementPresentQuick(tableRecords);
 		if (status)
-			log("Excel Data Table is visible", false);
+			log(tableName + "Table is visible", false);
 		else
-			log("Excel Data Table is not visible", true);
+			log(tableName + "Table is not visible", true);
 		Assert.assertTrue(status);
-		status = gHelper.IsElementPresentQuick(By.xpath(String.format(excelData, searchText)));
+		if (tableName == "Role") {
+			status = gHelper.IsElementPresentQuick(By.xpath(String.format(tableRowRole, searchText)));
+		}
+		if (tableName == "User") {
+			status = gHelper.IsElementPresentQuick(By.xpath(String.format(tableRowUser, searchText)));
+
+		}
+		if (tableName == "Dept") {
+			status = gHelper.IsElementPresentQuick(By.xpath(String.format(tableRowRole, searchText)));
+		}
+
 		if (status)
-			log("Excel Data searched row is visible", false);
+			log(tableName + "searched row is visible", false);
 		else
-			log("Excel Data searched row is not visible", true);
+			log(tableName + "searched row is not visible", true);
 		Assert.assertTrue(status);
 	}
 

@@ -108,6 +108,10 @@ public class ExternalDataPage extends PageBase {
 	@CacheLookup
 	private WebElement newAppFound;
 
+	@FindBy(xpath = "//li//div[text()='Match Not Found']")
+	@CacheLookup
+	private WebElement matchNotFoundtab;
+
 	@FindBy(xpath = "//*[text()='Confirmed Apps' and contains(@class,'tab')]")
 	@CacheLookup
 	private WebElement confirmApp;
@@ -136,18 +140,19 @@ public class ExternalDataPage extends PageBase {
 
 	By menuExcelDataUpload = By.xpath("//li[text()='Excel Data Upload']");
 
-	String excelData = "(//table)[1]//tbody/tr[1]";
+	String excelData = "(//table//tr)[2]";
 
-	String existingVendorsRecord = "(//table)[4]//tbody//td[1]";
+	String searchedTableData = "(//table//td//span[text()='%s'])[1]";
 
-	String existingVendorsRecordRejectedAppPage = "(//table)[3]//tbody//tr[1]";
-	
+	String existingVendorsRecord = "((//table)[4]//tbody//tr//td)[1]";
+
+	String existingVendorsRecordRejectedAppPage = "((//table)[3]//tbody//tr//td)[1]";
+
 	String existingVendorName = "((//table)[4]//tbody//tr//td//div//span)[1]";
 
-	String existingApplicationRecord1 = "(//table)[5]//tbody/tr[1]";
-	String existingApplicationRecord2 = "(//table)[4]//tbody/tr[1]";
-	
-	String existingAppRecordRejectedAppPage = "(//div[@class='ant-table ant-table-default ant-table-scroll-position-left ant-table-layout-fixed'])//table";
+	String existingApplicationRecord1 = "((//table)[3]//tbody//tr//td)[1]";
+
+	String existingAppRecordRejectedAppPage = "((//table)[3]//tbody//tr//td)[1]";
 
 	By activePage = By.xpath("//*[text()='On-Demand Sync' and contains(@class,'Active')]");
 
@@ -200,6 +205,22 @@ public class ExternalDataPage extends PageBase {
 			log("Excel Data Table is not visible", true);
 		Assert.assertTrue(status);
 		status = gHelper.IsElementPresentQuick1(excelData);
+		if (status)
+			log("Excel Data searched row is visible", false);
+		else
+			log("Excel Data searched row is not visible", true);
+		Assert.assertTrue(status);
+	}
+
+	public void verifySearchedTableData(String searchText) {
+		enterSearchCriteria(searchText);
+		boolean status = gHelper.IsElementPresentQuick(excelTable);
+		if (status)
+			log("Excel Data Table is visible", false);
+		else
+			log("Excel Data Table is not visible", true);
+		Assert.assertTrue(status);
+		status = gHelper.IsElementPresentQuick(By.xpath(String.format(searchedTableData, searchText)));
 		if (status)
 			log("Excel Data searched row is visible", false);
 		else
@@ -314,20 +335,19 @@ public class ExternalDataPage extends PageBase {
 		Assert.assertTrue(status);
 	}
 
-	public void verifyExistingVendorRecords(String searchText) throws InterruptedException {
+	public void verifyExistingVendorRecords() throws InterruptedException {
 		Thread.sleep(10000);
-//		enterDrawerSearchCriteria(searchText);
 		boolean status;
-		if(driver.getCurrentUrl().contains("superAdmin/ssoReconcilation/archived")) 
-		   status = gHelper.IsElementPresentQuick1(existingVendorsRecordRejectedAppPage);
-		
-		else 
-  		   status = gHelper.IsElementPresentQuick1(existingVendorsRecord);
-		
-		if (status)
-			log("Existing vendor searched row is visible", false);
+		if (driver.getCurrentUrl().contains("superAdmin/ssoReconcilation/archived"))
+			status = gHelper.IsElementPresentQuick1(existingVendorsRecordRejectedAppPage);
+
 		else
-			log("Existing vendor searched row is not visible", true);
+			status = gHelper.IsElementPresentQuick1(existingVendorsRecord);
+
+		if (status)
+			log("Existing vendor table data is visible", false);
+		else
+			log("Existing vendor table data is not visible", true);
 		Assert.assertTrue(status);
 	}
 
@@ -356,6 +376,11 @@ public class ExternalDataPage extends PageBase {
 		log("User clicks on New App Found", false);
 	}
 
+	public void clickOnMatchNotFoundtab() {
+		bHelper.click(matchNotFoundtab);
+		log("User clicks on Match Not Found tab", false);
+	}
+
 	public void clickOnExistingApplication() {
 		bHelper.click(existingApplicationBtn);
 		log("User clicks on Existing Application", false);
@@ -370,16 +395,11 @@ public class ExternalDataPage extends PageBase {
 		Assert.assertTrue(status);
 	}
 
-	public void verifyExistingApplicationRecords(String searchText) throws InterruptedException {
-//		enterDrawerSearchCriteria(searchText);
+	public void verifyExistingApplicationRecords() throws InterruptedException {
 		boolean status;
 		System.out.println(driver.getCurrentUrl());
-		if(driver.getCurrentUrl().contains("superAdmin/ssoReconcilation/pending"))
-	     	status = gHelper.IsElementPresentQuick1(existingApplicationRecord1);
-		
-		else
-			status = gHelper.IsElementPresentQuick1(existingApplicationRecord2);	
-		
+		status = gHelper.IsElementPresentQuick1(existingApplicationRecord1);
+
 		if (status)
 			log("Existing application searched row is visible", false);
 		else
@@ -387,12 +407,10 @@ public class ExternalDataPage extends PageBase {
 		Assert.assertTrue(status);
 	}
 
-	
 	public void verifyExistingApplicationRecordsRejectedAppTab(String searchText) throws InterruptedException {
 //		enterDrawerSearchCriteria(searchText); 
-		System.out.println(driver.getCurrentUrl());
-		boolean status = gHelper.IsElementPresentQuick1(existingAppRecordRejectedAppPage);	
-		
+		boolean status = gHelper.IsElementPresentQuick1(existingAppRecordRejectedAppPage);
+
 		if (status)
 			log("Existing application searched row is visible", false);
 		else

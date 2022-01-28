@@ -21,12 +21,6 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_on_demand_sync_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnOnDemandSync();
-		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataOnDemandSyncSingleSignOnURL()))
-			extP.log("External Data - On Demand Sync URL verified", false);
-		else {
-			extP.log("External Data - On Demand Sync URL mis match", true);
-			Assert.assertTrue(false);
-		}
 	}
 
 	@Then("^user must be landing on on-demand sync page$")
@@ -47,8 +41,8 @@ public class ExternalDataStepDef {
 	@When("^user navigate to on demand sync single sign on page$")
 	public void user_navigate_to_on_demand_sync_single_sign_on_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
-		extP.clickOnOnDemandSync();
-		extP.clickOnSingleSignOn();
+//		extP.clickOnOnDemandSync();
+//		extP.clickOnSingleSignOn();
 	}
 
 	@Then("^user must be landing on on-demand sync single sign on page$")
@@ -69,7 +63,7 @@ public class ExternalDataStepDef {
 	@When("^user navigate to on demand sync finance systems page$")
 	public void user_navigate_to_on_demand_sync_finance_systems_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
-		extP.clickOnOnDemandSync();
+//		extP.clickOnOnDemandSync();
 		extP.clickOnFinanceSystems();
 	}
 
@@ -92,7 +86,6 @@ public class ExternalDataStepDef {
 	public void user_navigate_to_transactions_excel_data_upload_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
 		extP.clickOnExcelDataUpload();
-		System.out.println(Constants.URL + ObjectRepo.reader.getExternalDataUploadTransactionsURL());
 		if (gH.verifyURL(Constants.URL + ObjectRepo.reader.getExternalDataUploadTransactionsURL()))
 			extP.log("External - Transactions Data Upload Documents URL verified", false);
 		else {
@@ -132,7 +125,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be able to view vendor metadata upload table$")
 	public void user_must_be_able_to_view_vendor_metadata_upload_table() throws Throwable {
-		extP.verifyExcelDataTable(ObjectRepo.reader.getFileName());
+		extP.verifyExcelDataTable(ObjectRepo.reader.getVendorMetadataFileName());
 	}
 
 	@When("^user click on upload button for vendor metadata$")
@@ -161,7 +154,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be able to view application metadata upload table$")
 	public void user_must_be_able_to_view_application_metadata_upload_table() throws Throwable {
-		extP.verifyExcelDataTable(ObjectRepo.reader.getFileName());
+		extP.verifyExcelDataTable(ObjectRepo.reader.getApplicationMetadataFileName());
 	}
 
 	@When("^user click on upload button for application metadata$")
@@ -193,7 +186,7 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be able to view new vendors found table$")
 	public void user_must_be_able_to_view_new_vendors_found_table() throws Throwable {
-		extP.verifyExcelDataTable(ObjectRepo.reader.getNewVendorName());
+		extP.verifySearchedTableData(ObjectRepo.reader.getNewVendorName());
 	}
 
 	@When("^user click on existing vendor$")
@@ -208,8 +201,8 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be able to view existing vendor records$")
 	public void user_must_be_able_to_view_existing_vendor_records() throws Throwable {
-		wH.hardWait(10000);
-		extP.verifyExistingVendorRecords(ObjectRepo.reader.getNewVendorName());
+		Thread.sleep(10000);
+		extP.verifyExistingVendorRecords();
 	}
 
 	@Then("^user close the slider$")
@@ -280,6 +273,16 @@ public class ExternalDataStepDef {
 
 	@Then("^user must be able to view new apps found table$")
 	public void user_must_be_able_to_view_new_apps_found_table() throws Throwable {
+		extP.verifySearchedTableData(ObjectRepo.reader.getNewAppName());
+	}
+
+	@When("^user click on match not found tab$")
+	public void user_click_on_match_not_found_tab() throws Throwable {
+		extP.clickOnMatchNotFoundtab();
+	}
+
+	@Then("^user must be able to view match not found vendor table$")
+	public void user_must_be_able_to_view_match_not_found_vendor_table() throws Throwable {
 		extP.verifyExcelDataTable(ObjectRepo.reader.getNewAppName());
 	}
 
@@ -296,7 +299,7 @@ public class ExternalDataStepDef {
 	@Then("^user must be able to view existing application records for new app found page$")
 	public void user_must_be_able_to_view_existing_application_records_for_new_app_found_page() throws Throwable {
 		wH.hardWait(10000);
-		extP.verifyExistingApplicationRecords(ObjectRepo.reader.getExistingAppName());
+		extP.verifyExistingApplicationRecords();
 	}
 
 	@When("^user navigate to data from sso systems confirmed apps page$")

@@ -22,38 +22,48 @@ Scenario: Verify admin - integration - finance systems scenario
 	And user must be able to view finance systems integration tools list
 	
 @CE-676
-Scenario: Verify admin - alert
+Scenario: Verify admin - Dashboard Settings
 	Given user logged in successfully  
-	When user navigate to on admin alert page
+	When user navigate to on admin Dashboard Settings page
 	Then user must be landing on admin alert page
-	
-@CE-677
-Scenario: Verify admin - roles and users
+
+Scenario: Verify admin - Dashboard Settings
 	Given user logged in successfully  
-	When user navigate to on admin roles and users page
+	When user navigate to on admin Action Needed Settings page
+	Then user must be landing on admin Action Needed Settings page
+		
+Scenario: Verify admin - roles and users - user
+	Given user logged in successfully  
+	When user navigate to admin roles and users page
 	Then user must be landing on roles and users page
 	And user must be able to view roles and users table
 	When user click on add new user
 	Then user must be able to view add new user model
 	
-@CE-678
+Scenario: Verify admin - roles and users - role
+	Given user logged in successfully  
+	When user navigate to admin roles page
+	Then user must be landing on roles page
+	And user must be able to view roles table
+	When user click on create role
+	Then user must be able to view create role modal
+	
+Scenario: Verify admin - roles and users - department
+	Given user logged in successfully  
+	When user navigate to admin department page
+	Then user must be landing on department page
+	And user must be able to view department table
+	When user click on create department
+	Then user must be able to view create department modal
+	
 Scenario: Verify admin - roles and users - roles
 	Given user logged in successfully  
 	When user navigate to on admin roles and users roles page
-	Then user must be landing on roles and users roles page
-	And user must be able to view roles and users roles table
-	When user click on create role
-	Then user must be able to view create role model
+	Then user must be landing on users page
+	And user must be able to view users table
+	When user click on create user
+	Then user must be able to view create user modal
 	
-@CE-679
-Scenario: Verify admin - roles and users - departments
-	Given user logged in successfully  
-	When user navigate to on admin roles and users departments page
-	Then user must be landing on roles and users departments page
-	And user must be able to view roles and users department table
-	When user click on create department
-	Then user must be able to view create department model
-
 @CE-680
 Scenario: Verify admin - settings
 	Given user logged in successfully  

@@ -24,6 +24,10 @@ public interface IconfigReader {
 	public String getPassword();
 
 	public String getFileName();
+	
+	public String getVendorMetadataFileName();
+	
+	public String getApplicationMetadataFileName();
 
 	public String getProcessedBy();
 
@@ -114,6 +118,8 @@ public interface IconfigReader {
 	public String getAdminRolesAndUsersUsersURL();
 
 	public String getAdminRolesAndUsersRolesURL();
+	
+	public String getUserEmail();
 
 	public String getRole();
 
