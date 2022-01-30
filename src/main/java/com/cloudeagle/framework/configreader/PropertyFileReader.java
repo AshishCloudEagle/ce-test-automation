@@ -188,12 +188,12 @@ public class PropertyFileReader implements IconfigReader {
 	public String getExternalDataUploadTransactionsURL() {
 		return prop.getProperty("ExternalDataUploadTransactionsURL");
 	}
-	
+
 	@Override
 	public String getExternalDataVendorMetadataURL() {
 		return prop.getProperty("ExternalDataUploadVendorMetadataURL");
 	}
-	
+
 	@Override
 	public String getExternalDataApplicationMetadataURL() {
 		return prop.getProperty("ExternalDataUploadApplicationMetadataURL");
@@ -232,11 +232,6 @@ public class PropertyFileReader implements IconfigReader {
 	@Override
 	public String getSaaSDirectoryURL() {
 		return prop.getProperty("SaaSDirectoryURL");
-	}
-
-	@Override
-	public String getSaaSDirectoryProductName() {
-		return prop.getProperty("SaaSDirectoryProductName");
 	}
 
 	@Override
@@ -384,6 +379,30 @@ public class PropertyFileReader implements IconfigReader {
 	public String getApplicationMetadataFileName() {
 		// TODO Auto-generated method stub
 		return prop.getProperty("ApplicationMetadataFile");
+	}
+
+	@Override
+	public String getSaaSDirectoryVendorName() {
+		// TODO Auto-generated method stub
+		return prop.getProperty("SaaSDirectoryVendorName");
+	}
+
+	@Override
+	public String getSaaSDirVendorProductName() {
+		// TODO Auto-generated method stub
+		return prop.getProperty("SaaSDirVendorProductName");
+	}
+
+	@Override
+	public String getSaaSDirectoryCategoryName() {
+		// TODO Auto-generated method stub
+		return prop.getProperty("SaaSDirectoryCategoryName");
+	}
+
+	@Override
+	public String getSaaSDirCategoryProductName() {
+		// TODO Auto-generated method stub
+		return prop.getProperty("SaaSDirCategoryProductName");
 	}
 
 }

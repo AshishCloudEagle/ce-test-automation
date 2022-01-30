@@ -27,21 +27,18 @@ Scenario: Verify external data - application metadata excel upload scenario
 	When user click on upload button for application metadata	
 	Then user must be able to view upload model for application metadata
 	
-#CE-663
 Scenario: Verify external data - on demand sync - single sign on scenario
 	Given user logged in successfully  
 	When user navigate to on demand sync single sign on page
 	Then user must be landing on on-demand sync single sign on page
 	And user must be able to view single sign on header	
 	
-#CE-665
 Scenario: Verify external data - on demand sync - finance systems scenario
 	Given user logged in successfully  
 	When user navigate to on demand sync finance systems page
 	Then user must be landing on on-demand sync finance systems page
 	And user must be able to view finance systems header	
 	
-#CE-666
 Scenario: Verify external data - data from finance systems - new vendors found
 	Given user logged in successfully  
 	When user navigate to data from finance systems new vendors found page
@@ -54,14 +51,12 @@ Scenario: Verify external data - data from finance systems - new vendors found
 	And user must be able to view existing vendor records
 	And user close the slider
 	
-#CE-667	
 Scenario: Verify external data - data from finance systems - confirmed vendors
 	Given user logged in successfully  
 	When user navigate to data from finance systems confirmed vendors page
 	Then user must be landing on data from finance systems confirmed vendors page
 	And user must be able to view confirmed vendors table
 	
-#CE-668	
 Scenario: Verify external data - data from finance systems - rejected vendors
 	Given user logged in successfully  
 	When user navigate to data from finance systems rejected vendors page
@@ -72,8 +67,6 @@ Scenario: Verify external data - data from finance systems - rejected vendors
 	And user must be able to view existing vendor records
 	And user close the slider
 
-	
-#CE-669
 Scenario: Verify external data - data from sso systems - new apps found
 	Given user logged in successfully  
 	When user navigate to data from sso systems new apps found page
@@ -87,14 +80,12 @@ Scenario: Verify external data - data from sso systems - new apps found
 	Then user must be able to view slider of application for new app found page
 	And user must be able to view existing application records for new app found page
 	
-#CE-670	
 Scenario: Verify external data - data from sso systems - confirmed apps
 	Given user logged in successfully  
 	When user navigate to data from sso systems confirmed apps page
 	Then user must be landing on data from sso systems confirmed apps page
 	And user must be able to view confirmed apps table
 	
-#CE-671
 Scenario: Verify external data - data from sso systems - rejected apps
 	Given user logged in successfully  
 	When user navigate to data from sso systems rejected apps page

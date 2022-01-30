@@ -144,15 +144,15 @@ public class ExternalDataPage extends PageBase {
 
 	String searchedTableData = "(//table//td//span[text()='%s'])[1]";
 
-	String existingVendorsRecord = "((//table)[4]//tbody//tr//td)[1]";
+	String existingVendorsRecord = "((//div[@class='ant-drawer-content'])[1]//table//tr//td)[1]";
 
-	String existingVendorsRecordRejectedAppPage = "((//table)[3]//tbody//tr//td)[1]";
+	String existingVendorsRecordRejectedAppPage = "((//div[@class='ant-drawer-content'])[1]//table//tr//td)[1]";
 
 	String existingVendorName = "((//table)[4]//tbody//tr//td//div//span)[1]";
 
-	String existingApplicationRecord1 = "((//table)[3]//tbody//tr//td)[1]";
+	String existingApplicationRecord1 = "((//div[@class='ant-drawer-content'])[1]//table//tr//td)[1]";
 
-	String existingAppRecordRejectedAppPage = "((//table)[3]//tbody//tr//td)[1]";
+	String existingAppRecordRejectedAppPage = "((//div[@class='ant-drawer-content'])[1]//table//tr//td)[1]";
 
 	By activePage = By.xpath("//*[text()='On-Demand Sync' and contains(@class,'Active')]");
 
@@ -397,7 +397,6 @@ public class ExternalDataPage extends PageBase {
 
 	public void verifyExistingApplicationRecords() throws InterruptedException {
 		boolean status;
-		System.out.println(driver.getCurrentUrl());
 		status = gHelper.IsElementPresentQuick1(existingApplicationRecord1);
 
 		if (status)

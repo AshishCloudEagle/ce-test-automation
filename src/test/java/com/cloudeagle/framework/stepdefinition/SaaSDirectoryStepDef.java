@@ -24,14 +24,39 @@ public class SaaSDirectoryStepDef {
 		saasP.verifyHeader();
 	}
 
-	@And("^CRM Software filter should be selected$")
-	public void verify_CRM_filter() throws Throwable {
-		saasP.verifyCRMFilter();
+	@When("^user search with vendor name$")
+	public void user_search_with_vendor_name() throws Throwable {
+		saasP.seachVendor(ObjectRepo.reader.getSaaSDirectoryVendorName());
+
 	}
 
-	@And("^verify at least one result box from Product list$")
-	public void verify_result() throws Throwable {
-		saasP.verifyResult(ObjectRepo.reader.getSaaSDirectoryProductName());
+	@Then("^user must be able to view product list for searched vendor$")
+	public void user_must_be_able_to_view_product_list_for_searched_vendor() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		saasP.verifyProductList();
 	}
 
+	@And("^verify one product under the searched vendor$")
+	public void verify_one_product_under_the_searched_vendor() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		saasP.verifyResult(ObjectRepo.reader.getSaaSDirVendorProductName());
+	}
+
+	@When("^user search with category name$")
+	public void user_search_with_category_name() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		saasP.searchCategory(ObjectRepo.reader.getSaaSDirectoryCategoryName());
+	}
+
+	@Then("^user must be able to view product list for searched category$")
+	public void user_must_be_able_to_view_product_list_for_searched_category() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		saasP.verifyProductList();
+	}
+
+	@And("^verify one product under the searched category$")
+	public void verify_one_product_under_the_searched_category() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		saasP.verifyResult(ObjectRepo.reader.getSaaSDirCategoryProductName());
+	}
 }

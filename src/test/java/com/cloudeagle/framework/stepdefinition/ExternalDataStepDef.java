@@ -41,8 +41,6 @@ public class ExternalDataStepDef {
 	@When("^user navigate to on demand sync single sign on page$")
 	public void user_navigate_to_on_demand_sync_single_sign_on_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
-//		extP.clickOnOnDemandSync();
-//		extP.clickOnSingleSignOn();
 	}
 
 	@Then("^user must be landing on on-demand sync single sign on page$")
@@ -63,7 +61,6 @@ public class ExternalDataStepDef {
 	@When("^user navigate to on demand sync finance systems page$")
 	public void user_navigate_to_on_demand_sync_finance_systems_page() throws Throwable {
 		extP.clickOnExternalDataSideMenu();
-//		extP.clickOnOnDemandSync();
 		extP.clickOnFinanceSystems();
 	}
 

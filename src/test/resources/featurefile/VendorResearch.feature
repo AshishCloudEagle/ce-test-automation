@@ -1,6 +1,5 @@
 Feature: Vendor Research Scenarios 
 
-#CE-661
 Scenario: Verify vendor research page
 	Given user logged in successfully  
 	When user navigate to vendor research page

@@ -40,4 +40,11 @@ public class ButtonHelper implements IwebComponent {
 		element.click();
 		oLog.info(element);
 	}
+	
+	public void click(String locator)
+	{
+		 WebElement element= driver.findElement(By.xpath(locator));
+		 element.click();
+	 	 oLog.info(element);
+	}
 }

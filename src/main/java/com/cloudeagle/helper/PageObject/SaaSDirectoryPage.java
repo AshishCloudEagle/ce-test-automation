@@ -1,6 +1,7 @@
 package com.cloudeagle.helper.PageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -34,9 +35,30 @@ public class SaaSDirectoryPage extends PageBase {
 	@CacheLookup
 	private WebElement menuSaaSDirectory;
 
-	@FindBy(xpath = "//input[@placeholder='Search']")
+	@FindBy(xpath = "//div[div/div/div[text()='search by vendor name']]")
 	@CacheLookup
-	private WebElement search;
+	private WebElement searchVendorField;
+	
+	@FindBy(xpath = "//div[div[text()='search by vendor name']]//input")
+	@CacheLookup
+	private WebElement searchVendorinput;
+	
+	String selectListItem="//div//ul//li[text()='%s']";
+	
+	
+	@FindBy(xpath = "//div[div/div/div[text()='search by category']]")
+	@CacheLookup
+	private WebElement searchCategoryField;
+
+	@FindBy(xpath = "//div[div[text()='search by category']]//input")
+	@CacheLookup
+	private WebElement searchCategoryInput;
+	
+	@FindBy(xpath = "//span//span[text()='CRM Software']")
+	@CacheLookup
+	private WebElement clearFilter;
+
+	String productList = "//div[contains(@class,'saasdirectory_productList')]";
 
 	By header = By.xpath("//*[contains(text(),'SAAS Directory')]");
 
@@ -55,21 +77,6 @@ public class SaaSDirectoryPage extends PageBase {
 		log("User clicks on SaaS Directory", false);
 	}
 
-	public void enterSearchCriteria(String searchText) {
-		tHelper.sendKeys(search, searchText);
-		log("Enter " + searchText + " in search box", false);
-	}
-
-	public void verifyResult(String searchText) {
-		enterSearchCriteria(searchText);
-		boolean status = gHelper.IsElementPresentQuick(By.xpath(String.format(result, searchText)));
-		if (status)
-			log("SaaS Directory result  is visible", false);
-		else
-			log("SaaS Directory result  is not visible", true);
-		Assert.assertTrue(status);
-	}
-
 	public void verifyHeader() {
 		boolean status = gHelper.IsElementPresentQuick(header);
 		if (status)
@@ -79,12 +86,50 @@ public class SaaSDirectoryPage extends PageBase {
 		Assert.assertTrue(status);
 	}
 
-	public void verifyCRMFilter() {
-		boolean status = gHelper.IsElementPresentQuick(crm);
+	public void seachVendor(String vendorName) {
+		bHelper.click(clearFilter);
+		log("User clicks to clear selected filter", false);
+
+		bHelper.click(searchVendorField);
+		log("User clicks to clear selected filter", false);
+		
+		tHelper.sendKeys(searchVendorinput, vendorName + Keys.ENTER);
+		log("User enter " + vendorName + " in search box", false);
+		
+		bHelper.click(selectListItem.replace("%s", vendorName));
+		log("User clicks to clear selected filter", false);
+	}
+
+	public void verifyProductList() {
+		boolean status = gHelper.IsElementPresentQuick1(productList);
 		if (status)
-			log("CRM filter is selected", false);
+			log("SaaS Directory result  is visible", false);
 		else
-			log("CRM filter is not selected", true);
+			log("SaaS Directory result  is not visible", true);
 		Assert.assertTrue(status);
+	}
+
+	public void verifyResult(String productName) {
+		boolean status = gHelper.IsElementPresentQuick(By.xpath(String.format(result, productName)));
+		if (status)
+			log("SaaS Directory result  is visible", false);
+		else
+			log("SaaS Directory result  is not visible", true);
+		Assert.assertTrue(status);
+	}
+
+	public void searchCategory(String categoryName) {
+		bHelper.click(clearFilter);
+		log("User clicks to clear selected filter", false);
+		
+		bHelper.click(searchCategoryField);
+		log("User clicks to clear selected filter", false);
+		
+		tHelper.sendKeys(searchCategoryInput, categoryName);
+		log("Enter " + categoryName + " in search box", false);
+		
+		bHelper.click(selectListItem.replace("%s", categoryName));
+		log("User clicks to clear selected filter", false);
+
 	}
 }

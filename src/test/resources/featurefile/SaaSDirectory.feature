@@ -1,9 +1,17 @@
 Feature: SaaS Directory Scenarios 
 
-#CE-660
-Scenario: Verify saas directory page
+Scenario: Verify saas directory page and search by Vendor name
 	Given user logged in successfully  
 	When user navigate to saas directory page
 	Then user must be able to view saas directory header
-	And CRM Software filter should be selected 
-	And verify at least one result box from Product list
+	When user search with vendor name  
+	And user must be able to view product list for searched vendor
+	And verify one product under the searched vendor
+	
+Scenario: Verify search by Category
+	Given user logged in successfully  
+	When user navigate to saas directory page
+	Then user must be able to view saas directory header
+  When user search with category name  
+	And user must be able to view product list for searched category
+	And verify one product under the searched category

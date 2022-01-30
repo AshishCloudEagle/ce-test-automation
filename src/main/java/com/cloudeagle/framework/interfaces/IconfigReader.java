@@ -75,8 +75,14 @@ public interface IconfigReader {
 
 	public String getSaaSDirectoryURL();
 
-	public String getSaaSDirectoryProductName();
-
+	public String getSaaSDirectoryVendorName();
+	
+	public String getSaaSDirVendorProductName();
+	
+	public String getSaaSDirectoryCategoryName();
+	
+	public String getSaaSDirCategoryProductName();
+	
 	public String getVendorResearchURL();
 
 	public String getVendorResearchProductName();
